@@ -20,28 +20,15 @@ public class LunboActivity extends AppCompatActivity {
     List<Integer> list = new ArrayList<>();
     @BindView(R.id.viewpager_id)
     ViewPager viewpager;
-    Handler handler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (msg.what==0){
-                int i=viewpager.getCurrentItem();
-                i++;
-                viewpager.setCurrentItem(i);
-                handler.sendEmptyMessageDelayed(0,1500);
-            }
-
-        }
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lunbo);
         ButterKnife.bind(this);
-        list.add(R.drawable.lunbo1);
-        list.add(R.drawable.lunbo2);
-        list.add(R.drawable.lunbo3);
-        list.add(R.drawable.lunbo4);
+        list.add(R.drawable.yindao1);
+        list.add(R.drawable.yindao2);
+        list.add(R.drawable.yindao3);
+        list.add(R.drawable.yindao4);
         //设置适配器
         MyPagerAdapter myPagerAdapter=new MyPagerAdapter(list,LunboActivity.this);
         viewpager.setAdapter(myPagerAdapter);
@@ -54,7 +41,7 @@ public class LunboActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int i) {
-                if (i==list.size()){
+                if (i==list.size()-1){
                     Intent intent=new Intent(LunboActivity.this,LoginActivity.class);
                     startActivity(intent);
                 }
@@ -65,7 +52,5 @@ public class LunboActivity extends AppCompatActivity {
 
             }
         });
-        //设置自动轮播
-        handler.sendEmptyMessageDelayed(0,1500);
     }
 }

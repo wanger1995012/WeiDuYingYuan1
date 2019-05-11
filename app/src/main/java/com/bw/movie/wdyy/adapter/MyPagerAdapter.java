@@ -42,31 +42,6 @@ public class MyPagerAdapter extends PagerAdapter {
         imageView.setImageResource(list.get(position%list.size()));
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         container.addView(imageView);
-        //解决滑动冲突
-        imageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        //按下--停止
-                        handler.removeCallbacksAndMessages(null);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        //抬起--轮播
-                        handler.sendEmptyMessageDelayed(0, 1500);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                        //取消--轮播
-                        handler.sendEmptyMessageDelayed(0, 1500);
-                        break;
-
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
         return imageView;
     }
     //销毁视图的方法
