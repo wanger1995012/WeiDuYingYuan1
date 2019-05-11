@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.presenter.MyPresenter;
+import com.bw.movie.wdyy.utile.EncryptUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,8 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
             public void onClick(View v) {
                 String phone = editPhone.getText().toString();
                 String pwd = editPwd.getText().toString();
+                //加密
+               /* EncryptUtil encryptUtil=EncryptUtil.encrypt(pwd);*/
                 pLogin.PInterface(phone,pwd);
             }
         });
