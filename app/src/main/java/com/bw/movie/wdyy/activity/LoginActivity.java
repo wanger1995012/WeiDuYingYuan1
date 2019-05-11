@@ -1,5 +1,9 @@
 package com.bw.movie.wdyy.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -40,17 +44,43 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
                 String phone = editPhone.getText().toString();
                 String pwd = editPwd.getText().toString();
                 //加密
-               /* EncryptUtil encryptUtil=EncryptUtil.encrypt(pwd);*/
-                pLogin.PInterface(phone,pwd);
+                String encryptUtil=EncryptUtil.encrypt(pwd);
+                String encryptUtil2=EncryptUtil.encrypt(pwd);
+                //判断网络
+                if (isConnectIsNomarl(LoginActivity.this)){
+                    //有网
+                    pLogin.PInterface(phone,encryptUtil,encryptUtil2);
+                }else {
+                    //没网
+                    Intent intent=new Intent(LoginActivity.this,MeiwangActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+        //设置快速注册点击事件
+        textZhuce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,ZhuceActivity.class);
+                startActivity(intent);
             }
         });
     }
 
     @Override
     public void login(String str) {
+        Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
         if (str.equals("登录成功")){
-            Toast.makeText(this,"登录成功",Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(LoginActivity.this,ShowActivity.class);
+            startActivity(intent);
+            finish();
         }
+    }
+
+    @Override
+    public void VZhuce(String str) {
+
     }
 
     @Override
@@ -58,5 +88,15 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
         super.onDestroy();
         pLogin.onDestory();
         pLogin=null;
+    }
+    /** 判断网络是否连接 */
+    private boolean isConnectIsNomarl(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        if (info != null && info.isAvailable()) {
+            String intentName = info.getTypeName();
+            return true;
+        }
+        return false;
     }
 }

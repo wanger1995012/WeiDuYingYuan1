@@ -19,10 +19,39 @@ public class MyPresenter<T> implements ContractInterface.PLogin {
         myModel=new MyModel();
         this.tt=t;
     }
-
+    //登录
     @Override
-    public void PInterface(String phone, String pwd) {
+    public void PInterface(String phone, String pwd,String pwd2) {
         Map<String,String> map=new HashMap<>();
+        map.put("phone",phone);
+        map.put("pwd",pwd);
+        map.put("pwd2",pwd2);
+        myModel.Login(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VLogin vLogin= (ContractInterface.VLogin) tt;
+                vLogin.login((String) o);
+            }
+        });
+    }
+    //注册
+    @Override
+    public void PZhuceInterface(String nickName, String phone, String pwd, String pwd2, int sex, String birthday, String email) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("nickName",nickName);
+        map.put("phone",phone+"");
+        map.put("pwd",pwd+"");
+        map.put("pwd2",pwd2+"");
+        map.put("sex",sex);
+        map.put("birthday",birthday+"");
+        map.put("email",email);
+        myModel.Zhuce(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VLogin vLogin= (ContractInterface.VLogin) tt;
+                vLogin.VZhuce((String) o);
+            }
+        });
     }
 
     @Override
