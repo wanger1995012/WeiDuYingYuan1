@@ -37,7 +37,9 @@ public class MyModel {
                         try {
                             String json=responseBody.string();
                             Log.e("aaa", "login: "+json );
-
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

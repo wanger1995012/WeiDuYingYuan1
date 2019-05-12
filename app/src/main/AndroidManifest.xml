@@ -8,15 +8,20 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
+    <!--微信配置-->
+    <meta-data
+        android:name="wxb3852e6a6b7d9516"
+        android:value="123456"
+        ></meta-data>
+
     <application
         android:name=".view.App"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,12 +34,7 @@
         <activity android:name=".activity.ZhuceActivity" />
         <activity android:name=".activity.ShowActivity" />
         <activity android:name=".activity.MeiwangActivity"></activity>
-        <!--微信-->
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.MyQianActivity"></activity>
     </application>
 
 </manifest>
