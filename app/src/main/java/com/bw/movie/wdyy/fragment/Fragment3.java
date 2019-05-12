@@ -72,7 +72,7 @@ public class Fragment3 extends Fragment {
     }
 
     public void XinxiIntit() {
-        
+
     }
 
     public void TuichuInit() {
