@@ -11,6 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.adapter.MyBigAdapter;
+import com.bw.movie.wdyy.bean.ComingSoonBean;
+import com.bw.movie.wdyy.bean.HotMovieListBean;
+import com.bw.movie.wdyy.bean.NowPlayingBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author：lenovo
@@ -19,6 +26,9 @@ import com.bw.movie.wdyy.R;
  * @Description：描述信息
  */
 public class Fragment1 extends Fragment {
+    List<HotMovieListBean> bean1 = new ArrayList<>();
+    List<NowPlayingBean>   bean2 = new ArrayList<>();
+    List<ComingSoonBean>   bean3 = new ArrayList<>();
     RecyclerView rc;
     @Nullable
     @Override
@@ -35,6 +45,6 @@ public class Fragment1 extends Fragment {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rc.setLayoutManager(manager);
         //创建适配器
-
+        MyBigAdapter adapter = new MyBigAdapter(bean1, bean2, bean3, getContext());
     }
 }
