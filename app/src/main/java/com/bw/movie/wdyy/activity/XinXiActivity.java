@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.bean.LoginBean;
 import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.view.App;
 
@@ -62,9 +64,11 @@ public class XinXiActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 2;
     //剪裁请求码
     private static final int CROP_REQUEST_CODE = 3;
+    private static final int shujv = 4;
     //调用照相机返回图片文件
     private File tempFile;
-    int i=0;
+    int i = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,37 +89,23 @@ public class XinXiActivity extends AppCompatActivity {
         //设置用户的信息
         myxinxiNicheng.setText(nickName);
         myxinxiPhone.setText(phone);
-        myxinxiRiqi.setText((int) riqi);
-        if (sex==1){
+        myxinxiRiqi.setText(riqi + "");
+        if (sex == 1) {
             myxinxiSex.setText("男");
-        }else {
+        } else {
             myxinxiSex.setText("女");
         }
-        myxinxiYouxiang.setText((int) youxiang);
+        myxinxiYouxiang.setText(youxiang + "");
         //设置修改的点击事件
         myxinxiBtnXiugai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(XinXiActivity.this,XiuGaiActivity.class);
-                startActivity(intent);
-                finish();
-                i++;
+                Intent intent = new Intent(XinXiActivity.this, XiuGaiActivity.class);
+                intent.putExtra("aaa","123");//a传b在此处写你传的值
+                startActivityForResult(intent, 4);
             }
         });
-        //判断是否点击
-        if (i>0){
-            XiuGaiActivity gaiActivity=new XiuGaiActivity();
-            String youxian = gaiActivity.editYouxiang.getText().toString();
-            String nicheng = gaiActivity.editNicheng.getText().toString();
-            String phon = gaiActivity.editPhone.getText().toString();
-            String riq = gaiActivity.editRiqik.getText().toString();
-            String se = gaiActivity.editSex.getText().toString();
-            myxinxiNicheng.setText(nicheng);
-            myxinxiPhone.setText(phon);
-            myxinxiRiqi.setText(riq);
-            myxinxiSex.setText(se);
-            myxinxiYouxiang.setText(youxian);
-        }
+
     }
 
     //设置用户头像
@@ -248,6 +238,25 @@ public class XinXiActivity extends AppCompatActivity {
                     /*
                      *上传文件的额操作
                      */
+                }
+                break;
+            case shujv:
+                if (resultCode == RESULT_OK) {
+                    String a = data.getStringExtra("mmm");
+                    if (a.equals("1")){
+                        LoginBean.ResultBean.UserInfoBean userInfoBean = new LoginBean.ResultBean.UserInfoBean();
+                        Log.e("ab", "onCreate: " + userInfoBean.toString());
+                        String nickName1 = userInfoBean.getNickName();
+                        String phone1 = userInfoBean.getPhone();
+                        long riqi1 = userInfoBean.getBirthday();
+                        int sex1 = userInfoBean.getSex();
+                        long youxiang1 = userInfoBean.getLastLoginTime();
+                        myxinxiNicheng.setText(nickName1);
+                        myxinxiPhone.setText(phone1);
+                        myxinxiRiqi.setText(riqi1 + "");
+                        myxinxiSex.setText(sex1);
+                        myxinxiYouxiang.setText(youxiang1 + "");
+                    }
                 }
                 break;
         }

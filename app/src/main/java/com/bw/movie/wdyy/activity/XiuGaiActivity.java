@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.bean.LoginBean;
 import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.view.App;
 
@@ -30,7 +31,7 @@ public class XiuGaiActivity extends AppCompatActivity {
     EditText editYouxiang;
     @BindView(R.id.btn_xiugai)
     Button btnXiugai;
-
+    int a=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,21 +44,24 @@ public class XiuGaiActivity extends AppCompatActivity {
                 //获取输入框的内容
                 String nicheng = editNicheng.getText().toString();
                 String phone = editPhone.getText().toString();
-                String riqi = editRiqik.getText().toString();
+                long riqi = editRiqik.getText().length();
                 String sex = editSex.getText().toString();
-                String youxiang = editYouxiang.getText().toString();
+                long youxiang = editYouxiang.getText().length();
                 //将输入框的内容添加至bean中
-                ZhuceBean zhuceBean=new ZhuceBean();
-                zhuceBean.setNickName(nicheng);
-                zhuceBean.setSex(Integer.parseInt(sex));
-                zhuceBean.setPhone(phone);
-                zhuceBean.setBirthday(Long.parseLong(riqi));
-                zhuceBean.setLastLoginTime(Long.parseLong(youxiang));
-                //添加数据库
-                ZhuceBeanDao daoSession = App.daoSession.getZhuceBeanDao();
-                daoSession.insert(zhuceBean);
-                Intent intent=new Intent(XiuGaiActivity.this,XinXiActivity.class);
-                startActivity(intent);
+                LoginBean.ResultBean.UserInfoBean userInfoBean=new LoginBean.ResultBean.UserInfoBean();
+                userInfoBean.setNickName(nicheng);
+                if (sex.equals("男")){
+                    a=1;
+                }else {
+                    a=2;
+                }
+                userInfoBean.setSex(a);
+                userInfoBean.setPhone(phone);
+                userInfoBean.setBirthday(riqi);
+                userInfoBean.setLastLoginTime(youxiang);
+                Intent intent=getIntent();
+                intent.putExtra("mmm",1);
+                setResult(RESULT_OK,intent);
                 finish();
             }
         });

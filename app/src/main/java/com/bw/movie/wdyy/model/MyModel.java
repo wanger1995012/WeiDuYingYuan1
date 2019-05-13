@@ -162,7 +162,6 @@ public class MyModel {
                             ComingSoonBean bean = gson.fromJson(json, ComingSoonBean.class);
                             myCallBreak.sressco(bean);
                         } catch (Exception e) {
-<<<<<<< HEAD
                             e.printStackTrace();
                         }
                     }
@@ -205,8 +204,6 @@ public class MyModel {
                             String m = object.getString("flag");
                             callBreak.sressco(m);
                         } catch (Exception e) {
-=======
->>>>>>> 07d1f0d397702cd844ded6c593d7a061aee96361
                             e.printStackTrace();
                         }
                     }

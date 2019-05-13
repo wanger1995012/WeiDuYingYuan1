@@ -39,13 +39,10 @@
         <activity android:name=".activity.MeiwangActivity" />
         <activity android:name=".activity.MyQianActivity" />
         <activity android:name=".activity.XinXiActivity" />
-<<<<<<< HEAD
         <activity android:name=".activity.XiuGaiActivity" />
         <activity android:name=".activity.YiJianActivity" />
         <activity android:name=".activity.YijianJieguoActivity" />
-=======
         <activity android:name=".hotactivity.HotActivity"></activity>
->>>>>>> 07d1f0d397702cd844ded6c593d7a061aee96361
     </application>
 
 </manifest>

@@ -61,6 +61,7 @@
                         android:hint="你的益达"
                         android:padding="@dimen/dp_10"
                         android:textColorHint="#999999"
+                        android:textColor="#999999"
                         android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
                 <!--用户性别-->
@@ -90,6 +91,7 @@
                         android:padding="@dimen/dp_10"
                         android:hint="男"
                         android:textColorHint="#999999"
+                        android:textColor="#999999"
                         android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
                 <!--出生日期-->
@@ -118,6 +120,7 @@
                         android:layout_marginBottom="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
                         android:hint="1996-11-15"
+                        android:textColor="#999999"
                         android:textColorHint="#999999"
                         android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
@@ -147,6 +150,7 @@
                         android:layout_marginBottom="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
                         android:hint="17689526961"
+                        android:textColor="#999999"
                         android:textColorHint="#999999"
                         android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
@@ -175,6 +179,7 @@
                         android:layout_marginEnd="@dimen/dp_20"
                         android:layout_marginBottom="@dimen/dp_10"
                         android:padding="@dimen/dp_10"
+                        android:textColor="#999999"
                         android:hint="1686625458@qq.com"
                         android:textColorHint="#999999"
                         android:textSize="@dimen/sp_14" />
