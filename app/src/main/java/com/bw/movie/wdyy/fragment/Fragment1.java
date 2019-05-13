@@ -1,16 +1,20 @@
 package com.bw.movie.wdyy.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.adapter.FlowAdapter;
 import com.bw.movie.wdyy.adapter.HotAdapter;
 import com.bw.movie.wdyy.adapter.JiAdapter;
 import com.bw.movie.wdyy.adapter.MyBigAdapter;
@@ -19,6 +23,7 @@ import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
+import com.bw.movie.wdyy.hotactivity.HotActivity;
 import com.bw.movie.wdyy.presenter.MyPresenter;
 
 import java.util.ArrayList;
@@ -39,9 +44,11 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
     RecyclerCoverFlow flow;
     RecyclerView rc1,rc2,rc3;
+    RelativeLayout hot;
     private HotAdapter adapter1;
     private ReAdapter adapter2;
     private JiAdapter adapter3;
+    private FlowAdapter adapter4;
 
 
     @Nullable
@@ -52,6 +59,7 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         rc1 = view.findViewById(R.id.recycler_view_hot_movie);
         rc2 = view.findViewById(R.id.recycler_view_re_movie);
         rc3 = view.findViewById(R.id.recycler_view_ji_movie);
+        hot = view.findViewById(R.id.lie1);
         return view;
     }
 
@@ -64,6 +72,23 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         p.toModel1();
         p.toModel2();
         p.toModel3();
+        hotClick();
+
+    }
+
+    private void hotClick() {
+        hot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HotActivity.class));
+            }
+        });
+    }
+
+    private void setFlow() {
+        //创建适配器
+        adapter4 = new FlowAdapter(bean2, getContext());
+        flow.setAdapter(adapter4);
     }
 
     private void setRc3() {
@@ -105,6 +130,7 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         List<NowPlayingBean.ResultBean> list = bean.getResult();
         bean2.addAll(list);
         adapter2.notifyDataSetChanged();
+        setFlow();
     }
 
     @Override

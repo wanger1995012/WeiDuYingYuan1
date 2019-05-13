@@ -72,7 +72,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_hot_movie"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_164">
+                android:layout_height="@dimen/dp_184">
             </android.support.v7.widget.RecyclerView>
 
             <RelativeLayout
@@ -108,7 +108,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_re_movie"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_164">
+                android:layout_height="@dimen/dp_184">
             </android.support.v7.widget.RecyclerView>
 
             <RelativeLayout
@@ -144,8 +144,12 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_ji_movie"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_164">
+                android:layout_height="@dimen/dp_184">
             </android.support.v7.widget.RecyclerView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_30"/>
 
         </LinearLayout>
         

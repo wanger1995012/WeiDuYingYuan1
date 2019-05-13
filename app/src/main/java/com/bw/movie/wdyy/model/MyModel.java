@@ -7,10 +7,14 @@ import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.LoginBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+
 import com.baway.rikao0411.greendao.gen.DaoMaster;
 import com.baway.rikao0411.greendao.gen.DaoSession;
+
 import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
+
 import com.bw.movie.wdyy.bean.LoginBean;
+
 import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.utile.RetrofitUtil;
 import com.bw.movie.wdyy.view.Api;
@@ -49,9 +53,9 @@ public class MyModel {
                             String m = object.getString("message");
                             callBreak.sressco(m);
                             Log.e("aaa", "login: "+json );
-                            JSONObject object=new JSONObject(json);
-                            String m = object.getString("message");
-                            callBreak.sressco(m);
+                            JSONObject object1=new JSONObject(json);
+                            String m1 = object1.getString("message");
+                            callBreak.sressco(m1);
 
                             //添加数据到数据库
                             Gson gson=new Gson();
@@ -108,7 +112,7 @@ public class MyModel {
                             Gson gson = new Gson();
                             HotMovieListBean hotMovieListBean = gson.fromJson(json, HotMovieListBean.class);
                             myCallBreak.sressco(hotMovieListBean);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -131,7 +135,7 @@ public class MyModel {
                             Gson gson = new Gson();
                             NowPlayingBean bean = gson.fromJson(json, NowPlayingBean.class);
                             myCallBreak.sressco(bean);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -152,7 +156,7 @@ public class MyModel {
                             Gson gson = new Gson();
                             ComingSoonBean bean = gson.fromJson(json, ComingSoonBean.class);
                             myCallBreak.sressco(bean);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
