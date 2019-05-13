@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
@@ -25,7 +25,7 @@
                 android:background="@drawable/com_icon_next_default_hdpi"/>
         </LinearLayout>
         
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/image_view1"
             android:background="@drawable/shape"
             android:layout_width="@dimen/dp_126"

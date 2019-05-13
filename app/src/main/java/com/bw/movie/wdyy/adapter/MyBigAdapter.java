@@ -1,6 +1,7 @@
 package com.bw.movie.wdyy.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -27,14 +29,14 @@ import java.util.List;
  * @Description：描述信息
  */
 public class MyBigAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<HotMovieListBean> bean1;
-    List<NowPlayingBean>   bean2;
-    List<ComingSoonBean>   bean3;
-    List<Integer> list_banner = new ArrayList<>();
+    List<HotMovieListBean.ResultBean> bean1;
+    List<NowPlayingBean.ResultBean>   bean2;
+    List<ComingSoonBean.ResultBean>   bean3;
+    List<String> list_banner = new ArrayList<>();
     List<Object> list = new ArrayList<>();
     Context context;
 
-    public MyBigAdapter(List<HotMovieListBean> bean1, List<NowPlayingBean> bean2, List<ComingSoonBean> bean3, Context context) {
+    public MyBigAdapter(List<HotMovieListBean.ResultBean> bean1, List<NowPlayingBean.ResultBean> bean2, List<ComingSoonBean.ResultBean> bean3, Context context) {
         this.bean1 = bean1;
         this.bean2 = bean2;
         this.bean3 = bean3;
@@ -66,6 +68,11 @@ public class MyBigAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqly1g0ajj4h6ndj30sg11xdmj.jpg");
+        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqgy1fy58bi1wlgj30sg10hguu.jpg");
+        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqly1fytdr77urlj30sg10najf.jpg");
+        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqgy1fxd7vcz86nj30qo0ybqc1.jpg");
+        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqgy1fwgzx8n1syj30sg15h7ew.jpg");
         if(viewHolder instanceof MyViewHolder1){
             ((MyViewHolder1) viewHolder).banner.setImageLoader(new ImageLoader() {
                 @Override
@@ -74,7 +81,7 @@ public class MyBigAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 }
             }).setImages(list_banner).setDelayTime(2000).isAutoPlay(true).start();
         }else if(viewHolder instanceof MyViewHolder2){
-            Glide.with(context).load(bean1.get(i).getResult().get(0).getImageUrl()).into(((MyViewHolder2) viewHolder).img);
+            ((MyViewHolder2) viewHolder).img.setImageURI(bean1.get(i).getImageUrl());
         }
     }
 
@@ -111,7 +118,7 @@ public class MyBigAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     class MyViewHolder2 extends RecyclerView.ViewHolder{
-        ImageView img;
+        SimpleDraweeView img;
         public MyViewHolder2(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.image_view1);

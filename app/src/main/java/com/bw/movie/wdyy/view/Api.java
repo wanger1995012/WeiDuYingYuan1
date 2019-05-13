@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -30,5 +31,5 @@ public interface Api {
     Observable<ResponseBody> Zhuce(@Url String url,@FieldMap Map<String,Object> map);
     //展示的电影列表
     @GET
-    public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("session") String session,int page,int count);
+    public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("session") String session, @Query("page") int page, @Query("count")int count);
 }

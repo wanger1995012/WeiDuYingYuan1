@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
     @Override
     public void login(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-        if (str.equals("登录成功")) {
+        if (str.equals("登陆成功")) {
             Intent intent = new Intent(LoginActivity.this, ShowActivity.class);
             startActivity(intent);
             finish();
