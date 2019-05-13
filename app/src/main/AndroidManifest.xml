@@ -39,6 +39,7 @@
         <activity android:name=".activity.MeiwangActivity" />
         <activity android:name=".activity.MyQianActivity" />
         <activity android:name=".activity.XinXiActivity" />
+        <activity android:name=".hotactivity.HotActivity"></activity>
     </application>
 
 </manifest>

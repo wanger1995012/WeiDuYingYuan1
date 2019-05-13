@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
@@ -22,6 +23,7 @@ import java.util.List;
 public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
     List<HotMovieListBean.ResultBean> list ;
     Context context;
+    ItemClickListener itemClickListener;
 
     public HotAdapter(List<HotMovieListBean.ResultBean> list, Context context) {
         this.list = list;
@@ -32,12 +34,22 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.hot_layout,null);
+        if(itemClickListener != null){
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemClickListener.OnItemClickListener(view);
+                }
+            });
+        }
         return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
         holder.img.setImageURI(list.get(i).getImageUrl());
+        holder.name.setText(list.get(i).getName());
+
     }
 
     @Override
@@ -48,9 +60,20 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
     public class Holder extends RecyclerView.ViewHolder{
 
         SimpleDraweeView img;
+        TextView name;
         public Holder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.image_hot);
+            name = itemView.findViewById(R.id.text_name_hot);
         }
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    public interface ItemClickListener{
+        void OnItemClickListener(View view);
+
     }
 }
