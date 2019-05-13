@@ -7,10 +7,14 @@ import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.LoginBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+
 import com.baway.rikao0411.greendao.gen.DaoMaster;
 import com.baway.rikao0411.greendao.gen.DaoSession;
+
 import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
+
 import com.bw.movie.wdyy.bean.LoginBean;
+
 import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.utile.RetrofitUtil;
 import com.bw.movie.wdyy.view.Api;
@@ -158,6 +162,7 @@ public class MyModel {
                             ComingSoonBean bean = gson.fromJson(json, ComingSoonBean.class);
                             myCallBreak.sressco(bean);
                         } catch (Exception e) {
+<<<<<<< HEAD
                             e.printStackTrace();
                         }
                     }
@@ -200,6 +205,8 @@ public class MyModel {
                             String m = object.getString("flag");
                             callBreak.sressco(m);
                         } catch (Exception e) {
+=======
+>>>>>>> 07d1f0d397702cd844ded6c593d7a061aee96361
                             e.printStackTrace();
                         }
                     }

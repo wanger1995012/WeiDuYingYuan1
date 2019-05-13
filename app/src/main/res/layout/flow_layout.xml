@@ -6,16 +6,16 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/dp_20">
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/image_re"
+            android:id="@+id/image_flow"
             android:layout_width="@dimen/dp_126"
-            android:layout_marginTop="@dimen/dp_20"
             android:layout_marginLeft="@dimen/dp_20"
             android:layout_height="@dimen/dp_164"
             fresco:roundedCornerRadius="@dimen/dp_8"/>
-
 
         <RelativeLayout
             android:layout_width="@dimen/dp_126"
@@ -23,16 +23,29 @@
             android:layout_marginLeft="@dimen/dp_20"
             android:background="@drawable/shaperadius"
             android:layout_marginTop="-40dp"
-            android:layout_below="@+id/image_re">
+            android:layout_below="@+id/image_flow">
 
             <TextView
-                android:id="@+id/text_name_re"
+                android:id="@+id/text_name_flow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="7dp"
                 android:text="123"
-                android:textSize="@dimen/dp_18" />
+                android:textSize="@dimen/dp_16" />
+
+            <TextView
+                android:id="@+id/text_time_flow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="7dp"
+                android:text="123"
+                android:textSize="@dimen/dp_12" />
         </RelativeLayout>
 
     </RelativeLayout>

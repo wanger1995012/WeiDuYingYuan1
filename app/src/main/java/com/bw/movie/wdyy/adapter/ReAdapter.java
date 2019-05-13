@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
@@ -39,6 +40,7 @@ public class ReAdapter extends RecyclerView.Adapter<ReAdapter.Holder> {
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
         holder.img.setImageURI(list.get(i).getImageUrl());
+        holder.name.setText(list.get(i).getName());
     }
 
     @Override
@@ -49,9 +51,11 @@ public class ReAdapter extends RecyclerView.Adapter<ReAdapter.Holder> {
     public class Holder extends RecyclerView.ViewHolder{
 
         SimpleDraweeView img;
+        TextView name;
         public Holder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.image_re);
+            name = itemView.findViewById(R.id.text_name_re);
         }
     }
 }
