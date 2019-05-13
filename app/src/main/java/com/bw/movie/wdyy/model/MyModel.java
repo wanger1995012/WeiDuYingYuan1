@@ -2,6 +2,11 @@ package com.bw.movie.wdyy.model;
 
 import android.util.Log;
 
+
+import com.bw.movie.wdyy.bean.ComingSoonBean;
+import com.bw.movie.wdyy.bean.HotMovieListBean;
+import com.bw.movie.wdyy.bean.LoginBean;
+import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.baway.rikao0411.greendao.gen.DaoMaster;
 import com.baway.rikao0411.greendao.gen.DaoSession;
 import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
@@ -40,6 +45,9 @@ public class MyModel {
                     public void call(ResponseBody responseBody) {
                         try {
                             String json=responseBody.string();
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
                             Log.e("aaa", "login: "+json );
                             JSONObject object=new JSONObject(json);
                             String m = object.getString("message");
@@ -86,6 +94,75 @@ public class MyModel {
                     }
                 });
     }
+
+    public void ShowMovie(final MyCallBreak myCallBreak){
+        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.MovieList("/movieApi/movie/v1/findHotMovieList","12814","155770845420012814",1,10)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            HotMovieListBean hotMovieListBean = gson.fromJson(json, HotMovieListBean.class);
+                            myCallBreak.sressco(hotMovieListBean);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
+
+
+    public void ShowMovie2(final MyCallBreak myCallBreak){
+        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.MovieList("/movieApi/movie/v1/findReleaseMovieList","12814","155770845420012814",1,10)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            NowPlayingBean bean = gson.fromJson(json, NowPlayingBean.class);
+                            myCallBreak.sressco(bean);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
+    public void ShowMovie3(final MyCallBreak myCallBreak){
+        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.MovieList("/movieApi/movie/v1/findComingSoonMovieList","12814","155770845420012814",1,10)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            ComingSoonBean bean = gson.fromJson(json, ComingSoonBean.class);
+                            myCallBreak.sressco(bean);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
+
+
+
     //设置接口
     public interface MyCallBreak{
         public void sressco(Object o);

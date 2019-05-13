@@ -1,6 +1,9 @@
 package com.bw.movie.wdyy.presenter;
 
 import com.bw.movie.wdyy.activity.LoginActivity;
+import com.bw.movie.wdyy.bean.ComingSoonBean;
+import com.bw.movie.wdyy.bean.HotMovieListBean;
+import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.model.MyModel;
 
@@ -12,7 +15,7 @@ import java.util.Map;
  * 时间:${data}
  * Description:这个是注释
  */
-public class MyPresenter<T> implements ContractInterface.PLogin {
+public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterface.PresenterInterface {
     T tt;
     MyModel myModel;
     public MyPresenter(T t) {
@@ -57,5 +60,38 @@ public class MyPresenter<T> implements ContractInterface.PLogin {
     @Override
     public void onDestory() {
         tt=null;
+    }
+
+    @Override
+    public void toModel1() {
+        myModel.ShowMovie(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewMovieList v = (ContractInterface.ViewMovieList) tt;
+                v.ShowMovieList1((HotMovieListBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModel2() {
+        myModel.ShowMovie2(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewMovieList v = (ContractInterface.ViewMovieList) tt;
+                v.ShowMovieList2((NowPlayingBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModel3() {
+        myModel.ShowMovie3(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewMovieList v = (ContractInterface.ViewMovieList) tt;
+                v.ShowMovieList3((ComingSoonBean) o);
+            }
+        });
     }
 }

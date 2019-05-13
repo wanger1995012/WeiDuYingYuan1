@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:requiresFadingEdge="horizontal">
+            <TextView
+                android:id="@+id/text_hot_movie1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dp_18"
+                android:text="热门电影"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/com_icon_next_default_hdpi"/>
+        </LinearLayout>
+        
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_view1"
+            android:background="@drawable/shape"
+            android:layout_width="@dimen/dp_126"
+            android:layout_height="@dimen/dp_164" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
