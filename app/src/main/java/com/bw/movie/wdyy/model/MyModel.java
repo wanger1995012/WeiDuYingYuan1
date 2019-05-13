@@ -2,14 +2,18 @@ package com.bw.movie.wdyy.model;
 
 import android.util.Log;
 
+import com.baway.rikao0411.greendao.gen.DaoMaster;
+import com.baway.rikao0411.greendao.gen.DaoSession;
+import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
 import com.bw.movie.wdyy.bean.LoginBean;
+import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.utile.RetrofitUtil;
 import com.bw.movie.wdyy.view.Api;
+import com.bw.movie.wdyy.view.App;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -40,6 +44,20 @@ public class MyModel {
                             JSONObject object=new JSONObject(json);
                             String m = object.getString("message");
                             callBreak.sressco(m);
+
+                            //添加数据到数据库
+                            Gson gson=new Gson();
+                            LoginBean bean = gson.fromJson(json, LoginBean.class);
+                            ZhuceBean zhuceBean=new ZhuceBean();
+                            zhuceBean.setNickName(bean.getResult().getUserInfo().getNickName());
+                            zhuceBean.setBirthday(bean.getResult().getUserInfo().getBirthday());
+                            zhuceBean.setHeadPic(bean.getResult().getUserInfo().getHeadPic());
+                            zhuceBean.setLastLoginTime(bean.getResult().getUserInfo().getLastLoginTime());
+                            zhuceBean.setPhone(bean.getResult().getUserInfo().getPhone());
+                            zhuceBean.setSex(bean.getResult().getUserInfo().getSex());
+                            Log.e("aaa", "call: "+zhuceBean.getNickName() );
+                            ZhuceBeanDao daoSession = App.daoSession.getZhuceBeanDao();
+                            daoSession.insert(zhuceBean);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

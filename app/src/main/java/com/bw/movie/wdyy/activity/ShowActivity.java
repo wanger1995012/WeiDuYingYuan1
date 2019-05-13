@@ -54,12 +54,12 @@ public class ShowActivity extends AppCompatActivity {
         viewpagerShow.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-                radio.check(radio.getChildAt(i).getId());
+
             }
 
             @Override
             public void onPageSelected(int i) {
-
+                radio.check(radio.getChildAt(i).getId());
             }
 
             @Override
@@ -85,6 +85,15 @@ public class ShowActivity extends AppCompatActivity {
                 }
             }
         });
+        int id = getIntent().getIntExtra("id", 0);
+        getIn(id);
     }
+
+   public void getIn(int a){
+       if (a==2){
+           viewpagerShow.setCurrentItem(2,false);
+           radio.check(R.id.radio_btn3);
+       }
+   }
 
 }

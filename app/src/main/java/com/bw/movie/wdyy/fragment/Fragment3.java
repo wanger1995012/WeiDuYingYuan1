@@ -16,6 +16,7 @@ import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.activity.LoginActivity;
 import com.bw.movie.wdyy.activity.MyQianActivity;
 import com.bw.movie.wdyy.activity.ShowActivity;
+import com.bw.movie.wdyy.activity.XinXiActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -70,11 +71,18 @@ public class Fragment3 extends Fragment {
         //设置我的信息
         XinxiIntit();
     }
-
+    //我的信息
     public void XinxiIntit() {
-
+        myxin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),XinXiActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
-
+    //退出登录
     public void TuichuInit() {
         mytuichudeng.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +93,7 @@ public class Fragment3 extends Fragment {
             }
         });
     }
-
+    //签到
     public void QianInit() {
         myQiandao.setOnClickListener(new View.OnClickListener() {
             @Override
