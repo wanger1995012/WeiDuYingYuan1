@@ -22,7 +22,7 @@
             android:layout_height="@dimen/dp_40"
             android:layout_marginLeft="@dimen/dp_20"
             android:background="@drawable/shaperadius"
-            android:layout_marginTop="-40dp"
+            android:layout_marginTop="-60dp"
             android:layout_below="@+id/image_flow">
 
             <TextView

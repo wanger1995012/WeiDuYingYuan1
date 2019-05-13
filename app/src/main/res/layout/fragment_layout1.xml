@@ -15,14 +15,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_300">
+
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_186"
-                    android:background="@drawable/moviebg"/>
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/moviebg" />
                 <recycler.coverflow.RecyclerCoverFlow
                     android:id="@+id/recycler_cover_flow"
                     android:layout_width="match_parent"
@@ -31,11 +37,74 @@
                     android:layout_marginLeft="@dimen/dp_25"
                     android:layout_marginRight="@dimen/dp_25">
                 </recycler.coverflow.RecyclerCoverFlow>
+
+                <ImageView
+                    android:id="@+id/image_dingwei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/recycler_cover_flow"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="-5dp"
+                    android:layout_marginTop="34dp"
+                    android:background="@drawable/dingweibai" />
+
+                <TextView
+                    android:id="@+id/text_dingwei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/image_dingwei"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="49dp"
+                    android:text="北京" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_fiml_se"
+                    android:layout_width="@dimen/dp_150"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_alignBottom="@+id/image_dingwei"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="-100dp"
+                    android:background="@drawable/sousuoshape">
+
+                    <ImageView
+                        android:id="@+id/image_sou"
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="@dimen/dp_24"
+                        android:padding="@dimen/dp_6"
+                        android:src="@drawable/sou" />
+
+                    <EditText
+                        android:id="@+id/ed_fiml_se"
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/text_fiml_se"
+                        android:background="@null"
+                        android:hint="请输入电影名"
+                        android:textSize="@dimen/sp_10"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/text_fiml_se"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="搜索"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
             </RelativeLayout>
             <ImageView
+                android:id="@+id/image_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/fenge"/>
+            <ImageView
+                android:id="@+id/image_hua"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_3"
+                android:src="@drawable/shape"/>
             
             
             
