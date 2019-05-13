@@ -3,8 +3,224 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <!--头部-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_220"
+            android:background="@drawable/mybeijing"
+            >
+            <ImageView
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:background="@drawable/myxiaoxi"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_30"
+                android:id="@+id/my_xiaoxi"
+                />
 
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/my_touxiang"
+                android:layout_width="@dimen/dp_72"
+                android:layout_height="@dimen/dp_72"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/mytouxiang"
+                android:layout_marginTop="@dimen/dp_60"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/my_name"
+                android:text="冬天来了"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/my_touxiang"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_centerHorizontal="true"
+                />
+            <Button
+                android:layout_width="@dimen/dp_66"
+                android:layout_height="@dimen/dp_28"
+                android:background="@drawable/shap_my"
+                android:text="签到"
+                android:id="@+id/my_qiandao"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/my_name"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+        <!--我的信息-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_86"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/myshap1"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentStart="true"
+                android:id="@+id/myxin"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/myxinxi"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myxin"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_marginTop="10dp"
+                android:text="我的信息"
+                android:textColor="#000"
+                />
+        </RelativeLayout>
+
+        <!--我的关注-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_86"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/myshap1"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentStart="true"
+                android:id="@+id/myguanzhi"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/myguanzhu"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myguanzhi"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_marginTop="10dp"
+                android:text="我的关注"
+                android:textColor="#000"
+                />
+            <!--购票记录-->
+            <ImageView
+                android:id="@+id/myjilu"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/dp_113"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/myjilu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myguanzhi"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/dp_100"
+                android:layout_marginTop="10dp"
+                android:text="购票记录"
+                android:textColor="#000"
+                />
+        </RelativeLayout>
+
+        <!--意见反馈-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_86"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/myshap1"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentStart="true"
+                android:id="@+id/myyijian"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/myyijian"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myyijian"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_marginTop="10dp"
+                android:text="意见反馈"
+                android:textColor="#000"
+                />
+            <!--最新版本-->
+            <ImageView
+                android:id="@+id/myzuibanben"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/dp_113"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/mybanben" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myzuibanben"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/dp_100"
+                android:layout_marginTop="10dp"
+                android:text="最新版本"
+                android:textColor="#000"
+                />
+            <!--退出登录-->
+            <ImageView
+                android:id="@+id/mytuichudeng"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/dp_180"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/mytuichu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mytuichudeng"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/dp_170"
+                android:layout_marginTop="10dp"
+                android:text="退出登录"
+                android:textColor="#000"
+                />
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

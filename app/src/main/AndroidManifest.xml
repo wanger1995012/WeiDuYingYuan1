@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.bw.movie.wdyy">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_DOCUMENTS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 微信配置 -->
+    <meta-data
+        android:name="wxb3852e6a6b7d9516"
+        android:value="123456" />
 
     <application
         android:name=".view.App"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +36,9 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.ZhuceActivity" />
         <activity android:name=".activity.ShowActivity" />
-        <activity android:name=".activity.MeiwangActivity"></activity>
-        <!--微信-->
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.MeiwangActivity" />
+        <activity android:name=".activity.MyQianActivity" />
+        <activity android:name=".activity.XinXiActivity" />
     </application>
 
 </manifest>

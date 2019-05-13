@@ -1,7 +1,10 @@
 package com.bw.movie.wdyy.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
@@ -82,5 +85,15 @@ public class ShowActivity extends AppCompatActivity {
                 }
             }
         });
+        int id = getIntent().getIntExtra("id", 0);
+        getIn(id);
     }
+
+   public void getIn(int a){
+       if (a==2){
+           viewpagerShow.setCurrentItem(2,false);
+           radio.check(R.id.radio_btn3);
+       }
+   }
+
 }
