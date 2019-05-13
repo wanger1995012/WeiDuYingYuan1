@@ -32,4 +32,10 @@ public interface Api {
     //展示的电影列表
     @GET
     public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("session") String session, @Query("page") int page, @Query("count")int count);
+    //意见反馈
+    @GET
+    public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") String userId, @Header("session") String session);
+    //意见反馈
+    @GET
+    public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") String userId, @Header("session") String session);
 }

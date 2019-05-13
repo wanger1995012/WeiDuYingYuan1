@@ -32,11 +32,13 @@ import rx.schedulers.Schedulers;
  * Description:这个是注释
  */
 public class MyModel {
-
+    int USERID=0;
+    String SESSIONID=null;
     //登录
     public void Login(Map<String,String> map, final MyCallBreak callBreak){
         RetrofitUtil retrofitUtil=RetrofitUtil.getUtil();
         Api api=retrofitUtil.gets(Api.class);
+        Log.e("aaa", "Login: "+map );
         api.login("/movieApi/user/v1/login?",map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,9 +51,9 @@ public class MyModel {
                             String m = object.getString("message");
                             callBreak.sressco(m);
                             Log.e("aaa", "login: "+json );
-                            JSONObject object=new JSONObject(json);
-                            String m = object.getString("message");
-                            callBreak.sressco(m);
+                            JSONObject object1=new JSONObject(json);
+                            String m1 = object1.getString("message");
+                            callBreak.sressco(m1);
 
                             //添加数据到数据库
                             Gson gson=new Gson();
@@ -66,6 +68,9 @@ public class MyModel {
                             Log.e("aaa", "call: "+zhuceBean.getNickName() );
                             ZhuceBeanDao daoSession = App.daoSession.getZhuceBeanDao();
                             daoSession.insert(zhuceBean);
+                            //将赋值
+                            USERID=bean.getResult().getUserId();
+                            SESSIONID=bean.getResult().getSessionId();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -97,7 +102,7 @@ public class MyModel {
 
     public void ShowMovie(final MyCallBreak myCallBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.MovieList("/movieApi/movie/v1/findHotMovieList","12814","155770845420012814",1,10)
+        gets.MovieList("/movieApi/movie/v1/findHotMovieList",USERID+"",SESSIONID,1,10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -108,7 +113,7 @@ public class MyModel {
                             Gson gson = new Gson();
                             HotMovieListBean hotMovieListBean = gson.fromJson(json, HotMovieListBean.class);
                             myCallBreak.sressco(hotMovieListBean);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -120,7 +125,7 @@ public class MyModel {
 
     public void ShowMovie2(final MyCallBreak myCallBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.MovieList("/movieApi/movie/v1/findReleaseMovieList","12814","155770845420012814",1,10)
+        gets.MovieList("/movieApi/movie/v1/findReleaseMovieList",USERID+"",SESSIONID,1,10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -131,7 +136,7 @@ public class MyModel {
                             Gson gson = new Gson();
                             NowPlayingBean bean = gson.fromJson(json, NowPlayingBean.class);
                             myCallBreak.sressco(bean);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -141,7 +146,7 @@ public class MyModel {
 
     public void ShowMovie3(final MyCallBreak myCallBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.MovieList("/movieApi/movie/v1/findComingSoonMovieList","12814","155770845420012814",1,10)
+        gets.MovieList("/movieApi/movie/v1/findComingSoonMovieList",USERID+"",SESSIONID,1,10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -152,7 +157,49 @@ public class MyModel {
                             Gson gson = new Gson();
                             ComingSoonBean bean = gson.fromJson(json, ComingSoonBean.class);
                             myCallBreak.sressco(bean);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //意见反馈
+    public void Yijianfan(final MyCallBreak callBreak){
+        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.YiJianfan("/movieApi/tool/v1/verify/recordFeedBack",USERID+"",SESSIONID)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "yijian: "+json );
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //版本更新
+    public void Banbengengxin(final MyCallBreak callBreak){
+        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.Banbengeng("/movieApi/tool/v1/findNewVersion",USERID+"",SESSIONID)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "banben: "+json );
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("flag");
+                            callBreak.sressco(m);
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

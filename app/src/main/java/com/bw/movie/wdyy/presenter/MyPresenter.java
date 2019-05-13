@@ -58,6 +58,28 @@ public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterfac
     }
 
     @Override
+    public void PYijian() {
+        myModel.Yijianfan(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VYiJian vYiJian= (ContractInterface.VYiJian) tt;
+                vYiJian.VYijian((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PBanben() {
+        myModel.Yijianfan(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VYiJian vYiJian= (ContractInterface.VYiJian) tt;
+                vYiJian.VBanben((String) o);
+            }
+        });
+    }
+
+    @Override
     public void onDestory() {
         tt=null;
     }
