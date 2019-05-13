@@ -4,6 +4,8 @@ import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 
+import retrofit2.http.PUT;
+
 /**
  * 作者:今夕何夕
  * 时间:${data}
@@ -22,6 +24,9 @@ public class ContractInterface {
         public void PInterface(String phone,String pwd,String pwd2);
         public void PZhuceInterface(String nickName,String phone,String pwd,String pwd2,
                                     int sex,String birthday,String email);
+        //意见
+        public void PYijian();
+        public void PBanben();
         public void onDestory();
     }
 
@@ -36,5 +41,9 @@ public class ContractInterface {
         public void toModel2();
         public void toModel3();
     }
-
+    //设置意见的V接口，设置版本的V接口
+    public interface VYiJian{
+        public void VYijian(String str);
+        public void VBanben(String str);
+    }
 }

@@ -246,14 +246,30 @@
             </RelativeLayout>
         </LinearLayout>
 
-            <ImageView
-                android:layout_width="@dimen/dp_60"
-                android:layout_height="@dimen/dp_60"
-                android:layout_marginTop="@dimen/dp_130"
-                android:layout_marginLeft="@dimen/dp_24"
-                android:background="@drawable/myxinxifanhui"
-                android:id="@+id/myxinxi_fanhui"
-                />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               >
+               <ImageView
+                   android:layout_width="@dimen/dp_60"
+                   android:layout_height="@dimen/dp_60"
+                   android:layout_marginTop="@dimen/dp_130"
+                   android:layout_marginLeft="@dimen/dp_24"
+                   android:background="@drawable/myxinxifanhui"
+                   android:id="@+id/myxinxi_fanhui"
+                   />
+               <Button
+                   android:layout_width="@dimen/dp_120"
+                   android:layout_height="@dimen/dp_40"
+                   android:text="修改信息"
+                   android:textColor="#000"
+                   android:layout_marginTop="@dimen/dp_130"
+                   android:layout_marginLeft="@dimen/dp_60"
+                   android:id="@+id/myxinxi_btn_xiugai"
+                   android:background="@drawable/myshap1"
+                   />
+           </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

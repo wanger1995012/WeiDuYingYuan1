@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.activity.LoginActivity;
 import com.bw.movie.wdyy.activity.MyQianActivity;
-import com.bw.movie.wdyy.activity.ShowActivity;
 import com.bw.movie.wdyy.activity.XinXiActivity;
+import com.bw.movie.wdyy.activity.YiJianActivity;
+import com.bw.movie.wdyy.contract.ContractInterface;
+import com.bw.movie.wdyy.presenter.MyPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -29,7 +32,7 @@ import butterknife.Unbinder;
  * @Date：2019/5/10 19:32
  * @Description：描述信息
  */
-public class Fragment3 extends Fragment {
+public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
     @BindView(R.id.my_xiaoxi)
     ImageView myXiaoxi;
     @BindView(R.id.my_touxiang)
@@ -51,7 +54,7 @@ public class Fragment3 extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.my_qiandao)
     Button myQiandao;
-
+    ContractInterface.PLogin pLogin;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,13 +67,40 @@ public class Fragment3 extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        pLogin=new MyPresenter(this);
         //设置签到的点击事件
         QianInit();
         //设置退出登录
         TuichuInit();
         //设置我的信息
         XinxiIntit();
+        //设置意见反馈页
+        YiJianInit();
+        //设置最新版本
+        BanBenInit();
     }
+    //最新版本
+    private void BanBenInit() {
+        myzuibanben.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pLogin.PBanben();
+            }
+        });
+    }
+
+    //意见反馈
+    private void YiJianInit() {
+        myyijian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),YiJianActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+    }
+
     //我的信息
     public void XinxiIntit() {
         myxin.setOnClickListener(new View.OnClickListener() {
@@ -108,5 +138,26 @@ public class Fragment3 extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void VYijian(String str) {
+
+    }
+
+    @Override
+    public void VBanben(String flag) {
+        if (flag.equals("1")){
+            Toast.makeText(getContext(),"有新版本，需要更新",Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getContext(),"没新版本，不需要更新",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        pLogin.onDestory();
+        pLogin=null;
     }
 }

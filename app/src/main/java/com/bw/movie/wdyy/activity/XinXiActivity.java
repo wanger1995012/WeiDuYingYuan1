@@ -13,22 +13,22 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.bean.LoginBean;
 import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.view.App;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -52,7 +52,9 @@ public class XinXiActivity extends AppCompatActivity {
     ImageView myxinxiChongzhi;
     @BindView(R.id.myxinxi_fanhui)
     ImageView myxinxiFanhui;
-    Context mContext=null;
+    Context mContext = null;
+    @BindView(R.id.myxinxi_btn_xiugai)
+    Button myxinxiBtnXiugai;
     //相机相册
     private String icon = "com.bw.xiangji";
 
@@ -62,35 +64,49 @@ public class XinXiActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 2;
     //剪裁请求码
     private static final int CROP_REQUEST_CODE = 3;
+    private static final int shujv = 4;
     //调用照相机返回图片文件
     private File tempFile;
+    int i = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xin_xi);
         ButterKnife.bind(this);
-        mContext=this;
+        mContext = this;
         //拿到数据库中的信息
         List<ZhuceBean> zhuceBeans = App.daoSession.loadAll(ZhuceBean.class);
         String nickName = zhuceBeans.get(0).getNickName();
+        String phone = zhuceBeans.get(0).getPhone();
+        long riqi = zhuceBeans.get(0).getBirthday();
+        int sex = zhuceBeans.get(0).getSex();
+        long youxiang = zhuceBeans.get(0).getLastLoginTime();
         //设置返回
         FanhuiInit();
         //设置用户头像
         TouxiangInit();
-        //设置用户昵称
-        NichengInit(nickName);
-    }
-
-    private void NichengInit(String name) {
-        myxinxiNicheng.setText(name);
-        myxinxiNicheng.setOnClickListener(new View.OnClickListener() {
+        //设置用户的信息
+        myxinxiNicheng.setText(nickName);
+        myxinxiPhone.setText(phone);
+        myxinxiRiqi.setText(riqi + "");
+        if (sex == 1) {
+            myxinxiSex.setText("男");
+        } else {
+            myxinxiSex.setText("女");
+        }
+        myxinxiYouxiang.setText(youxiang + "");
+        //设置修改的点击事件
+        myxinxiBtnXiugai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent intent = new Intent(XinXiActivity.this, XiuGaiActivity.class);
+                intent.putExtra("aaa","123");//a传b在此处写你传的值
+                startActivityForResult(intent, 4);
             }
         });
-    }
 
+    }
 
     //设置用户头像
     private void TouxiangInit() {
@@ -101,14 +117,15 @@ public class XinXiActivity extends AppCompatActivity {
             }
         });
     }
+
     //设置窗口
     private void showPopupWindow(View v) {
         // 一个自定义的布局，作为显示的内容
         View contentView = LayoutInflater.from(mContext).inflate(
                 R.layout.popuwindow_item, null);
         //获取id
-        final TextView xiangji=contentView.findViewById(R.id.mytouxiang_xiangji);
-        final TextView xiangce=contentView.findViewById(R.id.mytouxiang_xiangce);
+        final TextView xiangji = contentView.findViewById(R.id.mytouxiang_xiangji);
+        final TextView xiangce = contentView.findViewById(R.id.mytouxiang_xiangce);
 
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
@@ -120,7 +137,7 @@ public class XinXiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getPicFromCamera();//调用相机
-                Toast.makeText(XinXiActivity.this,"相机",Toast.LENGTH_SHORT).show();
+                Toast.makeText(XinXiActivity.this, "相机", Toast.LENGTH_SHORT).show();
             }
         });
         //设置相册的点击事件
@@ -128,7 +145,7 @@ public class XinXiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getPicFromAlbm();//调用相册
-                Toast.makeText(XinXiActivity.this,"相册",Toast.LENGTH_SHORT).show();
+                Toast.makeText(XinXiActivity.this, "相册", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -140,12 +157,14 @@ public class XinXiActivity extends AppCompatActivity {
         popupWindow.showAsDropDown(v);
 
     }
+
     //调用相册
     private void getPicFromAlbm() {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, ALBUM_REQUEST_CODE);
     }
+
     /**
      * 从相机获取图片
      */
@@ -181,6 +200,7 @@ public class XinXiActivity extends AppCompatActivity {
         intent.putExtra("return-data", true);
         startActivityForResult(intent, CROP_REQUEST_CODE);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -220,6 +240,25 @@ public class XinXiActivity extends AppCompatActivity {
                      */
                 }
                 break;
+            case shujv:
+                if (resultCode == RESULT_OK) {
+                    String a = data.getStringExtra("mmm");
+                    if (a.equals("1")){
+                        LoginBean.ResultBean.UserInfoBean userInfoBean = new LoginBean.ResultBean.UserInfoBean();
+                        Log.e("ab", "onCreate: " + userInfoBean.toString());
+                        String nickName1 = userInfoBean.getNickName();
+                        String phone1 = userInfoBean.getPhone();
+                        long riqi1 = userInfoBean.getBirthday();
+                        int sex1 = userInfoBean.getSex();
+                        long youxiang1 = userInfoBean.getLastLoginTime();
+                        myxinxiNicheng.setText(nickName1);
+                        myxinxiPhone.setText(phone1);
+                        myxinxiRiqi.setText(riqi1 + "");
+                        myxinxiSex.setText(sex1);
+                        myxinxiYouxiang.setText(youxiang1 + "");
+                    }
+                }
+                break;
         }
     }
 
@@ -254,8 +293,8 @@ public class XinXiActivity extends AppCompatActivity {
         myxinxiFanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(XinXiActivity.this,ShowActivity.class);
-                intent.putExtra("id",2);
+                Intent intent = new Intent(XinXiActivity.this, ShowActivity.class);
+                intent.putExtra("id", 2);
                 startActivity(intent);
                 finish();
             }
