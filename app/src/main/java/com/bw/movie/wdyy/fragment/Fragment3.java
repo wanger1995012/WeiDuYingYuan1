@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.activity.LoginActivity;
+import com.bw.movie.wdyy.activity.MyGuanzhuActivity;
 import com.bw.movie.wdyy.activity.MyQianActivity;
 import com.bw.movie.wdyy.activity.XinXiActivity;
 import com.bw.movie.wdyy.activity.YiJianActivity;
@@ -78,7 +79,21 @@ public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
         YiJianInit();
         //设置最新版本
         BanBenInit();
+        //设置我的关注
+        MyGuanzhiInit();
     }
+    //我的关注
+    private void MyGuanzhiInit() {
+        myguanzhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),MyGuanzhuActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+    }
+
     //最新版本
     private void BanBenInit() {
         myzuibanben.setOnClickListener(new View.OnClickListener() {

@@ -1,13 +1,16 @@
 package com.bw.movie.wdyy.presenter;
 
 import com.bw.movie.wdyy.activity.LoginActivity;
+import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+import com.bw.movie.wdyy.bean.TuijianBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.model.MyModel;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,7 +18,7 @@ import java.util.Map;
  * 时间:${data}
  * Description:这个是注释
  */
-public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterface.PresenterInterface {
+public class MyPresenter<T> implements ContractInterface.PGZyy,ContractInterface.PLogin,ContractInterface.PresenterInterface,ContractInterface.PYingyuan,ContractInterface.PGuanzhu {
     T tt;
     MyModel myModel;
     public MyPresenter(T t) {
@@ -70,13 +73,64 @@ public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterfac
 
     @Override
     public void PBanben() {
-        myModel.Yijianfan(new MyModel.MyCallBreak() {
+        Map<String,String> map=new HashMap<>();
+        map.put("ak","2");
+        myModel.Banbengengxin(map,new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
                 ContractInterface.VYiJian vYiJian= (ContractInterface.VYiJian) tt;
                 vYiJian.VBanben((String) o);
             }
         });
+    }
+
+    @Override
+    public void PTuijian(int page, int count) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("page",page);
+        map.put("count",count);
+        myModel.TuijianYingyuan(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VYingyuan vYingyuan= (ContractInterface.VYingyuan) tt;
+                TuijianBean beans= (TuijianBean) o;
+                vYingyuan.VTuijian(beans.getResult());
+            }
+        });
+    }
+
+    @Override
+    public void PWeiguanzhu(int cinemaId) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("cinemaId",cinemaId);
+        myModel.Weiguanzhu(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VGuanzhu vGuanzhu= (ContractInterface.VGuanzhu) tt;
+                vGuanzhu.VWeiguanzhu((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PQvxiaoguanzhu(int cinemaId) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("cinemaId",cinemaId);
+        myModel.Qvxiaoguanzhu(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VGuanzhu vGuanzhu= (ContractInterface.VGuanzhu) tt;
+                vGuanzhu.VQvxiaoguanzhu((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PGZYY(int page,int count) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("page",page);
+        map.put("count",count);
+
     }
 
     @Override

@@ -1,8 +1,12 @@
 package com.bw.movie.wdyy.contract;
 
+import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+import com.bw.movie.wdyy.bean.TuijianBean;
+
+import java.util.List;
 
 import retrofit2.http.PUT;
 
@@ -45,5 +49,34 @@ public class ContractInterface {
     public interface VYiJian{
         public void VYijian(String str);
         public void VBanben(String str);
+    }
+    //设置推荐和附近影院的V层接口
+    public interface VYingyuan{
+        public void VTuijian(List<TuijianBean.ResultBean> list);
+    }
+    //设置推荐和附近影院的P层接口
+    public interface PYingyuan{
+        public void PTuijian(int page,int count);
+        public void onDestory();
+    }
+    //设置未关注和取消关注影院的V层接口
+    public interface VGuanzhu{
+        public void VWeiguanzhu(String str);
+        public void VQvxiaoguanzhu(String str);
+    }
+    //设置未关注和取消关注影院的P层接口
+    public interface PGuanzhu{
+        public void PWeiguanzhu(int cinemaId);
+        public void PQvxiaoguanzhu(int cinemaId);
+        public void onDestory();
+    }
+    //设置关注电影和关注影院的V层接口
+    public interface VGZyy{
+        public void VGZYY(List<GZYYBean.ResultBean> lst);
+    }
+    //设置关注电影和关注影院的P层接口
+    public interface PGZyy{
+        public void PGZYY(int page,int count);
+        public void onDestory();
     }
 }

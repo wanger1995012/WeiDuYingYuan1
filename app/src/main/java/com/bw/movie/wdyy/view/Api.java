@@ -3,6 +3,7 @@ package com.bw.movie.wdyy.view;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -33,9 +34,19 @@ public interface Api {
     @GET
     public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("session") String session, @Query("page") int page, @Query("count")int count);
     //意见反馈
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@Field("content") String content);
+    //版本更新
     @GET
-    public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") String userId, @Header("session") String session);
-    //意见反馈
+    public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@HeaderMap Map<String,String>map);
+    //推荐影院
     @GET
-    public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") String userId, @Header("session") String session);
+    public Observable<ResponseBody> Tuijianyingyuan(@Url String url, @Header("userId") String userId, @Header("session") String session,@QueryMap Map<String,Object> map);
+    //未关注
+    @GET
+    public Observable<ResponseBody> Weiguanzhu(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
+    //取消关注
+    @GET
+    public Observable<ResponseBody> Qvxiaoguanzhu(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
 }
