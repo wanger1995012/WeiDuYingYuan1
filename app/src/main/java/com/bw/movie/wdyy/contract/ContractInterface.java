@@ -34,6 +34,16 @@ public class ContractInterface {
         public void onDestory();
     }
 
+    public interface ViewMovieListChild1{
+        public void ShowMovieList(HotMovieListBean bean);
+    }
+    public interface ViewMovieListChild2{
+        public void ShowMovieList(ComingSoonBean bean);
+    }
+    public interface ViewMovieListChild3{
+        public void ShowMovieList(NowPlayingBean bean);
+    }
+
     public interface ViewMovieList{
         public void ShowMovieList1(HotMovieListBean bean);
         public void ShowMovieList2(NowPlayingBean bean);
@@ -41,6 +51,9 @@ public class ContractInterface {
     }
 
     public interface PresenterInterface{
+        public void toModelChild1();
+        public void toModelChild2();
+        public void toModelChild3();
         public void toModel1();
         public void toModel2();
         public void toModel3();
