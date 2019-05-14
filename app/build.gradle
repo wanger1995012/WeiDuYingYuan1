@@ -70,6 +70,8 @@ android {
         implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
         implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
+        //Xrecyclerview
+        implementation 'com.jcodecraeer:xrecyclerview:1.2.0'
 
     }
 }

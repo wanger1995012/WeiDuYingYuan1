@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MyGuanzhuActivity"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioGroup
+            android:id="@+id/myguanzhu_radio"
+            android:layout_width="@dimen/dp_198"
+            android:layout_height="@dimen/dp_32"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_50"
+            android:orientation="horizontal"
+            android:background="@drawable/myshap1"
+            >
+
+            <RadioButton
+                android:id="@+id/myguanzhu_radio1"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_23"
+                android:layout_gravity="left"
+                android:background="@drawable/myguanzhu_select"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center_horizontal"
+                android:text="电影"
+                android:textColor="#333"
+                android:textSize="@dimen/sp_14" />
+
+            <RadioButton
+                android:id="@+id/myguanzhu_radio2"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_23"
+                android:layout_gravity="right"
+                android:background="@drawable/myguanzhu_select"
+                android:button="@null"
+                android:layout_marginLeft="@dimen/dp_32"
+                android:gravity="center_horizontal"
+                android:text="影院"
+                android:textColor="#333"
+                android:textSize="@dimen/sp_14" />
+        </RadioGroup>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/myguanzhu_viewpager"
+            android:layout_width="@dimen/dp_312"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/myguanzhu_radio"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_24"></android.support.v4.view.ViewPager>
+
+        <ImageView
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="57dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/myguanzhu_fanhui"
+            android:background="@drawable/myxinxifanhui" />
+    </RelativeLayout>
+
+</LinearLayout>

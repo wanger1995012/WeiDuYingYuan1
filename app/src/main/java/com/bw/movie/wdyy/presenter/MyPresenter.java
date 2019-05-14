@@ -1,10 +1,16 @@
 package com.bw.movie.wdyy.presenter;
 
 import com.bw.movie.wdyy.activity.LoginActivity;
+import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
+<<<<<<< HEAD
 import com.bw.movie.wdyy.bean.DetailsBean;
+=======
+import com.bw.movie.wdyy.bean.GZDYBean;
+>>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+import com.bw.movie.wdyy.bean.TuijianBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.model.MyModel;
 
@@ -17,7 +23,7 @@ import java.util.Map;
  * 时间:${data}
  * Description:这个是注释
  */
-public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterface.PresenterInterface {
+public class MyPresenter<T> implements ContractInterface.PXiugaimima,ContractInterface.PGZyy,ContractInterface.PLogin,ContractInterface.PresenterInterface,ContractInterface.PYingyuan,ContractInterface.PGuanzhu {
     T tt;
     MyModel myModel;
     public MyPresenter(T t) {
@@ -72,11 +78,84 @@ public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterfac
 
     @Override
     public void PBanben() {
-        myModel.Yijianfan(new MyModel.MyCallBreak() {
+        Map<String,String> map=new HashMap<>();
+        map.put("ak","2");
+        myModel.Banbengengxin(map,new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
                 ContractInterface.VYiJian vYiJian= (ContractInterface.VYiJian) tt;
                 vYiJian.VBanben((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PTuijian(int page, int count) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("page",page);
+        map.put("count",count);
+        myModel.TuijianYingyuan(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VYingyuan vYingyuan= (ContractInterface.VYingyuan) tt;
+                TuijianBean beans= (TuijianBean) o;
+                vYingyuan.VTuijian(beans.getResult());
+            }
+        });
+    }
+
+    @Override
+    public void PWeiguanzhu(int cinemaId) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("cinemaId",cinemaId);
+        myModel.Weiguanzhu(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VGuanzhu vGuanzhu= (ContractInterface.VGuanzhu) tt;
+                vGuanzhu.VWeiguanzhu((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PQvxiaoguanzhu(int cinemaId) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("cinemaId",cinemaId);
+        myModel.Qvxiaoguanzhu(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VGuanzhu vGuanzhu= (ContractInterface.VGuanzhu) tt;
+                vGuanzhu.VQvxiaoguanzhu((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PGZYY(int page,int count) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("page",page);
+        map.put("count",count);
+        myModel.GZYY(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VGZyy vgZyy= (ContractInterface.VGZyy) tt;
+                GZYYBean beans= (GZYYBean) o;
+                vgZyy.VGZYY(beans.getResult());
+            }
+        });
+    }
+    //关注电影
+    @Override
+    public void PGZDY(int page, int count) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("page",page);
+        map.put("count",count);
+        myModel.GZDY(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VGZyy vgZyy= (ContractInterface.VGZyy) tt;
+                GZDYBean beans= (GZDYBean) o;
+                vgZyy.VGZDY(beans.getResult());
             }
         });
     }
@@ -153,12 +232,25 @@ public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterfac
     }
 
     @Override
+<<<<<<< HEAD
     public void toModelQueryMovieInformation(int MovieId) {
         myModel.QueryMovieInformation(MovieId, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
                 ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
                 d.MovieDetailsShow((List<DetailsBean.ResultBean>) o);
+=======
+    public void Pxiugai(String oldpwd,String newpwd,String newpwd2) {
+        Map<String,String> map=new HashMap<>();
+        map.put("oldPwd",oldpwd);
+        map.put("newPwd",newpwd);
+        map.put("newPwd2",newpwd2);
+        myModel.Chongzhimima(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VXiugaimima xiugaimima= (ContractInterface.VXiugaimima) tt;
+                xiugaimima.Vxiugai((String)o);
+>>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
             }
         });
     }
