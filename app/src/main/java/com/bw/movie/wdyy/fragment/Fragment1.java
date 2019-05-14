@@ -2,17 +2,20 @@ package com.bw.movie.wdyy.fragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
@@ -20,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.adapter.FlowAdapter;
@@ -53,7 +57,7 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
     RecyclerCoverFlow flow;
     RecyclerView rc1,rc2,rc3;
-    RelativeLayout hot;
+    RelativeLayout hot,re,ji;
     private HotAdapter adapter1;
     private ReAdapter adapter2;
     private JiAdapter adapter3;
@@ -79,6 +83,8 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         rc2 = view.findViewById(R.id.recycler_view_re_movie);
         rc3 = view.findViewById(R.id.recycler_view_ji_movie);
         hot = view.findViewById(R.id.lie1);
+        re = view.findViewById(R.id.lie2);
+        ji = view.findViewById(R.id.lie3);
         image_dingwei = view.findViewById(R.id.image_dingwei);
         text_dingwei = view.findViewById(R.id.text_dingwei);
         image_hua = view.findViewById(R.id.image_hua);
@@ -105,63 +111,75 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         flow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
             @Override
             public void onItemSelected(int position) {
-                if(position == 1){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",0,20);
+                Point p = new Point();
+                //获取窗口管理器
+                WindowManager wm = (WindowManager) getActivity().getSystemService(getContext().WINDOW_SERVICE);
+                wm.getDefaultDisplay().getSize(p);
+                int white = p.x;
+                int i = white / bean2.size();
+
+                if(position == 0){
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",0,0);
+                    animator.start();
+                }else if(position == 1){
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",0,i);
                     animator.start();
                 }else if(position == 2){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",20,60);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",i,2*i);
                     animator.start();
                 }else if(position == 3){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",60,80);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",2*i,3*i);
                     animator.start();
                 }else if(position == 4){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",80,100);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",3*i,4*i);
                     animator.start();
                 }else if(position == 5){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",100,120);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",4*i,5*i);
                     animator.start();
                 }else if(position == 6){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",120,140);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",5*i,6*i);
                     animator.start();
                 }else if(position == 7){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",140,160);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",6*i,7*i);
                     animator.start();
                 }else if(position == 8){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",160,180);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",7*i,8*i);
                     animator.start();
                 }else if(position == 9){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",180,200);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",8*i,9*i);
                     animator.start();
                 }else if(position == 10){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",200,220);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",9*i,10*i);
                     animator.start();
                 }else if(position == 11){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",220,240);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",10*i,11*i);
                     animator.start();
                 }else if(position == 12){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",240,260);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",11*i,12*i);
                     animator.start();
                 }else if(position == 13){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",260,280);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",12*i,13*i);
                     animator.start();
                 }else if(position == 14){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",280,300);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",14*i,15*i);
                     animator.start();
                 }else if(position == 15){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",300,320);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",16*i,17*i);
                     animator.start();
                 }else if(position == 16){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",320,340);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",18*i,19*i);
                     animator.start();
                 }else if(position == 17){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",340,360);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",19*i,20*i);
                     animator.start();
                 }else if(position == 18){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",360,380);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",21*i,22*i);
                     animator.start();
                 }else if(position == 19){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",380,400);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(image_hua,"translationX",22*i,23*i);
                     animator.start();
+                }else{
+                    return;
                 }
             }
         });
@@ -208,6 +226,18 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
                 startActivity(new Intent(getActivity(), HotActivity.class));
             }
         });
+        re.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HotActivity.class));
+            }
+        });
+        ji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HotActivity.class));
+            }
+        });
     }
 
     private void setFlow() {
@@ -241,6 +271,12 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         //创建适配器
         adapter1 = new HotAdapter(bean1, getContext());
         rc1.setAdapter(adapter1);
+        adapter1.setMyCallBack(new HotAdapter.MyCallBack() {
+            @Override
+            public void OnItemClickListener(List<HotMovieListBean.ResultBean> list) {
+                //Toast.makeText(getContext(), "吐司",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

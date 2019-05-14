@@ -63,6 +63,39 @@ public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterfac
     }
 
     @Override
+    public void toModelChild1() {
+        myModel.ShowMovie(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewMovieListChild1 v = (ContractInterface.ViewMovieListChild1) tt;
+                v.ShowMovieList((HotMovieListBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelChild2() {
+        myModel.ShowMovie3(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewMovieListChild2 v = (ContractInterface.ViewMovieListChild2) tt;
+                v.ShowMovieList((ComingSoonBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelChild3() {
+        myModel.ShowMovie2(new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewMovieListChild3 v = (ContractInterface.ViewMovieListChild3) tt;
+                v.ShowMovieList((NowPlayingBean) o);
+            }
+        });
+    }
+
+    @Override
     public void toModel1() {
         myModel.ShowMovie(new MyModel.MyCallBreak() {
             @Override
