@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sl"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".hotactivity.DetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:background="@drawable/xiang"
+            android:layout_marginLeft="@dimen/dp_24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginStart="@dimen/dp_60"
+            android:text="电影详情" />
+
+        <ImageView
+            android:id="@+id/image2_dianzan"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/zanb" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text2_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_30"
+                android:text="雷电法王杨永信"
+                android:textSize="@dimen/sp_20" />
+
+            <ImageView
+                android:id="@+id/image2_big_img"
+                android:layout_width="@dimen/dp_259"
+                android:layout_height="@dimen/dp_360"
+                android:layout_marginTop="@dimen/dp_70"/>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="470dp"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24">
+
+        <TextView
+            android:id="@+id/text2_xiangqing"
+            android:layout_width="@dimen/dp_58"
+            android:layout_height="@dimen/dp_32"
+            android:background="@drawable/shape"
+            android:gravity="center"
+            android:text="详情" />
+
+        <TextView
+            android:id="@+id/text2_yugao"
+            android:layout_width="@dimen/dp_58"
+            android:layout_height="@dimen/dp_32"
+            android:layout_marginLeft="@dimen/dp_85"
+            android:background="@drawable/shape"
+            android:gravity="center"
+            android:text="预告" />
+
+        <TextView
+            android:id="@+id/text2_juzhao"
+            android:layout_width="@dimen/dp_58"
+            android:layout_height="@dimen/dp_32"
+            android:layout_marginLeft="@dimen/dp_170"
+            android:background="@drawable/shape"
+            android:gravity="center"
+            android:text="剧照" />
+
+        <TextView
+            android:id="@+id/text2_yingping"
+            android:layout_width="@dimen/dp_58"
+            android:layout_height="@dimen/dp_32"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/dp_220"
+            android:background="@drawable/shape"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="影评" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image2_call"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/myxinxifanhui" />
+
+    <TextView
+        android:id="@+id/text2_goupiao"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:text="购票"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_24"
+        android:background="@drawable/goupiao" />
+
+
+</RelativeLayout>

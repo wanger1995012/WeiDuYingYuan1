@@ -31,11 +31,15 @@ public interface Api {
     Observable<ResponseBody> Zhuce(@Url String url,@FieldMap Map<String,Object> map);
     //展示的电影列表
     @GET
-    public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("session") String session, @Query("page") int page, @Query("count")int count);
+    public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") int page, @Query("count")int count);
     //意见反馈
     @GET
-    public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") String userId, @Header("session") String session);
+    public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId);
     //意见反馈
     @GET
-    public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") String userId, @Header("session") String session);
+    public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId);
+    //查询电影信息
+    @GET
+    public Observable<ResponseBody> QueryMovieInformation (@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
+
 }

@@ -21,9 +21,9 @@ import java.util.List;
  * @Description：描述信息
  */
 public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
-    List<HotMovieListBean.ResultBean> list ;
+    List<HotMovieListBean.ResultBean> list;
     Context context;
-    MyCallBack callBack;
+    public OnItemClickListener listener;
 
     public HotAdapter(List<HotMovieListBean.ResultBean> list, Context context) {
         this.list = list;
@@ -33,16 +33,24 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.hot_layout,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.hot_layout, null);
 
         return new Holder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, final int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int i) {
         holder.img.setImageURI(list.get(i).getImageUrl());
         holder.name.setText(list.get(i).getName());
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getAdapterPosition();
+                listener.onItemClick(holder.itemView, position);
+            }
+        });
 
     }
 
@@ -51,10 +59,11 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
         return list.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder{
+    public class Holder extends RecyclerView.ViewHolder {
 
         SimpleDraweeView img;
         TextView name;
+
         public Holder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.image_hot);
@@ -62,12 +71,11 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
         }
     }
 
-    public void setMyCallBack(MyCallBack callBack) {
-        this.callBack = callBack;
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
-    public interface MyCallBack{
-        void OnItemClickListener(List<HotMovieListBean.ResultBean> list);
-
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 }

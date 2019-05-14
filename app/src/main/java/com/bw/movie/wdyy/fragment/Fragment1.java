@@ -29,12 +29,12 @@ import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.adapter.FlowAdapter;
 import com.bw.movie.wdyy.adapter.HotAdapter;
 import com.bw.movie.wdyy.adapter.JiAdapter;
-import com.bw.movie.wdyy.adapter.MyBigAdapter;
 import com.bw.movie.wdyy.adapter.ReAdapter;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
+import com.bw.movie.wdyy.hotactivity.DetailsActivity;
 import com.bw.movie.wdyy.hotactivity.HotActivity;
 import com.bw.movie.wdyy.presenter.MyPresenter;
 
@@ -55,6 +55,7 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
     List<NowPlayingBean.ResultBean>   bean2 = new ArrayList<>();
     List<ComingSoonBean.ResultBean>   bean3 = new ArrayList<>();
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
+    int a;
     RecyclerCoverFlow flow;
     RecyclerView rc1,rc2,rc3;
     RelativeLayout hot,re,ji;
@@ -244,6 +245,14 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         //创建适配器
         adapter4 = new FlowAdapter(bean2, getContext());
         flow.setAdapter(adapter4);
+        adapter4.setListener(new FlowAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(),DetailsActivity.class);
+                intent.putExtra("MovieId",position+"");
+                startActivity(intent);
+            }
+        });
     }
 
     private void setRc3() {
@@ -253,6 +262,14 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         //创建适配器
         adapter3 = new JiAdapter(bean3, getContext());
         rc3.setAdapter(adapter3);
+        adapter3.setListener(new JiAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(),DetailsActivity.class);
+                intent.putExtra("MovieId",position+"");
+                startActivity(intent);
+            }
+        });
     }
 
     private void setRc2() {
@@ -262,7 +279,16 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         //创建适配器
         adapter2 = new ReAdapter(bean2, getContext());
         rc2.setAdapter(adapter2);
+        adapter2.setListener(new ReAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(),DetailsActivity.class);
+                intent.putExtra("MovieId",position+"");
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void setRc1() {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -271,10 +297,12 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         //创建适配器
         adapter1 = new HotAdapter(bean1, getContext());
         rc1.setAdapter(adapter1);
-        adapter1.setMyCallBack(new HotAdapter.MyCallBack() {
+        adapter1.setListener(new HotAdapter.OnItemClickListener() {
             @Override
-            public void OnItemClickListener(List<HotMovieListBean.ResultBean> list) {
-                //Toast.makeText(getContext(), "吐司",Toast.LENGTH_LONG).show();
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(),DetailsActivity.class);
+                intent.putExtra("MovieId",position+"");
+                startActivity(intent);
             }
         });
     }

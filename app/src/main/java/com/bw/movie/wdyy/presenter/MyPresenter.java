@@ -2,12 +2,14 @@ package com.bw.movie.wdyy.presenter;
 
 import com.bw.movie.wdyy.activity.LoginActivity;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
+import com.bw.movie.wdyy.bean.DetailsBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.model.MyModel;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -146,6 +148,17 @@ public class MyPresenter<T> implements ContractInterface.PLogin,ContractInterfac
             public void sressco(Object o) {
                 ContractInterface.ViewMovieList v = (ContractInterface.ViewMovieList) tt;
                 v.ShowMovieList3((ComingSoonBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelQueryMovieInformation(int MovieId) {
+        myModel.QueryMovieInformation(MovieId, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
+                d.MovieDetailsShow((List<DetailsBean.ResultBean>) o);
             }
         });
     }
