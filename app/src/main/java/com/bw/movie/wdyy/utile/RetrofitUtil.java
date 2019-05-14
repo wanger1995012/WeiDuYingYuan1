@@ -41,7 +41,7 @@ public class RetrofitUtil {
         builder.cache(new Cache(new File("com.bw.cache"),100*ByteConstants.MB));
         okHttpClient=builder.build();
         retrofit=new Retrofit.Builder()
-                .baseUrl("http://172.17.8.100")
+                .baseUrl("http://mobile.bwstudent.com")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
