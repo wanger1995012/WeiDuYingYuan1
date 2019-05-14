@@ -49,4 +49,14 @@ public interface Api {
     //取消关注
     @GET
     public Observable<ResponseBody> Qvxiaoguanzhu(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
+    //关注影院
+    @GET
+    public Observable<ResponseBody> GZYY(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
+    //关注影院
+    @GET
+    public Observable<ResponseBody> GZDY(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
+    //重置密码
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> Chongzhimima(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,String> map);
 }

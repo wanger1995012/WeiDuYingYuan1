@@ -105,7 +105,19 @@ public class XinXiActivity extends AppCompatActivity {
                 startActivityForResult(intent, 4);
             }
         });
+        //设置重置密码
+        ChongzhiMima();
 
+    }
+    //重置密码
+    private void ChongzhiMima() {
+        myxinxiChongzhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(XinXiActivity.this,MyChongzhiActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //设置用户头像

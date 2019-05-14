@@ -43,7 +43,8 @@
         <activity android:name=".activity.YiJianActivity" />
         <activity android:name=".activity.YijianJieguoActivity" />
         <activity android:name=".hotactivity.HotActivity" />
-        <activity android:name=".activity.MyGuanzhuActivity"></activity>
+        <activity android:name=".activity.MyGuanzhuActivity" />
+        <activity android:name=".activity.MyChongzhiActivity"></activity>
     </application>
 
 </manifest>

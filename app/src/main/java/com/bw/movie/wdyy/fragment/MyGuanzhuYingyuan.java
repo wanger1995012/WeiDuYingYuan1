@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.adapter.GuanZhuyingyuanAdapter;
+import com.bw.movie.wdyy.bean.GZDYBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.presenter.MyPresenter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -59,12 +60,13 @@ public class MyGuanzhuYingyuan extends Fragment implements ContractInterface.VGZ
         myguanzhuYingyuan.setAdapter(guanZhuyingyuanAdapter);
         //P
         pgZyy=new MyPresenter(this);
+        pgZyy.PGZYY(1,10);
         //设置上下拉
         myguanzhuYingyuan.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                 //刷新
-                pgZyy.PGZYY(page,10);
+                pgZyy.PGZYY(1,10);
             }
 
             @Override
@@ -89,6 +91,11 @@ public class MyGuanzhuYingyuan extends Fragment implements ContractInterface.VGZ
         list.clear();
         this.list.addAll(lst);
         guanZhuyingyuanAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void VGZDY(List<GZDYBean.ResultBean> lst) {
+
     }
 
     @Override
