@@ -16,7 +16,10 @@
     <meta-data
         android:name="wxb3852e6a6b7d9516"
         android:value="123456" />
-
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:anyDensity = "true"/>
     <application
         android:name=".view.App"
         android:allowBackup="true"

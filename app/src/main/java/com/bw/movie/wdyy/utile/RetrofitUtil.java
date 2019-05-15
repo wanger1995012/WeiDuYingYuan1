@@ -38,7 +38,7 @@ public class RetrofitUtil {
                 return response;
             }
         });
-        builder.cache(new Cache(new File("com.bw.cache"),100*ByteConstants.MB));
+     /*   builder.cache(new Cache(new File("com.bw.cache"),100*ByteConstants.MB));*/
         okHttpClient=builder.build();
         retrofit=new Retrofit.Builder()
                 .baseUrl("http://mobile.bwstudent.com")
