@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <ImageView
+            android:layout_width="@dimen/dp_205"
+            android:layout_height="@dimen/dp_205"
+            android:background="@drawable/lunbo2"
+            android:layout_marginTop="@dimen/dp_150"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_60"
+            android:text="一场电影"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#333"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_21"
+            android:text="看遍人生百态"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#333"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+</LinearLayout>

@@ -61,7 +61,7 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
 
     @Override
     public void MovieDetailsShow(List<DetailsBean.ResultBean> list) {
-        mList.addAll(list);
+       mList.addAll(list);
         for (int i = 0; i <= list.size(); i++) {
             Glide.with(this).load(mList.get(i).getImageUrl()).into(image2BigImg);
             text2Name.setText(mList.get(i).getName());
