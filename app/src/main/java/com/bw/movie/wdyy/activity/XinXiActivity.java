@@ -29,7 +29,10 @@ import com.bw.movie.wdyy.view.App;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -101,7 +104,7 @@ public class XinXiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(XinXiActivity.this, XiuGaiActivity.class);
-                intent.putExtra("aaa","123");//a传b在此处写你传的值
+                intent.putExtra("aaa","12");//a传b在此处写你传的值
                 startActivityForResult(intent, 4);
             }
         });
@@ -255,19 +258,23 @@ public class XinXiActivity extends AppCompatActivity {
             case shujv:
                 if (resultCode == RESULT_OK) {
                     String a = data.getStringExtra("mmm");
-                    if (a.equals("1")){
+                    String nickName = data.getStringExtra("NickName");
+                    String Sex = data.getStringExtra("Sex");
+                    String Phone = data.getStringExtra("Phone");
+                    String Birthday = data.getStringExtra("Birthday");
+                    String LastLoginTime = data.getStringExtra("LastLoginTime");
+                    if (a.equals("12")){
                         LoginBean.ResultBean.UserInfoBean userInfoBean = new LoginBean.ResultBean.UserInfoBean();
-                        Log.e("ab", "onCreate: " + userInfoBean.toString());
-                        String nickName1 = userInfoBean.getNickName();
-                        String phone1 = userInfoBean.getPhone();
-                        long riqi1 = userInfoBean.getBirthday();
-                        int sex1 = userInfoBean.getSex();
-                        long youxiang1 = userInfoBean.getLastLoginTime();
-                        myxinxiNicheng.setText(nickName1);
-                        myxinxiPhone.setText(phone1);
-                        myxinxiRiqi.setText(riqi1 + "");
-                        myxinxiSex.setText(sex1);
-                        myxinxiYouxiang.setText(youxiang1 + "");
+                        Log.e("ab", "onCreate: " +nickName.toString());
+                        myxinxiNicheng.setText(nickName);
+                        myxinxiPhone.setText(Phone);
+                        myxinxiRiqi.setText(Birthday + "");
+                        if (Sex.equals("1")) {
+                            myxinxiSex.setText("男");
+                        } else {
+                            myxinxiSex.setText("女");
+                        }
+                        myxinxiYouxiang.setText(LastLoginTime + "");
                     }
                 }
                 break;

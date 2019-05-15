@@ -85,10 +85,15 @@ public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
         //设置系统消息
         XiaoxinInit();
     }
-
+    //设置系统消息
     private void XiaoxinInit() {
-        Intent intent=new Intent(getActivity(),XiaoxiActivity.class);
-        startActivity(intent);
+        myXiaoxi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),XiaoxiActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //我的关注

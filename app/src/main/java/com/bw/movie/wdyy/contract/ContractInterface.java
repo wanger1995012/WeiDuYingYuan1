@@ -6,6 +6,7 @@ import com.bw.movie.wdyy.bean.DetailsBean;
 import com.bw.movie.wdyy.bean.GZDYBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+import com.bw.movie.wdyy.bean.TongzhiBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
 
 import java.util.List;
@@ -112,5 +113,15 @@ public class ContractInterface {
         public void Pxiugai(String oldPwd,String newpwd,String newpwd2);
         public void onDestory();
     }
-
+    //设置系统通知的V层接口
+    public interface VXTTZ{
+        public void VXTTZ(List<TongzhiBean.ResultBean> lst);
+        public void VXTTZXXID(String str);
+    }
+    //设置系统通知,改变系统状态的P层接口
+    public interface PXTTZ{
+        public void PXTTZ(int page,int count);
+        public void PXTTZXXID(int xiaoxiID);
+        public void onDestory();
+    }
 }
