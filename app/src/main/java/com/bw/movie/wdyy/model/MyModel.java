@@ -18,6 +18,7 @@ import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
 
 import com.bw.movie.wdyy.bean.LoginBean;
 
+import com.bw.movie.wdyy.bean.TongzhiBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
 import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.utile.RetrofitUtil;
@@ -366,6 +367,50 @@ public class MyModel {
                             Gson gson=new Gson();
                             GZDYBean beans=gson.fromJson(json,GZDYBean.class);
                             callBreak.sressco(beans);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //系统通知
+    public void Xitongtonfzhi(Map<String,Object> map,final MyCallBreak callBreak){
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        Log.e("userid", "yingyuan: "+USERID+SESSIONID );
+        gets.XTTZ("/movieApi/tool/v1/verify/findAllSysMsgList",USERID+"",SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "tongzhi: "+json );
+                            Gson gson=new Gson();
+                            TongzhiBean tongzhiBean = gson.fromJson(json, TongzhiBean.class);
+                            callBreak.sressco(tongzhiBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //改变系统消息状态
+    public void XitongtonfzhiXXID(Map<String,Object> map,final MyCallBreak callBreak){
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        Log.e("userid", "yingyuan: "+USERID+SESSIONID );
+        gets.XTTZXXID("/movieApi/tool/v1/verify/changeSysMsgStatus",USERID+"",SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "xiaoxiID: "+json );
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
