@@ -29,114 +29,18 @@ import java.util.List;
  * @Description：描述信息
  */
 public class MyBigAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<HotMovieListBean.ResultBean> bean1;
-    List<NowPlayingBean.ResultBean>   bean2;
-    List<ComingSoonBean.ResultBean>   bean3;
-    List<String> list_banner = new ArrayList<>();
-    List<Object> list = new ArrayList<>();
-    Context context;
-
-    public MyBigAdapter(List<HotMovieListBean.ResultBean> bean1, List<NowPlayingBean.ResultBean> bean2, List<ComingSoonBean.ResultBean> bean3, Context context) {
-        this.bean1 = bean1;
-        this.bean2 = bean2;
-        this.bean3 = bean3;
-        this.context = context;
-    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        if(i == 1){
-            MyViewHolder1 myViewHolder1 = new MyViewHolder1
-                    (LayoutInflater.from(context).inflate(R.layout.viewholder1_layout , null));
-            return myViewHolder1;
-        }else if(i == 2){
-            MyViewHolder2 myViewHolder2 = new MyViewHolder2
-                    (LayoutInflater.from(context).inflate(R.layout.viewholder1_layout2 , null));
-            return myViewHolder2;
-        }else if(i == 3){
-            MyViewHolder3 myViewHolder3 = new MyViewHolder3
-                    (LayoutInflater.from(context).inflate(R.layout.viewholder1_layout3 , null));
-            return myViewHolder3;
-        }else if(i == 4){
-            MyViewHolder4 myViewHolder4 = new MyViewHolder4
-                    (LayoutInflater.from(context).inflate(R.layout.viewholder1_layout4 , null));
-            return myViewHolder4;
-        }
         return null;
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqly1g0ajj4h6ndj30sg11xdmj.jpg");
-        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqgy1fy58bi1wlgj30sg10hguu.jpg");
-        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqly1fytdr77urlj30sg10najf.jpg");
-        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqgy1fxd7vcz86nj30qo0ybqc1.jpg");
-        list_banner.add("https://ws1.sinaimg.cn/large/0065oQSqgy1fwgzx8n1syj30sg15h7ew.jpg");
-        if(viewHolder instanceof MyViewHolder1){
-            ((MyViewHolder1) viewHolder).banner.setImageLoader(new ImageLoader() {
-                @Override
-                public void displayImage(Context context, Object path, ImageView imageView) {
-                    Glide.with(context).load(path).into(imageView);
-                }
-            }).setImages(list_banner).setDelayTime(2000).isAutoPlay(true).start();
-        }else if(viewHolder instanceof MyViewHolder2){
-            ((MyViewHolder2) viewHolder).img.setImageURI(bean1.get(i).getImageUrl());
-        }
     }
-
     @Override
     public int getItemCount() {
-        list.add(bean1);
-        list.add(bean2);
-        list.add(bean3);
-        return list.size();
+
+        return 0;
     }
-
-    @Override
-    public int getItemViewType(int position) {
-        if(position == 0){
-            return 1;
-        }else if(position == 1){
-            return 2;
-        }else if(position == 2){
-            return 3;
-        }else if(position == 3){
-            return 4;
-        }else{
-            return 5;
-        }
-    }
-
-    class MyViewHolder1 extends RecyclerView.ViewHolder{
-
-        Banner banner;
-        public MyViewHolder1(@NonNull View itemView) {
-            super(itemView);
-            banner = itemView.findViewById(R.id.banner_my);
-        }
-    }
-
-    class MyViewHolder2 extends RecyclerView.ViewHolder{
-        SimpleDraweeView img;
-        public MyViewHolder2(@NonNull View itemView) {
-            super(itemView);
-            img = itemView.findViewById(R.id.image_view1);
-        }
-    }
-
-    class MyViewHolder3 extends RecyclerView.ViewHolder{
-
-        public MyViewHolder3(@NonNull View itemView) {
-            super(itemView);
-        }
-    }
-
-    class MyViewHolder4 extends RecyclerView.ViewHolder{
-
-        public MyViewHolder4(@NonNull View itemView) {
-            super(itemView);
-        }
-    }
-
 }

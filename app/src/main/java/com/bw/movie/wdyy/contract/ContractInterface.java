@@ -2,10 +2,16 @@ package com.bw.movie.wdyy.contract;
 
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
+<<<<<<< HEAD
+import com.bw.movie.wdyy.bean.DetailsBean;
+=======
 import com.bw.movie.wdyy.bean.GZDYBean;
+>>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -44,6 +50,10 @@ public class ContractInterface {
     public interface ViewMovieListChild3{
         public void ShowMovieList(NowPlayingBean bean);
     }
+    public interface DetailsShow{
+        public void MovieDetailsShow(List<DetailsBean.ResultBean> list);
+    }
+
 
     public interface ViewMovieList{
         public void ShowMovieList1(HotMovieListBean bean);
@@ -58,6 +68,7 @@ public class ContractInterface {
         public void toModel1();
         public void toModel2();
         public void toModel3();
+        public void toModelQueryMovieInformation(int MovieId);
     }
     //设置意见的V接口，设置版本的V接口
     public interface VYiJian{
