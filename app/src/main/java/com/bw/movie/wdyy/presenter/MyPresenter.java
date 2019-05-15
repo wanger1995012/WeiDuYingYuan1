@@ -9,6 +9,7 @@ import com.bw.movie.wdyy.bean.DetailsBean;
 import com.bw.movie.wdyy.bean.GZDYBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
+import com.bw.movie.wdyy.bean.TongzhiBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.model.MyModel;
@@ -24,7 +25,7 @@ import static com.umeng.socialize.net.dplus.CommonNetImpl.TAG;
  * 时间:${data}
  * Description:这个是注释
  */
-public class MyPresenter<T> implements ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
     T tt;
     MyModel myModel;
 
@@ -161,6 +162,34 @@ public class MyPresenter<T> implements ContractInterface.PXiugaimima, ContractIn
                 ContractInterface.VGZyy vgZyy = (ContractInterface.VGZyy) tt;
                 GZDYBean beans = (GZDYBean) o;
                 vgZyy.VGZDY(beans.getResult());
+            }
+        });
+    }
+    //系统通知
+    @Override
+    public void PXTTZ(int page, int count) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("page", page);
+        map.put("count", count);
+        myModel.Xitongtonfzhi(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VXTTZ vxttz = (ContractInterface.VXTTZ) tt;
+                TongzhiBean beans = (TongzhiBean) o;
+                vxttz.VXTTZ(beans.getResult());
+            }
+        });
+    }
+    //改变系统的状态
+    @Override
+    public void PXTTZXXID(int xiaoxiID) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", xiaoxiID);
+        myModel.XitongtonfzhiXXID(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VXTTZ vxttz= (ContractInterface.VXTTZ) tt;
+                vxttz.VXTTZXXID((String) o);
             }
         });
     }

@@ -1,7 +1,6 @@
 package com.bw.movie.wdyy.adapter;
 
 import android.content.Context;
-import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -15,6 +14,7 @@ import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.bean.GZDYBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**

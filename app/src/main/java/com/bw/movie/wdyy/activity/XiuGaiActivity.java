@@ -60,7 +60,12 @@ public class XiuGaiActivity extends AppCompatActivity {
                 userInfoBean.setBirthday(riqi);
                 userInfoBean.setLastLoginTime(youxiang);
                 Intent intent=getIntent();
-                intent.putExtra("mmm",1);
+                intent.putExtra("mmm","12");
+                intent.putExtra("NickName",userInfoBean.getNickName());
+                intent.putExtra("Sex",userInfoBean.getSex());
+                intent.putExtra("Phone",userInfoBean.getPhone());
+                intent.putExtra("Birthday",userInfoBean.getBirthday());
+                intent.putExtra("LastLoginTime",userInfoBean.getLastLoginTime());
                 setResult(RESULT_OK,intent);
                 finish();
             }
