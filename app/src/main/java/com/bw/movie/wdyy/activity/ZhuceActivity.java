@@ -89,7 +89,10 @@ public class ZhuceActivity extends AppCompatActivity implements ContractInterfac
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        pLogin.onDestory();
-        pLogin=null;
+        if(pLogin != null){
+            pLogin.onDestory();
+            pLogin=null;
+        }
+
     }
 }

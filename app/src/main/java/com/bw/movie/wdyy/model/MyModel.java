@@ -5,11 +5,8 @@ import android.util.Log;
 
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
-<<<<<<< HEAD
 import com.bw.movie.wdyy.bean.DetailsBean;
-=======
 import com.bw.movie.wdyy.bean.GZDYBean;
->>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.LoginBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
@@ -46,6 +43,7 @@ import rx.schedulers.Schedulers;
 public class MyModel {
    private static int USERID;
    private static String SESSIONID;
+
     //登录
     public void Login(Map<String,String> map, final MyCallBreak callBreak){
         RetrofitUtil retrofitUtil=RetrofitUtil.getUtil();
@@ -83,6 +81,9 @@ public class MyModel {
                             //将赋值
                             USERID=bean.getResult().getUserId();
                             SESSIONID=bean.getResult().getSessionId();
+
+                            //Log.i("tag", "userId:    " + USERID);
+                            //Log.i("tag", "sessionId: " + SESSIONID);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -127,6 +128,7 @@ public class MyModel {
                             String json = responseBody.string();
                             Gson gson = new Gson();
                             DetailsBean detailsBean = gson.fromJson(json, DetailsBean.class);
+                            Log.i("tags", "call: " + detailsBean.toString());
                             myCallBreak.sressco(detailsBean);
                         } catch (IOException e) {
                             e.printStackTrace();

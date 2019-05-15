@@ -43,12 +43,9 @@
         <activity android:name=".activity.YiJianActivity" />
         <activity android:name=".activity.YijianJieguoActivity" />
         <activity android:name=".hotactivity.HotActivity" />
-<<<<<<< HEAD
         <activity android:name=".hotactivity.DetailsActivity"></activity>
-=======
         <activity android:name=".activity.MyGuanzhuActivity" />
         <activity android:name=".activity.MyChongzhiActivity"></activity>
->>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
     </application>
 
 </manifest>

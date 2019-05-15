@@ -2,11 +2,8 @@ package com.bw.movie.wdyy.contract;
 
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
-<<<<<<< HEAD
 import com.bw.movie.wdyy.bean.DetailsBean;
-=======
 import com.bw.movie.wdyy.bean.GZDYBean;
->>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
@@ -51,7 +48,7 @@ public class ContractInterface {
         public void ShowMovieList(NowPlayingBean bean);
     }
     public interface DetailsShow{
-        public void MovieDetailsShow(List<DetailsBean.ResultBean> list);
+        public void MovieDetailsShow(DetailsBean bean);
     }
 
 
