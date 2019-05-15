@@ -5,7 +5,11 @@ import android.util.Log;
 
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
+<<<<<<< HEAD
+import com.bw.movie.wdyy.bean.DetailsBean;
+=======
 import com.bw.movie.wdyy.bean.GZDYBean;
+>>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.LoginBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
@@ -26,6 +30,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -106,6 +111,31 @@ public class MyModel {
                     }
                 });
     }
+
+
+    //通过传来的Id去查询电影信息
+
+    public void QueryMovieInformation(int MovieId, final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.QueryMovieInformation("/movieApi/movie/v1/findMoviesById",USERID+"",SESSIONID,MovieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            DetailsBean detailsBean = gson.fromJson(json, DetailsBean.class);
+                            myCallBreak.sressco(detailsBean);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
 
     public void ShowMovie(final MyCallBreak myCallBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);

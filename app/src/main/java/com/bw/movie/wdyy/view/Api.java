@@ -32,13 +32,23 @@ public interface Api {
     Observable<ResponseBody> Zhuce(@Url String url,@FieldMap Map<String,Object> map);
     //展示的电影列表
     @GET
-    public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("session") String session, @Query("page") int page, @Query("count")int count);
+    public Observable<ResponseBody> MovieList(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") int page, @Query("count")int count);
     //意见反馈
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@Field("content") String content);
     //版本更新
     @GET
+<<<<<<< HEAD
+    public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId);
+    //意见反馈
+    @GET
+    public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId);
+    //查询电影信息
+    @GET
+    public Observable<ResponseBody> QueryMovieInformation (@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
+
+=======
     public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@HeaderMap Map<String,String>map);
     //推荐影院
     @GET
@@ -59,4 +69,5 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> Chongzhimima(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,String> map);
+>>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
 }

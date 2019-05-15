@@ -3,7 +3,11 @@ package com.bw.movie.wdyy.presenter;
 import com.bw.movie.wdyy.activity.LoginActivity;
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
+<<<<<<< HEAD
+import com.bw.movie.wdyy.bean.DetailsBean;
+=======
 import com.bw.movie.wdyy.bean.GZDYBean;
+>>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
@@ -228,6 +232,14 @@ public class MyPresenter<T> implements ContractInterface.PXiugaimima,ContractInt
     }
 
     @Override
+<<<<<<< HEAD
+    public void toModelQueryMovieInformation(int MovieId) {
+        myModel.QueryMovieInformation(MovieId, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
+                d.MovieDetailsShow((List<DetailsBean.ResultBean>) o);
+=======
     public void Pxiugai(String oldpwd,String newpwd,String newpwd2) {
         Map<String,String> map=new HashMap<>();
         map.put("oldPwd",oldpwd);
@@ -238,6 +250,7 @@ public class MyPresenter<T> implements ContractInterface.PXiugaimima,ContractInt
             public void sressco(Object o) {
                 ContractInterface.VXiugaimima xiugaimima= (ContractInterface.VXiugaimima) tt;
                 xiugaimima.Vxiugai((String)o);
+>>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
             }
         });
     }

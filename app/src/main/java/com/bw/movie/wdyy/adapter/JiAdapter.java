@@ -24,6 +24,7 @@ import java.util.List;
 public class JiAdapter extends RecyclerView.Adapter<JiAdapter.Holder> {
     List<ComingSoonBean.ResultBean> list ;
     Context context;
+    OnItemClickListener listener;
 
     public JiAdapter(List<ComingSoonBean.ResultBean> list, Context context) {
         this.list = list;
@@ -38,9 +39,17 @@ public class JiAdapter extends RecyclerView.Adapter<JiAdapter.Holder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, int i) {
         holder.img.setImageURI(list.get(i).getImageUrl());
         holder.name.setText(list.get(i).getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getAdapterPosition();
+                listener.onItemClick(holder.itemView, position);
+            }
+        });
+
     }
 
     @Override
@@ -57,5 +66,13 @@ public class JiAdapter extends RecyclerView.Adapter<JiAdapter.Holder> {
             img = itemView.findViewById(R.id.image_ji);
             name = itemView.findViewById(R.id.text_name_ji);
         }
+    }
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 }

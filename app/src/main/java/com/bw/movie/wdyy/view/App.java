@@ -24,15 +24,16 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         //设置fresco的缓存路径及大小
-        DiskCacheConfig diskCacheConfig=DiskCacheConfig.newBuilder(this)
+        /*DiskCacheConfig diskCacheConfig=DiskCacheConfig.newBuilder(this)
                 .setBaseDirectoryPath(this.getApplicationContext().getCacheDir())
                 .setBaseDirectoryName("com.bw.fresco")
-                .setMaxCacheSize(100*ByteConstants.MB)
+                .setMaxCacheSize(300*ByteConstants.MB)
                 .build();
         ImagePipelineConfig builder=ImagePipelineConfig.newBuilder(this)
                 .setMainDiskCacheConfig(diskCacheConfig)
-                .build();
-        Fresco.initialize(this,builder);
+                .build();*/
+        //Fresco.initialize(this,builder);
+        Fresco.initialize(this);
         //开启数据库
         DaoMaster.DevOpenHelper helper = new  DaoMaster.DevOpenHelper(this, ENCRYPTED ? "users-db-encrypted" : "users-db");
         //注意这里是getWritableDb()

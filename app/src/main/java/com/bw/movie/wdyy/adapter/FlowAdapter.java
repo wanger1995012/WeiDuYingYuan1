@@ -26,6 +26,7 @@ public class FlowAdapter extends RecyclerCoverFlow.Adapter<FlowAdapter.Holder> {
     List<NowPlayingBean.ResultBean> list ;
     Context context;
     private static String strMinute;
+    OnItemClickListener listener;
 
     public FlowAdapter(List<NowPlayingBean.ResultBean> list, Context context) {
         this.list = list;
@@ -40,10 +41,17 @@ public class FlowAdapter extends RecyclerCoverFlow.Adapter<FlowAdapter.Holder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, int i) {
         holder.img.setImageURI(list.get(i).getImageUrl());
         holder.name.setText(list.get(i).getName());
         long times = list.get(i).getReleaseTime();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getAdapterPosition();
+                listener.onItemClick(holder.itemView, position);
+            }
+        });
 
         holder.time.setText((times/1000/24/60/10000)+"分钟");
         formatTime(times);
@@ -92,6 +100,12 @@ public class FlowAdapter extends RecyclerCoverFlow.Adapter<FlowAdapter.Holder> {
 
     }
 
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
 }
