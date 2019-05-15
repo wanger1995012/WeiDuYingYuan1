@@ -48,9 +48,12 @@
         <activity android:name=".activity.YiJianActivity" />
         <activity android:name=".activity.YijianJieguoActivity" />
         <activity android:name=".hotactivity.HotActivity" />
-        <activity android:name=".hotactivity.DetailsActivity" />
+        <activity android:name=".hotactivity.DetailsActivity"></activity>
         <activity android:name=".activity.MyGuanzhuActivity" />
-        <activity android:name=".activity.MyChongzhiActivity" />
+        <activity android:name=".activity.MyChongzhiActivity"></activity>
+        <activity android:name=".hotactivity.DetailsActivity"/>
+        <activity android:name=".activity.MyGuanzhuActivity"/>
+        <activity android:name=".activity.MyChongzhiActivity"/>
         <activity android:name=".activity.XiaoxiActivity"></activity>
     </application>
 

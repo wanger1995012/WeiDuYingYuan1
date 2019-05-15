@@ -9,7 +9,7 @@ package com.bw.movie.wdyy.bean;
 public class DetailsBean {
 
     /**
-     * result : {"director":"文牧野","duration":"117分钟","fare":0.22,"id":1,"imageUrl":"http://172.17.8.100/images/movie/stills/wbsys/wbsys1.jpg","name":"我不是药神","placeOrigin":"中国","starring":"徐峥,周一围,王传君,谭卓","summary":"一位不速之客的意外到访，打破了神油店老板程勇（徐峥 饰）的平凡人生，他从一个交不起房租的男性保健品商贩，一跃成为印度仿制药\u201c格列宁\u201d的独家代理商。收获巨额利润的他，生活剧烈变化，被病患们冠以\u201c药神\u201d的称号。但是，一场关于救赎的拉锯战也在波涛暗涌中慢慢展开......"}
+     * result : {"director":"刘阔","duration":"105分钟","fare":0.21,"id":12,"imageUrl":"http://172.17.8.100/images/movie/stills/fyz/fyz1.jpg","name":"风语咒","placeOrigin":"中国大陆","starring":"路知行,阎萌萌,褚珺","summary":"生活在孝阳岗的少年郎明怀揣侠岚梦想，但双眼失明的他却只能靠招摇撞骗混于市井之中。直到有一天，罗刹袭击孝阳岗，与他相依为命的母亲突然失踪，郎明迫不得已踏上了找寻真相之路。一波未平一波又起，上古神兽饕餮现世让人间危在旦夕，传说中的侠岚们也出现在眼前，郎明也踏上了改变一生的冒险之旅\u2026\u2026"}
      * message : 查询成功
      * status : 0000
      */
@@ -44,15 +44,15 @@ public class DetailsBean {
 
     public static class ResultBean {
         /**
-         * director : 文牧野
-         * duration : 117分钟
-         * fare : 0.22
-         * id : 1
-         * imageUrl : http://172.17.8.100/images/movie/stills/wbsys/wbsys1.jpg
-         * name : 我不是药神
-         * placeOrigin : 中国
-         * starring : 徐峥,周一围,王传君,谭卓
-         * summary : 一位不速之客的意外到访，打破了神油店老板程勇（徐峥 饰）的平凡人生，他从一个交不起房租的男性保健品商贩，一跃成为印度仿制药“格列宁”的独家代理商。收获巨额利润的他，生活剧烈变化，被病患们冠以“药神”的称号。但是，一场关于救赎的拉锯战也在波涛暗涌中慢慢展开......
+         * director : 刘阔
+         * duration : 105分钟
+         * fare : 0.21
+         * id : 12
+         * imageUrl : http://172.17.8.100/images/movie/stills/fyz/fyz1.jpg
+         * name : 风语咒
+         * placeOrigin : 中国大陆
+         * starring : 路知行,阎萌萌,褚珺
+         * summary : 生活在孝阳岗的少年郎明怀揣侠岚梦想，但双眼失明的他却只能靠招摇撞骗混于市井之中。直到有一天，罗刹袭击孝阳岗，与他相依为命的母亲突然失踪，郎明迫不得已踏上了找寻真相之路。一波未平一波又起，上古神兽饕餮现世让人间危在旦夕，传说中的侠岚们也出现在眼前，郎明也踏上了改变一生的冒险之旅……
          */
 
         private String director;

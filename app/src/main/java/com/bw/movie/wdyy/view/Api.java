@@ -48,8 +48,12 @@ public interface Api {
     //查询电影信息
     @GET
     public Observable<ResponseBody> QueryMovieInformation (@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
+
+
+
     //版本更新
     @GET
+
     public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@HeaderMap Map<String,String>map);
     //推荐影院
     @GET
@@ -70,10 +74,15 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> Chongzhimima(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,String> map);
+
+
+
+
     //系统通知
     @GET
     public Observable<ResponseBody> XTTZ(@Url String url, @Header("userId") String userId, @Header("sessionId") String session,@QueryMap Map<String,Object> map);
     //改变系统消息状态
     @GET
     public Observable<ResponseBody> XTTZXXID(@Url String url, @Header("userId") String userId, @Header("sessionId") String session,@QueryMap Map<String,Object> map);
+
 }

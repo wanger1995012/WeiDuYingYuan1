@@ -3,17 +3,22 @@ package com.bw.movie.wdyy.hotactivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.adapter.DetailsAdapter;
 import com.bw.movie.wdyy.bean.DetailsBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.presenter.MyPresenter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
@@ -21,50 +26,49 @@ import butterknife.ButterKnife;
 
 public class DetailsActivity extends AppCompatActivity implements ContractInterface.DetailsShow {
 
-    @BindView(R.id.image2_dianzan)
-    ImageView image2Dianzan;
-    @BindView(R.id.text2_name)
-    TextView text2Name;
-    @BindView(R.id.text2_xiangqing)
-    TextView text2Xiangqing;
-    @BindView(R.id.text2_yugao)
-    TextView text2Yugao;
-    @BindView(R.id.text2_juzhao)
-    TextView text2Juzhao;
-    @BindView(R.id.text2_yingping)
-    TextView text2Yingping;
-    @BindView(R.id.image2_call)
-    ImageView image2Call;
-    @BindView(R.id.text2_goupiao)
-    TextView text2Goupiao;
+    RecyclerView recyclerView;
     List<DetailsBean.ResultBean> mList = new ArrayList<>();
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
-    @BindView(R.id.image2_big_img)
-    ImageView image2BigImg;
+    private DetailsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        ButterKnife.bind(this);
+        recyclerView = findViewById(R.id.recycler_view_by_id);
         Intent intent = getIntent();
-        String movieId = intent.getStringExtra("MovieId");
-        int position = Integer.parseInt(movieId);
-        image2Call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        p.toModelQueryMovieInformation(position);
+        String movieIds = intent.getStringExtra("MovieId");
+        int movieId = Integer.parseInt(movieIds);
+
+
+        LinearLayoutManager manager  = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        //适配器
+        adapter = new DetailsAdapter(mList, this);
+        recyclerView.setAdapter(adapter);
+
+        p.toModelQueryMovieInformation(movieId);
     }
 
     @Override
-    public void MovieDetailsShow(List<DetailsBean.ResultBean> list) {
-       mList.addAll(list);
-        for (int i = 0; i <= list.size(); i++) {
-            Glide.with(this).load(mList.get(i).getImageUrl()).into(image2BigImg);
-            text2Name.setText(mList.get(i).getName());
+    public void MovieDetailsShow(DetailsBean o) {
+        Log.i("tags", "MovieDetailsShow的值为: " +o .toString());
+        List<DetailsBean.ResultBean> lists = (List<DetailsBean.ResultBean>) o.getResult();
+        mList.addAll(lists);
+        adapter.notifyDataSetChanged();
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (p != null) {
+            p = null;
+            mList.clear();
+            mList = null;
+
         }
     }
 }

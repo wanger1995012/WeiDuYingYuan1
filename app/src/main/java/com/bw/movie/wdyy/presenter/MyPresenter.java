@@ -1,5 +1,7 @@
 package com.bw.movie.wdyy.presenter;
 
+import android.util.Log;
+
 import com.bw.movie.wdyy.activity.LoginActivity;
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
@@ -15,6 +17,8 @@ import com.bw.movie.wdyy.model.MyModel;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.umeng.socialize.net.dplus.CommonNetImpl.TAG;
 
 /**
  * 作者:今夕何夕
@@ -267,7 +271,8 @@ public class MyPresenter<T> implements ContractInterface.PXTTZ,ContractInterface
             @Override
             public void sressco(Object o) {
                 ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
-                d.MovieDetailsShow((List<DetailsBean.ResultBean>) o);
+                Log.i("tags", "sressco: " + o.toString());
+                d.MovieDetailsShow((DetailsBean) o);
             }
         });
     }
@@ -285,4 +290,6 @@ public class MyPresenter<T> implements ContractInterface.PXTTZ,ContractInterface
             }
         });
     }
+
+
 }

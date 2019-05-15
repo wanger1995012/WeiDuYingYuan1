@@ -49,7 +49,7 @@ public class ContractInterface {
         public void ShowMovieList(NowPlayingBean bean);
     }
     public interface DetailsShow{
-        public void MovieDetailsShow(List<DetailsBean.ResultBean> list);
+        public void MovieDetailsShow(DetailsBean bean);
     }
 
 
