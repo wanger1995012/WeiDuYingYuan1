@@ -272,7 +272,7 @@ public class MyPresenter<T> implements ContractInterface.PXTTZ,ContractInterface
             public void sressco(Object o) {
                 ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
                 Log.i("tags", "sressco: " + o.toString());
-                d.MovieDetailsShow((DetailsBean) o);
+                d.MovieDetailsShow(o);
             }
         });
     }

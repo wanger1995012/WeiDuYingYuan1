@@ -49,7 +49,7 @@ public class ContractInterface {
         public void ShowMovieList(NowPlayingBean bean);
     }
     public interface DetailsShow{
-        public void MovieDetailsShow(DetailsBean bean);
+        public void MovieDetailsShow(Object bean);
     }
 
 

@@ -47,8 +47,8 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.Holder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = holder.getAdapterPosition();
-                listener.onItemClick(holder.itemView, position);
+                int id = list.get(i).getId();
+                listener.onItemClick(holder.itemView, id);
             }
         });
 
