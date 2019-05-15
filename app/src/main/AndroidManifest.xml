@@ -17,6 +17,11 @@
         android:name="wxb3852e6a6b7d9516"
         android:value="123456" />
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true" />
+
     <application
         android:name=".view.App"
         android:allowBackup="true"
@@ -46,6 +51,10 @@
         <activity android:name=".hotactivity.DetailsActivity"></activity>
         <activity android:name=".activity.MyGuanzhuActivity" />
         <activity android:name=".activity.MyChongzhiActivity"></activity>
+        <activity android:name=".hotactivity.DetailsActivity"/>
+        <activity android:name=".activity.MyGuanzhuActivity"/>
+        <activity android:name=".activity.MyChongzhiActivity"/>
+        <activity android:name=".activity.XiaoxiActivity"></activity>
     </application>
 
 </manifest>

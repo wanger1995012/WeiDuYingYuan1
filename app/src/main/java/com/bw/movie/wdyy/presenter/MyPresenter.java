@@ -24,7 +24,7 @@ import static com.umeng.socialize.net.dplus.CommonNetImpl.TAG;
  * 时间:${data}
  * Description:这个是注释
  */
-public class MyPresenter<T> implements ContractInterface.PXiugaimima,ContractInterface.PGZyy,ContractInterface.PLogin,ContractInterface.PresenterInterface,ContractInterface.PYingyuan,ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
     T tt;
     MyModel myModel;
 
@@ -165,7 +165,10 @@ public class MyPresenter<T> implements ContractInterface.PXiugaimima,ContractInt
         });
     }
 
-
+    @Override
+    public void onDestory() {
+        tt = null;
+    }
 
     @Override
     public void toModelChild1() {
@@ -259,13 +262,5 @@ public class MyPresenter<T> implements ContractInterface.PXiugaimima,ContractInt
         });
     }
 
-
-    @Override
-    public void onDestory() {
-        if(tt != null){
-            tt = null;
-        }
-        System.gc();
-    }
 
 }

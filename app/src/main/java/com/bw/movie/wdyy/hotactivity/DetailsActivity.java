@@ -59,15 +59,16 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         adapter.notifyDataSetChanged();
     }
 
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(p != null){
+        if (p != null) {
             p = null;
             mList.clear();
             mList = null;
+
         }
     }
-
-
 }

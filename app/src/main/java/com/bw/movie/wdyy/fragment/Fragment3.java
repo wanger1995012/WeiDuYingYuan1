@@ -17,6 +17,7 @@ import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.activity.LoginActivity;
 import com.bw.movie.wdyy.activity.MyGuanzhuActivity;
 import com.bw.movie.wdyy.activity.MyQianActivity;
+import com.bw.movie.wdyy.activity.XiaoxiActivity;
 import com.bw.movie.wdyy.activity.XinXiActivity;
 import com.bw.movie.wdyy.activity.YiJianActivity;
 import com.bw.movie.wdyy.contract.ContractInterface;
@@ -81,7 +82,15 @@ public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
         BanBenInit();
         //设置我的关注
         MyGuanzhiInit();
+        //设置系统消息
+        XiaoxinInit();
     }
+
+    private void XiaoxinInit() {
+        Intent intent=new Intent(getActivity(),XiaoxiActivity.class);
+        startActivity(intent);
+    }
+
     //我的关注
     private void MyGuanzhiInit() {
         myguanzhi.setOnClickListener(new View.OnClickListener() {
