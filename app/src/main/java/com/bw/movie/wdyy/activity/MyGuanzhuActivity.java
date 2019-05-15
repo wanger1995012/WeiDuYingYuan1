@@ -48,8 +48,8 @@ public class MyGuanzhuActivity extends AppCompatActivity {
         MyGuanzhuFragmentPagerAdapter myGuanzhuFragmentPagerAdapter = new MyGuanzhuFragmentPagerAdapter(getSupportFragmentManager(), list);
         myguanzhuViewpager.setAdapter(myGuanzhuFragmentPagerAdapter);
         //设置监听
-        //设置viewpager默认显示第2个
-        myguanzhuViewpager.setCurrentItem(1);
+        //设置viewpager默认显示第1个
+        myguanzhuViewpager.setCurrentItem(0);
         //设置viewpager的监听
         myguanzhuViewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

@@ -16,10 +16,12 @@
     <meta-data
         android:name="wxb3852e6a6b7d9516"
         android:value="123456" />
+
     <supports-screens
+        android:anyDensity="true"
         android:largeScreens="true"
-        android:normalScreens="true"
-        android:anyDensity = "true"/>
+        android:normalScreens="true" />
+
     <application
         android:name=".view.App"
         android:allowBackup="true"
@@ -46,12 +48,10 @@
         <activity android:name=".activity.YiJianActivity" />
         <activity android:name=".activity.YijianJieguoActivity" />
         <activity android:name=".hotactivity.HotActivity" />
-<<<<<<< HEAD
-        <activity android:name=".hotactivity.DetailsActivity"></activity>
-=======
+        <activity android:name=".hotactivity.DetailsActivity" />
         <activity android:name=".activity.MyGuanzhuActivity" />
-        <activity android:name=".activity.MyChongzhiActivity"></activity>
->>>>>>> a71faa509d746850b9b37221f78591c7ea600e51
+        <activity android:name=".activity.MyChongzhiActivity" />
+        <activity android:name=".activity.XiaoxiActivity"></activity>
     </application>
 
 </manifest>
