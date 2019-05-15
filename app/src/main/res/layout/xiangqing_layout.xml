@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:id="@+id/relative_layout_movie_img"
+    android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simple_draw_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/layout_xianshi"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/xiang_movie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_20"
+            android:textColor="#000"
+            android:layout_marginLeft="@dimen/dp_155"
+            android:layout_marginTop="@dimen/dp_90"
+            android:text="电影名称"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_120"
+            android:background="@drawable/shape_raduios">
+
+            <ImageView
+                android:id="@+id/xiang_yincang"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:src="@drawable/xia"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp_14"
+                android:layout_marginRight="@dimen/dp_24"/>
+
+            <TextView
+                android:id="@+id/xiang_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="#333333"
+                android:text="123"
+                android:layout_marginTop="@dimen/sp_20"
+                android:layout_marginLeft="@dimen/dp_155"/>
+            <TextView
+                android:id="@+id/xiang_daoyan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textSize="@dimen/sp_12"
+                android:text="123"
+                android:layout_marginTop="@dimen/dp_42"
+                android:layout_marginLeft="@dimen/dp_155"/>
+
+            <TextView
+                android:id="@+id/xiang_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="#333333"
+                android:text="123"
+                android:layout_marginTop="@dimen/dp_64"
+                android:layout_marginLeft="@dimen/dp_155"/>
+
+            <TextView
+                android:id="@+id/xiang_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textSize="@dimen/sp_12"
+                android:text="123"
+                android:layout_marginTop="@dimen/dp_86"
+                android:layout_marginLeft="@dimen/dp_155"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:text="剧情简介"
+                android:textColor="#333333"
+                android:layout_marginTop="@dimen/dp_139"
+                android:layout_marginLeft="@dimen/dp_24"/>
+            <ImageView
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_3"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_161"
+                android:background="@drawable/shap1" />
+            <TextView
+                android:id="@+id/xiang_xiang"
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:text="123sdaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                android:maxLines="4"
+                android:textColor="#333333"
+                android:layout_marginTop="@dimen/dp_171"
+                android:layout_marginLeft="@dimen/dp_24"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_370"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:text="演职人员"
+                android:textColor="#333333"
+                android:layout_marginLeft="@dimen/dp_24"/>
+            <ImageView
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_3"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_26"
+                android:background="@drawable/shap1" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_32"
+                    android:background="@drawable/shape_xiang"
+                    android:text="演员名字"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_40"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/shiyan"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_32"
+                    android:background="@drawable/shape_xiang"
+                    android:text="饰演角色"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_24"
+                    android:layout_marginLeft="@dimen/dp_35"
+                    android:layout_marginTop="@dimen/dp_40"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="杨永信"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_90"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:textColor="#000" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="饰"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_90"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#BC91A6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="雷电法王"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_90"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_24"
+                    android:layout_alignLeft="@+id/shiyan"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="郭德纲"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_110"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:textColor="#000" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="饰"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_110"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#BC91A6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="魔法少女"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_110"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_24"
+                    android:layout_alignLeft="@+id/shiyan"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="周杰伦"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_130"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:textColor="#000" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="饰"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_130"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#BC91A6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="金轮法王"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginTop="@dimen/dp_130"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_24"
+                    android:layout_alignLeft="@+id/shiyan"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/xiang_movie_image"
+            android:layout_width="@dimen/dp_111"
+            android:layout_height="@dimen/dp_149"
+            android:layout_marginTop="@dimen/dp_90"
+            android:layout_marginLeft="@dimen/dp_24"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

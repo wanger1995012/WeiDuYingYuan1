@@ -38,14 +38,14 @@ public class ReAdapter extends RecyclerView.Adapter<ReAdapter.Holder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Holder holder, int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int i) {
         holder.img.setImageURI(list.get(i).getImageUrl());
         holder.name.setText(list.get(i).getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = holder.getAdapterPosition();
-                listener.onItemClick(holder.itemView, position);
+                int id = list.get(i).getId();
+                listener.onItemClick(holder.itemView, id);
             }
         });
     }

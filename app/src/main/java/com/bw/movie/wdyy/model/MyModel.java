@@ -25,6 +25,8 @@ import com.bw.movie.wdyy.view.Api;
 import com.bw.movie.wdyy.view.App;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -118,7 +120,7 @@ public class MyModel {
 
     public void QueryMovieInformation(int MovieId, final MyCallBreak myCallBreak){
         Api api = RetrofitUtil.getUtil().gets(Api.class);
-        api.QueryMovieInformation("/movieApi/movie/v1/findMoviesById",USERID+"",SESSIONID,MovieId)
+        api.QueryMovieInformation("/movieApi/movie/v1/findMoviesDetail",USERID+"",SESSIONID , MovieId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -127,10 +129,9 @@ public class MyModel {
                         try {
                             String json = responseBody.string();
                             Gson gson = new Gson();
-                            DetailsBean detailsBean = gson.fromJson(json, DetailsBean.class);
-                            Log.i("tags", "call: " + detailsBean.toString());
-                            myCallBreak.sressco(detailsBean);
-                        } catch (IOException e) {
+                            DetailsBean bean = gson.fromJson(json, DetailsBean.class);
+                            myCallBreak.sressco(bean);
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
