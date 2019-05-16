@@ -1,6 +1,7 @@
 package com.bw.movie.wdyy.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.activity.YYXiangqingActivity;
 import com.bw.movie.wdyy.bean.TuijianBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.presenter.MyPresenter;
@@ -43,7 +45,7 @@ public class TuijianAdapter extends RecyclerView.Adapter<TuijianAdapter.Holder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, final int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int i) {
         pGuanzhu=new MyPresenter(context);
         holder.tuijian_sim.setImageURI(list.get(i).getLogo());
         holder.tuijian_title.setText(list.get(i).getName());
@@ -65,6 +67,7 @@ public class TuijianAdapter extends RecyclerView.Adapter<TuijianAdapter.Holder> 
 
         }else {
             holder.tuijian_guanzhu.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.buguanzhu));
+
             //设置关注的点击监听
             holder.tuijian_guanzhu.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,6 +80,18 @@ public class TuijianAdapter extends RecyclerView.Adapter<TuijianAdapter.Holder> 
             });
 
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,YYXiangqingActivity.class);
+                intent.putExtra("YYid",list.get(i).getId()+"");
+                intent.putExtra("titles",list.get(i).getName());
+                intent.putExtra("address",list.get(i).getAddress());
+                intent.putExtra("log",list.get(i).getLogo());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -112,7 +127,6 @@ public class TuijianAdapter extends RecyclerView.Adapter<TuijianAdapter.Holder> 
         public void weiGuanzhu(String str);
         public void QvxiaoGuanzhu(String str);
     }
-
     public void setMyCall(MyCall myCall) {
         this.myCall = myCall;
     }

@@ -11,6 +11,8 @@ import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.bean.TongzhiBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
+import com.bw.movie.wdyy.bean.YypjBean;
+import com.bw.movie.wdyy.bean.YyxqBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.model.MyModel;
 
@@ -25,7 +27,7 @@ import static com.umeng.socialize.net.dplus.CommonNetImpl.TAG;
  * 时间:${data}
  * Description:这个是注释
  */
-public class MyPresenter<T> implements ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
     T tt;
     MyModel myModel;
 
@@ -105,6 +107,39 @@ public class MyPresenter<T> implements ContractInterface.PXTTZ,ContractInterface
                 ContractInterface.VYingyuan vYingyuan = (ContractInterface.VYingyuan) tt;
                 TuijianBean beans = (TuijianBean) o;
                 vYingyuan.VTuijian(beans.getResult());
+            }
+        });
+    }
+
+    @Override
+    public void PFujin(String longitude, String latitude, int page, int count) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("longitude",longitude);
+        map.put("latitude",latitude);
+        map.put("page", page);
+        map.put("count", count);
+        myModel.FujinYingyuan(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VYingyuan vYingyuan = (ContractInterface.VYingyuan) tt;
+                TuijianBean beans = (TuijianBean) o;
+                vYingyuan.VFujin(beans.getResult());
+            }
+        });
+    }
+
+    @Override
+    public void PYYMhucaxun(String cinemaName, int page, int count) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("cinemaName",cinemaName);
+        map.put("page", page);
+        map.put("count", count);
+        myModel.YYMohucaxun(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VYingyuan vYingyuan = (ContractInterface.VYingyuan) tt;
+                TuijianBean beans = (TuijianBean) o;
+                vYingyuan.VYYMohuca(beans.getResult());
             }
         });
     }
@@ -190,6 +225,36 @@ public class MyPresenter<T> implements ContractInterface.PXTTZ,ContractInterface
             public void sressco(Object o) {
                 ContractInterface.VXTTZ vxttz= (ContractInterface.VXTTZ) tt;
                 vxttz.VXTTZXXID((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void Pyyxq(String cinemaId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("cinemaId", cinemaId);
+        myModel.Yingyuanxiangqing(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VXQPL vxqpl = (ContractInterface.VXQPL) tt;
+                YyxqBean beans = (YyxqBean) o;
+                vxqpl.Vyyxq((YyxqBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void Pyypj(String cinemaId,int page,int count) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("cinemaId", cinemaId);
+        map.put("page",page);
+        map.put("count",count);
+        myModel.Yingyuanpingjia(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VXQPL vxqpl = (ContractInterface.VXQPL) tt;
+                YypjBean beans = (YypjBean) o;
+                vxqpl.Vyypj(beans.getResult());
             }
         });
     }

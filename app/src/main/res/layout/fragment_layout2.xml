@@ -51,13 +51,14 @@
                     android:src="@drawable/sou" />
 
                 <EditText
-                    android:id="@+id/ed_fiml_se"
+                    android:id="@+id/yingyuan_edit"
                     android:layout_width="@dimen/dp_100"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/text_fiml_se"
                     android:background="@null"
-                    android:hint="请输入电影名"
+                    android:hint="CGV影城"
+                    android:paddingLeft="@dimen/dp_10"
                     android:textSize="@dimen/sp_10"
                     android:visibility="gone" />
 
@@ -67,28 +68,49 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp_10"
                     android:text="搜索"
                     android:visibility="gone" />
             </RelativeLayout>
 
         </RelativeLayout>
-        <android.support.design.widget.TabLayout
-            android:layout_width="@dimen/dp_166"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/yingyuan_tablayout"
+            android:id="@+id/yingyuan_radio"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_10"
-            android:background="@drawable/shap1"
             android:layout_gravity="center_horizontal"
-            ></android.support.design.widget.TabLayout>
-        <android.support.v4.view.ViewPager
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/yingyuan_tuijian"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_25"
+                android:gravity="center"
+                android:textColor="#333"
+                android:text="推荐影院"
+                android:background="#fff"
+                android:textSize="@dimen/sp_14"
+                />
+            <Button
+                android:layout_marginLeft="@dimen/dp_32"
+                android:id="@+id/yingyuan_fujin"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_25"
+                android:gravity="center"
+                android:textColor="#333"
+                android:text="附近影院"
+                android:background="#fff"
+                android:textSize="@dimen/sp_14"
+                />
+        </LinearLayout>
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:layout_width="@dimen/dp_312"
             android:layout_height="match_parent"
             android:id="@+id/yingyuan_viewpager"
             android:layout_marginLeft="@dimen/dp_24"
-            android:layout_marginRight="@dimen/dp_24"
-            >
-        </android.support.v4.view.ViewPager>
+            android:layout_marginRight="@dimen/dp_24"></com.jcodecraeer.xrecyclerview.XRecyclerView>
     </LinearLayout>
 
 
