@@ -99,7 +99,7 @@ public class HotActivity extends AppCompatActivity {
                 if(isShow == 1){
                     textFimlSe.setVisibility(View.VISIBLE);
                     edFimlSe.setVisibility(View.VISIBLE);
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(layoutFimlSe,"translationX",0,-200);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(layoutFimlSe,"translationX",0,-290);
                     animator.setDuration(2000);
                     animator.start();
                     isShow=2;
@@ -112,7 +112,7 @@ public class HotActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isShow==2){
-                    ObjectAnimator animator=ObjectAnimator.ofFloat(layoutFimlSe,"translationX",-200,0);
+                    ObjectAnimator animator=ObjectAnimator.ofFloat(layoutFimlSe,"translationX",-290,0);
                     animator.setDuration(2000);
                     animator.start();
                     textFimlSe.setVisibility(View.GONE);

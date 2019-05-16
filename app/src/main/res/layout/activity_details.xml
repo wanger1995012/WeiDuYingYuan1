@@ -12,6 +12,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/parent_simple"/>
 
 
     <android.support.v7.widget.RecyclerView
@@ -24,6 +28,10 @@
 
 
     <include layout="@layout/xiangqing_layout" />
+
+    <include layout="@layout/video_layout"/>
+
+    <include layout="@layout/juzhao_layout"/>
 
 
 </RelativeLayout>
