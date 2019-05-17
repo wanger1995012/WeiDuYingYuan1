@@ -7,13 +7,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@drawable/touming"
         android:id="@+id/relative_touming"
         android:layout_height="match_parent">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/xbg"
             android:id="@+id/simple_draw_movie"/>
 
         <ImageView

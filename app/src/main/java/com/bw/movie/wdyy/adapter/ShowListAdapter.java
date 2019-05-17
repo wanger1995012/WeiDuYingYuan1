@@ -16,6 +16,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
+import javax.microedition.khronos.opengles.GL;
+
 /**
  * @Author：lenovo
  * @E-mail： 1003195060@163.com
@@ -39,27 +41,30 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.Holder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, final int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int i) {
         holder.big_img.setImageURI(list.get(i).getImageUrl());
         holder.title.setText(list.get(i).getName());
         holder.jianjie.setText(list.get(i).getSummary());
         final int status = list.get(i).getFollowMovie();
         Glide.with(context).load(R.drawable.fenge).into(holder.fenge);
+        int movie = list.get(i).getFollowMovie();
+        if(movie == 1){
+            Glide.with(context).load(R.drawable.zanb).into(holder.zan);
+        }else if(movie == 2){
+            Glide.with(context).load(R.drawable.zanh).into(holder.zan);
+        }
         holder.zan.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
-                if(status == 2){
-                    list.get(i).setFollowMovie(1);
-                }else{
+                int movie = list.get(i).getFollowMovie();
+                if(movie == 1){
                     list.get(i).setFollowMovie(2);
+                }else if(movie == 2){
+                    list.get(i).setFollowMovie(1);
                 }
             }
         });
-        if(status == 2){
-            Glide.with(context).load(R.drawable.zanh).into(holder.zan);
-        }else{
-            Glide.with(context).load(R.drawable.zanb).into(holder.zan);
-        }
     }
 
     @Override

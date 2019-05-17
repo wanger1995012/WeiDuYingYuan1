@@ -49,6 +49,9 @@ public interface Api {
     @GET
     public Observable<ResponseBody> QueryMovieInformation (@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
 
+    //通过Id去关注或取消关注
+    @GET
+    public Observable<ResponseBody> FollowMovie(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
 
 
     //版本更新
