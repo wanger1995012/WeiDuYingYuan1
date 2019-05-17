@@ -37,14 +37,6 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@Field("content") String content);
-    //意见反馈
-    /*@GET*/
-/*
-    public Observable<ResponseBody> YiJianfan(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId);
-*/
-   /* //版本更新
-    @GET
-    public Observable<ResponseBody> Banbengeng1(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId);*/
     //查询电影信息
     @GET
     public Observable<ResponseBody> QueryMovieInformation (@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
@@ -56,7 +48,6 @@ public interface Api {
 
     //版本更新
     @GET
-
     public Observable<ResponseBody> Banbengeng(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@HeaderMap Map<String,String>map);
     //推荐影院
     @GET
@@ -89,9 +80,20 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> Chongzhimima(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,String> map);
-
-
-
+    //影院点赞
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> Yingyuandianzan(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,Object> map);
+    //影院写评论
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> Yingyuanxiepinglun(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,Object> map);
+    //影院轮播
+    @GET
+    public Observable<ResponseBody> YingyuanLunbo(@Url String url,@QueryMap Map<String,Object>map);
+    //影院票价
+    @GET
+    public Observable<ResponseBody> YingyuanPiaojia(@Url String url,@QueryMap Map<String,Object>map);
 
     //系统通知
     @GET

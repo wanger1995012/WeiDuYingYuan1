@@ -72,9 +72,30 @@
             android:layout_width="@dimen/dp_350"
             android:id="@+id/recycler_coverflow"
             android:layout_height="@dimen/dp_300">
-
         </recycler.coverflow.RecyclerCoverFlow>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="@dimen/dp_312"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_24">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/yy_piaojia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        <ImageView
+            android:id="@+id/yy_fanhui"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginBottom="26dp"
+            android:background="@drawable/myxinxifanhui" />
+    </RelativeLayout>
 
 </LinearLayout>

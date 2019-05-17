@@ -4,6 +4,7 @@ import android.util.Log;
 
 
 import com.bw.movie.wdyy.adapter.GZYYBean;
+import com.bw.movie.wdyy.adapter.YYLunboAdapter;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.DetailsBean;
 import com.bw.movie.wdyy.bean.GZDYBean;
@@ -20,6 +21,8 @@ import com.bw.movie.wdyy.bean.LoginBean;
 
 import com.bw.movie.wdyy.bean.TongzhiBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
+import com.bw.movie.wdyy.bean.YYLunboBean;
+import com.bw.movie.wdyy.bean.YYPiaojiaBean;
 import com.bw.movie.wdyy.bean.YypjBean;
 import com.bw.movie.wdyy.bean.YyxqBean;
 import com.bw.movie.wdyy.bean.ZhuceBean;
@@ -53,7 +56,6 @@ public class MyModel {
     public void Login(Map<String,String> map, final MyCallBreak callBreak){
         RetrofitUtil retrofitUtil=RetrofitUtil.getUtil();
         Api api=retrofitUtil.gets(Api.class);
-        Log.e("aaa", "Login: "+map );
         api.login("/movieApi/user/v1/login?",map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -86,9 +88,6 @@ public class MyModel {
                             //将赋值
                             USERID=bean.getResult().getUserId();
                             SESSIONID=bean.getResult().getSessionId();
-
-                            //Log.i("tag", "userId:    " + USERID);
-                            //Log.i("tag", "sessionId: " + SESSIONID);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -209,7 +208,6 @@ public class MyModel {
     //意见反馈
     public void Yijianfan(final MyCallBreak callBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        Log.e("userid", "Yijianfan: "+USERID+SESSIONID );
         gets.YiJianfan("/movieApi/tool/v1/verify/recordFeedBack",USERID,SESSIONID,"很好")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -231,7 +229,6 @@ public class MyModel {
     //版本更新
     public void Banbengengxin(Map<String,String> map,final MyCallBreak callBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        Log.e("userid", "banben: "+USERID+SESSIONID );
         gets.Banbengeng("/movieApi/tool/v1/findNewVersion",USERID,SESSIONID,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -253,7 +250,6 @@ public class MyModel {
     //推荐影院
     public void TuijianYingyuan(Map<String,Object> map,final MyCallBreak callBreak){
         final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        Log.e("userid", "yingyuan: "+USERID+SESSIONID );
         gets.Tuijianyingyuan("/movieApi/cinema/v1/findRecommendCinemas",USERID+"",SESSIONID,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -275,7 +271,6 @@ public class MyModel {
     //附近影院
     public void FujinYingyuan(Map<String,Object> map,final MyCallBreak callBreak){
         final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        Log.e("userid", "yingyuan: "+USERID+SESSIONID );
         gets.Fujinyingyuan("/movieApi/cinema/v1/findNearbyCinemas",USERID+"",SESSIONID,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -318,7 +313,6 @@ public class MyModel {
     //未关注
     public void Weiguanzhu(Map<String,Object> map,final MyCallBreak callBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        Log.e("userid", "guanzhu: "+USERID+SESSIONID );
         gets.Weiguanzhu("/movieApi/cinema/v1/verify/followCinema",USERID,SESSIONID,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -340,7 +334,6 @@ public class MyModel {
     //取消关注
     public void Qvxiaoguanzhu(Map<String,Object> map,final MyCallBreak callBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        Log.e("userid", "guanzhu1: "+USERID+SESSIONID );
         gets.Qvxiaoguanzhu("/movieApi/cinema/v1/verify/cancelFollowCinema",USERID,SESSIONID,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -503,6 +496,90 @@ public class MyModel {
                             Log.e("aaa", "guzhu: " + json);
                             Gson gson = new Gson();
                             YypjBean beans = gson.fromJson(json, YypjBean.class);
+                            callBreak.sressco(beans);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //影院点赞
+    public void yingyuandianzan(Map<String,Object> map,final MyCallBreak callBreak){
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.Yingyuandianzan("/movieApi/cinema/v1/verify/cinemaCommentGreat",USERID,SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "yingyuandianzan: "+json );
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //影院写评论
+    public void yingyuanxiepinglun(Map<String,Object> map,final MyCallBreak callBreak){
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.Yingyuanxiepinglun("/movieApi/cinema/v1/verify/cinemaComment",USERID,SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "yingyuanxiepinglu: "+json );
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //影院轮播
+    public void Yingyuanlunbo(Map<String,Object> map,final MyCallBreak callBreak) {
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.YingyuanLunbo("/movieApi/movie/v1/findMovieListByCinemaId", map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("a123", "lunbo: " + json);
+                            Gson gson = new Gson();
+                            YYLunboBean beans = gson.fromJson(json, YYLunboBean.class);
+                            callBreak.sressco(beans);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //影院票价
+    public void Yingyuanpiaojia(Map<String,Object> map,final MyCallBreak callBreak) {
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.YingyuanPiaojia("/movieApi/movie/v1/findMovieScheduleList", map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("a123", "piaojia: " + json);
+                            Gson gson = new Gson();
+                            YYPiaojiaBean beans = gson.fromJson(json, YYPiaojiaBean.class);
                             callBreak.sressco(beans);
                         } catch (Exception e) {
                             e.printStackTrace();
