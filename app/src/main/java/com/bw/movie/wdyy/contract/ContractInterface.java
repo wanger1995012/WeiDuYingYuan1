@@ -172,4 +172,14 @@ public class ContractInterface {
         public void PYYXiepinglun(String commentId,String commentContent);
         public void onDestory();
     }
+
+    //设置电影点赞V
+    public interface VDYDZ{
+        public void VDYDZ(String str);
+    }
+    //设置电影点赞P
+    public interface PDYDZ{
+        public void PDYDZ(int commentId);
+    }
+
 }

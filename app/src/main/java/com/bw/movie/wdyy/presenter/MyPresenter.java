@@ -27,7 +27,9 @@ import java.util.Map;
  * 时间:${data}
  * Description:这个是注释
  */
+
 public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterface.PYYDZ,ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+
     T tt;
     MyModel myModel;
 
@@ -114,8 +116,8 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
     @Override
     public void PFujin(String longitude, String latitude, int page, int count) {
         Map<String, Object> map = new HashMap<>();
-        map.put("longitude",longitude);
-        map.put("latitude",latitude);
+        map.put("longitude", longitude);
+        map.put("latitude", latitude);
         map.put("page", page);
         map.put("count", count);
         myModel.FujinYingyuan(map, new MyModel.MyCallBreak() {
@@ -131,7 +133,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
     @Override
     public void PYYMhucaxun(String cinemaName, int page, int count) {
         Map<String, Object> map = new HashMap<>();
-        map.put("cinemaName",cinemaName);
+        map.put("cinemaName", cinemaName);
         map.put("page", page);
         map.put("count", count);
         myModel.YYMohucaxun(map, new MyModel.MyCallBreak() {
@@ -200,6 +202,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
             }
         });
     }
+
     //系统通知
     @Override
     public void PXTTZ(int page, int count) {
@@ -215,6 +218,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
             }
         });
     }
+
     //改变系统的状态
     @Override
     public void PXTTZXXID(int xiaoxiID) {
@@ -223,7 +227,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
         myModel.XitongtonfzhiXXID(map, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
-                ContractInterface.VXTTZ vxttz= (ContractInterface.VXTTZ) tt;
+                ContractInterface.VXTTZ vxttz = (ContractInterface.VXTTZ) tt;
                 vxttz.VXTTZXXID((String) o);
             }
         });
@@ -257,11 +261,11 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
     }
 
     @Override
-    public void Pyypj(String cinemaId,int page,int count) {
+    public void Pyypj(String cinemaId, int page, int count) {
         Map<String, Object> map = new HashMap<>();
         map.put("cinemaId", cinemaId);
-        map.put("page",page);
-        map.put("count",count);
+        map.put("page", page);
+        map.put("count", count);
         myModel.Yingyuanpingjia(map, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
@@ -276,12 +280,12 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
     public void Pyypiaojia(String cinemaId, int movieId) {
         Map<String, Object> map = new HashMap<>();
         map.put("cinemaId", cinemaId);
-        map.put("movieId",movieId);
+        map.put("movieId", movieId);
         myModel.Yingyuanpiaojia(map, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
-                ContractInterface.VXQPL vxqpl= (ContractInterface.VXQPL) tt;
-                YYPiaojiaBean beans= (YYPiaojiaBean) o;
+                ContractInterface.VXQPL vxqpl = (ContractInterface.VXQPL) tt;
+                YYPiaojiaBean beans = (YYPiaojiaBean) o;
                 vxqpl.VyyPiaojia(beans.getResult());
             }
         });
@@ -292,11 +296,11 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
     public void PYYXiepinglun(String commentId, String commentContent) {
         Map<String, Object> map = new HashMap<>();
         map.put("cinemaId", commentId);
-        map.put("commentContent",commentContent);
+        map.put("commentContent", commentContent);
         myModel.yingyuanxiepinglun(map, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
-                ContractInterface.VYYXPL vyyxpl= (ContractInterface.VYYXPL) tt;
+                ContractInterface.VYYXPL vyyxpl = (ContractInterface.VYYXPL) tt;
                 vyyxpl.VYYXiepinglun((String) o);
             }
         });
@@ -392,7 +396,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
             public void sressco(Object o) {
                 ContractInterface.FindAllMovieComment f = (ContractInterface.FindAllMovieComment) tt;
                 f.setComment((FindAllMovieCommentBean) o);
-                Log.i("movieComment", "movieComment o =: " +o);
+                Log.i("movieComment", "movieComment o =: " + o);
             }
         });
     }
@@ -413,15 +417,27 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
 
 
     @Override
-    public void PYYDianzan(int commentId) {
+    public void PDYDZ(int commentId) {
         Map<String, Object> map = new HashMap<>();
         map.put("commentId", commentId);
-        myModel.yingyuandianzan(map, new MyModel.MyCallBreak() {
+        myModel.DYDZ(map, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
-                ContractInterface.VYYDZ vyydz = (ContractInterface.VYYDZ) tt;
-                vyydz.VYYDianzan((String) o);
+                ContractInterface.VDYDZ vdydz = (ContractInterface.VDYDZ) tt;
+                vdydz.VDYDZ((String) o);
             }
         });
+
+        public void PYYDianzan ( int commentId){
+            Map<String, Object> map = new HashMap<>();
+            map.put("commentId", commentId);
+            myModel.yingyuandianzan(map, new MyModel.MyCallBreak() {
+                @Override
+                public void sressco(Object o) {
+                    ContractInterface.VYYDZ vyydz = (ContractInterface.VYYDZ) tt;
+                    vyydz.VYYDianzan((String) o);
+                }
+            });
+        }
     }
 }

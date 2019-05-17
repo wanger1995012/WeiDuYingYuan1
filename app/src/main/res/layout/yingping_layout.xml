@@ -13,7 +13,6 @@
 
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/yingping_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -75,16 +74,24 @@
 
 
 
-                <android.support.v7.widget.RecyclerView
+                <com.jcodecraeer.xrecyclerview.XRecyclerView
                     android:id="@+id/recycler_yingping222"
                     android:layout_width="@dimen/dp_312"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/dp_65"
                     android:layout_marginLeft="@dimen/dp_24">
-                </android.support.v7.widget.RecyclerView>
+                </com.jcodecraeer.xrecyclerview.XRecyclerView>
 
 
-
+            <ImageView
+                android:id="@+id/ping_input_img"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/yypj_xiepinglun"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_20" />
 
 
 

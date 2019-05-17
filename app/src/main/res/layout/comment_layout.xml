@@ -83,12 +83,11 @@
 
             <ImageView
                 android:id="@+id/ping_zan_img"
-                android:layout_width="@dimen/dp_16"
-                android:layout_height="@dimen/dp_16"
+                android:layout_width="@dimen/dp_21"
+                android:layout_height="@dimen/dp_21"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_90"
-                android:background="@drawable/pz"
                 android:padding="@dimen/dp_5" />
 
         </RelativeLayout>

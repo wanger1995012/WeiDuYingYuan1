@@ -27,7 +27,7 @@ import javax.microedition.khronos.opengles.GL;
 public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.Holder> {
     List<HotMovieListBean.ResultBean> list;
     Context context;
-
+    OnItemClickListener listener;
     public ShowListAdapter(List<HotMovieListBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
@@ -53,6 +53,15 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.Holder
         }else if(movie == 2){
             Glide.with(context).load(R.drawable.zanh).into(holder.zan);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = list.get(i).getId();
+                listener.onItemClick(holder.itemView, id);
+            }
+        });
+
         holder.zan.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -86,4 +95,13 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.Holder
             jianjie = itemView.findViewById(R.id.text_list_jianjie);
         }
     }
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
 }
