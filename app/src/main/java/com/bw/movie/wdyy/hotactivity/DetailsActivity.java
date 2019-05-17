@@ -9,11 +9,12 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.bw.movie.wdyy.R;
+import com.bw.movie.wdyy.adapter.CommentAdapter;
 import com.bw.movie.wdyy.adapter.DetailsAdapter;
 import com.bw.movie.wdyy.bean.DetailsBean;
+import com.bw.movie.wdyy.bean.FindAllMovieCommentBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.presenter.MyPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -23,14 +24,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
-public class DetailsActivity extends AppCompatActivity implements ContractInterface.DetailsShow {
+public class DetailsActivity extends AppCompatActivity implements ContractInterface.DetailsShow, ContractInterface.FindAllMovieComment {
 
     public RecyclerView recyclerView;
+    CommentAdapter adapters ;
     List<DetailsBean.ResultBean> mList = new ArrayList<>();
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
     List<DetailsBean.ResultBean.ShortFilmListBean> list_bo = new ArrayList<>();
+    List<FindAllMovieCommentBean.ResultBean> list_comment = new ArrayList<>();
     @BindView(R.id.recycler_view_by_id)
     public RecyclerView recyclerViewById;
     @BindView(R.id.xiang_movie_name)
@@ -58,15 +60,12 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     @BindView(R.id.shiyan)
     public TextView shiyan;
 
-    public RecyclerView recycler_video_player;
 
     //第二个include
     @BindView(R.id.simple_draw_view2)
     public SimpleDraweeView spdv;
     @BindView(R.id.vedio_yincang)
     public ImageView vedioYincang;
-    @BindView(R.id.video_view1)
-    public JCVideoPlayerStandard videoView1;
 
     //剧照
     @BindView(R.id.layout_xianshi1)
@@ -98,6 +97,20 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     public ImageView dianzan1, dianzan2;
     public TextView movie_name1, movie_name2;
     public SimpleDraweeView view;
+    public RecyclerView rec;
+
+    //影评
+    @BindView(R.id.simple_draw_view4)
+    public SimpleDraweeView ying_simpleDrawView4;
+    @BindView(R.id.text_movie_name4)
+    public TextView ying_textMovieName4;
+    @BindView(R.id.image2_dianzan4)
+    public ImageView ying_image2Dianzan4;
+    @BindView(R.id.yingping_yincang)
+    public ImageView ying_yingpingYincang;
+    public RecyclerView rec_yingping;
+    @BindView(R.id.yingping_layout)
+    public RelativeLayout ying_yingpingLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,13 +118,14 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
         recyclerView = findViewById(R.id.recycler_view_by_id);
-        recycler_video_player = findViewById(R.id.recycler_video_player);
         view = findViewById(R.id.parent_simple);
+        rec_yingping =findViewById(R.id.recycler_yingping222);
         dianzan1 = findViewById(R.id.image2_dianzan2);
         dianzan2 = findViewById(R.id.image2_dianzan3);
         movie_name1 = findViewById(R.id.text_movie_name);
         movie_name2 = findViewById(R.id.text_movie_name_xiang);
         layout_xianshi = findViewById(R.id.layout_xianshi1);
+        rec = findViewById(R.id.recycler_yugaoaaa);
         Intent intent = getIntent();
         String movieIds = intent.getStringExtra("MovieId");
         int movieId = Integer.parseInt(movieIds);
@@ -121,10 +135,16 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         //适配器
-        adapter = new DetailsAdapter(mList,list_bo,this);
+        adapter = new DetailsAdapter(mList, list_bo, list_comment, this);
         recyclerView.setAdapter(adapter);
 
+        LinearLayoutManager manager2 = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        rec_yingping.setLayoutManager(manager2);
+        adapters = new CommentAdapter(list_comment, this);
+        rec_yingping.setAdapter(adapters);
         p.toModelQueryMovieInformation(movieId);
+        p.toModelFindAllMovieComment(movieId, 1,10);
     }
 
     @Override
@@ -138,6 +158,16 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
 
 
     @Override
+    public void setComment(FindAllMovieCommentBean comment) {
+
+        Log.i("movieComment", "movieComment: " + comment);
+        Log.i("movieComment", "movieComment: " + comment.getResult());
+        this.list_comment.addAll(comment.getResult());
+        adapters.notifyDataSetChanged();
+    }
+
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (p != null) {
@@ -147,4 +177,7 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
 
         }
     }
+
+
+
 }

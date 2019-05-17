@@ -3,6 +3,7 @@ package com.bw.movie.wdyy.contract;
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.DetailsBean;
+import com.bw.movie.wdyy.bean.FindAllMovieCommentBean;
 import com.bw.movie.wdyy.bean.GZDYBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
@@ -55,6 +56,9 @@ public class ContractInterface {
     public interface DetailsShow{
         public void MovieDetailsShow(Object bean);
     }
+    public interface FindAllMovieComment{
+        public void setComment(FindAllMovieCommentBean comment);
+    }
 
 
     public interface ViewMovieList{
@@ -71,6 +75,7 @@ public class ContractInterface {
         public void toModel2();
         public void toModel3();
         public void toModelQueryMovieInformation(int MovieId);
+        public void toModelFindAllMovieComment(int MovieId,int page,int count);
     }
     //设置意见的V接口，设置版本的V接口
     public interface VYiJian{
