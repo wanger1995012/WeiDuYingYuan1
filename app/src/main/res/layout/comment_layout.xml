@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/ping_img"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"/>
+        <TextView
+            android:id="@+id/ping_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginRight="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginLeft="@dimen/dp_74"
+            android:textColor="#333333"
+            android:text="123123"/>
+
+        <TextView
+            android:id="@+id/ping_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_24"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#333333"
+            android:maxLines="4"
+            android:text="123321111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+            android:layout_marginTop="@dimen/dp_52"/>
+
+        <RelativeLayout
+            android:id="@+id/relati_lie"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_26"
+            android:layout_marginRight="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_120">
+
+            <TextView
+                android:id="@+id/ping_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="time"
+                android:textSize="@dimen/sp_12"
+                android:padding="@dimen/dp_5"
+                android:textColor="#999"/>
+
+            <TextView
+                android:id="@+id/ping_ping_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="888"
+                android:textSize="@dimen/sp_12"
+                android:padding="@dimen/dp_5"
+                android:textColor="#666" />
+
+            <ImageView
+                android:id="@+id/ping_ping_img"
+                android:layout_width="@dimen/dp_16"
+                android:layout_height="@dimen/dp_16"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_25"
+                android:background="@drawable/pt"
+                android:padding="@dimen/dp_5" />
+
+            <TextView
+                android:id="@+id/ping_zan_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="666"
+                android:layout_marginRight="@dimen/dp_70"
+                android:textSize="@dimen/sp_12"
+                android:padding="@dimen/dp_5"
+                android:textColor="#666" />
+
+            <ImageView
+                android:id="@+id/ping_zan_img"
+                android:layout_width="@dimen/dp_16"
+                android:layout_height="@dimen/dp_16"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_90"
+                android:background="@drawable/pz"
+                android:padding="@dimen/dp_5" />
+
+        </RelativeLayout>
+        <View
+            android:layout_below="@+id/relati_lie"
+            android:layout_width="@dimen/dp_312"
+            android:layout_height="@dimen/dp_2"
+            android:background="#f2f2f2"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

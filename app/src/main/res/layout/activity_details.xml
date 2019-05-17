@@ -33,5 +33,7 @@
 
     <include layout="@layout/juzhao_layout"/>
 
+    <include layout="@layout/yingping_layout" />
+
 
 </RelativeLayout>

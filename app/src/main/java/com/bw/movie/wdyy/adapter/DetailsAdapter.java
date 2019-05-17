@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,8 +19,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.bean.DetailsBean;
+import com.bw.movie.wdyy.bean.FindAllMovieCommentBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
+import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.hotactivity.DetailsActivity;
+import com.bw.movie.wdyy.presenter.MyPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -27,6 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * @Author：lenovo
@@ -34,31 +39,33 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
  * @Date：2019/5/13 10:47
  * @Description：描述信息
  */
-public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> {
+public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder>  {
     List<DetailsBean.ResultBean> list;
     List<DetailsBean.ResultBean.ShortFilmListBean> list_bo;
+    List<FindAllMovieCommentBean.ResultBean> list_comment;
     Context context;
     DetailsActivity activity;
+    //ContractInterface.PresenterInterface p = new MyPresenter<>(this);
 
-
-    public DetailsAdapter(List<DetailsBean.ResultBean> list,List<DetailsBean.ResultBean.ShortFilmListBean> list_bo, Context context) {
+    public DetailsAdapter(List<DetailsBean.ResultBean> list,List<DetailsBean.ResultBean.ShortFilmListBean> list_bo,List<FindAllMovieCommentBean.ResultBean> list_comment, Context context) {
         this.list = list;
         this.context = context;
         activity = (DetailsActivity) context;
         this.list_bo = list_bo;
+        this.list_comment = list_comment;
     }
 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.by_id_layout, null);
-
         return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final Holder holder, final int i) {
 
+//        p.toModelFindAllMovieComment(list.get(i).getId(), 1,10);
         activity.view.setImageURI(list.get(i).getImageUrl());
         activity.view.setAlpha(50);
 
@@ -137,46 +144,26 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
 
             @Override
             public void onClick(View view) {
+
                 activity.spdv.setImageURI(list.get(i).getImageUrl());
                 activity.spdv.setAlpha(50);
                 activity.spdv.setVisibility(View.VISIBLE);
                 activity.recyclerView.setVisibility(View.GONE);
                 activity.layout_xianshi.setVisibility(View.VISIBLE);
                 adapter = new VideoAdapter(list.get(i).getShortFilmList(), context);
-                activity.recycler_video_player.setAdapter(adapter);
+                LinearLayoutManager manager  = new LinearLayoutManager(context);
+                manager.setOrientation(LinearLayoutManager.VERTICAL);
+                activity.rec.setVisibility(View.VISIBLE);
+                activity.rec.setLayoutManager(manager);
+                activity.rec.setAdapter(adapter);
 
-                if (list.get(i).getShortFilmList().get(0).getVideoUrl() != null){
-                    boolean setUp = activity.videoView1.setUp(list.get(i).getShortFilmList().get(0).getVideoUrl(), JCVideoPlayer.SCREEN_LAYOUT_LIST, "");
-                    if (setUp) {
-                        activity.videoView1.thumbImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                        Glide.with(context).load(list.get(i).getShortFilmList().get(0).getVideoUrl()).into(activity.videoView1.thumbImageView);
-                    }
-                }
-
-                adapter.setMyCallBack(new VideoAdapter.MyCallBack() {
-                    @Override
-                    public void setVideo(List<DetailsBean.ResultBean.ShortFilmListBean> list) {
-                        list_bo.add((DetailsBean.ResultBean.ShortFilmListBean) list);
-                    }
-                });
-
-
-
-
-
-
-
-                //预告
-                MediaController controller = new MediaController(context);
-//                activity.videoView1.setVideoPath(list.get(i).getShortFilmList().get(0).getVideoUrl());
-//                activity.videoView1.setMediaController(controller);
-//                activity.videoView1.start();
                 activity.vedioYincang.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         activity.layout_xianshi.setVisibility(View.GONE);
                         activity.recyclerView.setVisibility(View.VISIBLE);
                         activity.spdv.setVisibility(View.GONE);
+                        activity.rec.setVisibility(View.GONE);
                     }
                 });
             }
@@ -210,10 +197,27 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
             }
         });
 
+
         holder.text2_yingping.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                activity.ying_simpleDrawView4.setImageURI(list.get(i).getImageUrl());
+                activity.ying_simpleDrawView4.setAlpha(50);
+                activity.recyclerView.setVisibility(View.GONE);
 
+                activity.rec_yingping.setVisibility(View.VISIBLE);
+                activity.ying_simpleDrawView4.setVisibility(View.VISIBLE);
+                activity.ying_yingpingLayout.setVisibility(View.VISIBLE);
+                activity.ying_yingpingYincang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        activity.recyclerView.setVisibility(View.VISIBLE);
+                        activity.ying_simpleDrawView4.setVisibility(View.GONE);
+                        activity.ying_yingpingLayout.setVisibility(View.GONE);
+                        activity.rec_yingping.setVisibility(View.GONE);
+                    }
+                });
             }
         });
 
@@ -228,10 +232,14 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
         RelativeLayout relativeLayout;
         SimpleDraweeView simpleDraweeView2;
         ImageView img,image2_call,image2_dianzan;
+
         TextView name,text2_goupiao,text2_xiangqing,text2_yugao,text2_juzhao,text2_yingping;
+        //JCVideoPlayerStandard jcv;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
+            //jcv = itemView.findViewById(R.id.video_view1);
+
             image2_dianzan = itemView.findViewById(R.id.image2_dianzan);
             relativeLayout = itemView.findViewById(R.id.relative_touming);
             simpleDraweeView2 = itemView.findViewById(R.id.simple_draw_movie);
@@ -245,5 +253,6 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
             text2_yingping = itemView.findViewById(R.id.text2_yingping);
         }
     }
+
 
 }
