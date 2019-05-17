@@ -137,6 +137,7 @@ public class YYXiangqingActivity extends AppCompatActivity implements ContractIn
                 dianyingID=lt.get(i).getId();
                 //设置影院票价
                 PiaojiaoInit();
+                yyPiaojiaAdapter.notifyDataSetChanged();
             }
         });
     }

@@ -74,7 +74,7 @@ public class YYXQ_YYPLAdapter extends RecyclerView.Adapter<YYXQ_YYPLAdapter.hold
                     //是点过赞
                     holder.yypj_dianzan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.yypj_dianzan));
                     list.get(i).setIsGreat(1);
-                    list.get(i).setGreatNum(list.get(i).getGreatNum());
+                    list.get(i).setGreatNum(list.get(i).getGreatNum()+1);
                     holder.yypj_dianzanshu.setText(list.get(i).getGreatNum()+"");
                     myCall.YYDZ(list,i);
                 }else {
