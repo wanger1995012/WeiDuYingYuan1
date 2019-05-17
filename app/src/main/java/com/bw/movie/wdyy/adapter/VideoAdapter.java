@@ -27,7 +27,6 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
     List<DetailsBean.ResultBean.ShortFilmListBean> list;
     Context context;
-    MyCallBack myCallBack;
 
     public VideoAdapter(List<DetailsBean.ResultBean.ShortFilmListBean> list, Context context) {
         this.list = list;
@@ -51,7 +50,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
                     Glide.with(context).load(list.get(i).getVideoUrl()).into(holder.standard.thumbImageView);
                 }
             }
-        myCallBack.setVideo(list);
+
         Log.i("list_bo", "onBindViewHolder: " + list.size());
 
     }
@@ -68,15 +67,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
             super(itemView);
             standard = itemView.findViewById(R.id.video_view1);
         }
-    }
-
-
-    public void setMyCallBack(MyCallBack myCallBack) {
-        this.myCallBack = myCallBack;
-    }
-
-    public interface MyCallBack{
-        public void setVideo(List<DetailsBean.ResultBean.ShortFilmListBean> list);
     }
 
 }

@@ -53,6 +53,10 @@ public interface Api {
     @GET
     public Observable<ResponseBody> FollowMovie(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
 
+    //查询所有的电影评价
+    @GET
+    public Observable<ResponseBody> findAllMovieComment(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId,@Query("movieId") int movieId, @Query("page") int page, @Query("count")int count);
+
 
     //版本更新
     @GET

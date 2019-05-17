@@ -6,6 +6,7 @@ import com.bw.movie.wdyy.activity.LoginActivity;
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.DetailsBean;
+import com.bw.movie.wdyy.bean.FindAllMovieCommentBean;
 import com.bw.movie.wdyy.bean.GZDYBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
@@ -336,8 +337,20 @@ public class MyPresenter<T> implements ContractInterface.PXQPL,ContractInterface
             @Override
             public void sressco(Object o) {
                 ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
-                Log.i("tags", "sressco: " + o.toString());
+                //Log.i("tags", "sressco: " + o.toString());
                 d.MovieDetailsShow(o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelFindAllMovieComment(int MovieId, int page, int count) {
+        myModel.findAllMovieComment(MovieId, page, count, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.FindAllMovieComment f = (ContractInterface.FindAllMovieComment) tt;
+                f.setComment((FindAllMovieCommentBean) o);
+                Log.i("movieComment", "movieComment o =: " +o);
             }
         });
     }

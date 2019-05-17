@@ -6,6 +6,7 @@ import android.util.Log;
 import com.bw.movie.wdyy.adapter.GZYYBean;
 import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.DetailsBean;
+import com.bw.movie.wdyy.bean.FindAllMovieCommentBean;
 import com.bw.movie.wdyy.bean.GZDYBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.LoginBean;
@@ -164,6 +165,29 @@ public class MyModel {
     }
 
 
+    //查询电影评论
+    public void findAllMovieComment(int MovieId,int page,int count, final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.findAllMovieComment("/movieApi/movie/v1/findAllMovieComment",USERID+"",SESSIONID,MovieId,page,count)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.i("movieComment", "movieComment json =: " +json);
+                            Gson gson = new Gson();
+                            FindAllMovieCommentBean findAllMovieCommentBean = gson.fromJson(json, FindAllMovieCommentBean.class);
+                            myCallBreak.sressco(findAllMovieCommentBean);
+                            Log.i("movieComment", "movieComment findAllMovieCommentBean =: " +findAllMovieCommentBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+    }
 
 
     public void ShowMovie2(final MyCallBreak myCallBreak){
