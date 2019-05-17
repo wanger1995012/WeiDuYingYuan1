@@ -534,6 +534,28 @@ public class MyModel {
                     }
                 });
     }
+    //电影点赞
+    public void DYDZ(Map<String,Object>map,final MyCallBreak callBreak){
+        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        Log.e("userid", "Yijianfan: "+USERID+SESSIONID );
+        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat",USERID,SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "yijian: "+json );
+                            JSONObject object=new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
     //设置接口
     public interface MyCallBreak{
         public void sressco(Object o);

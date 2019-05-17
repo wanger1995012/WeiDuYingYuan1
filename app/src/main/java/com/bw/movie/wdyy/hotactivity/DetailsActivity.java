@@ -18,6 +18,7 @@ import com.bw.movie.wdyy.bean.FindAllMovieCommentBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.presenter.MyPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailsActivity extends AppCompatActivity implements ContractInterface.DetailsShow, ContractInterface.FindAllMovieComment {
+public class DetailsActivity extends AppCompatActivity implements ContractInterface.DetailsShow, ContractInterface.FindAllMovieComment, XRecyclerView.LoadingListener {
 
     public RecyclerView recyclerView;
     CommentAdapter adapters ;
@@ -108,9 +109,10 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     public ImageView ying_image2Dianzan4;
     @BindView(R.id.yingping_yincang)
     public ImageView ying_yingpingYincang;
-    public RecyclerView rec_yingping;
+    public XRecyclerView rec_yingping;
     @BindView(R.id.yingping_layout)
     public RelativeLayout ying_yingpingLayout;
+    private int movieId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +130,7 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         rec = findViewById(R.id.recycler_yugaoaaa);
         Intent intent = getIntent();
         String movieIds = intent.getStringExtra("MovieId");
-        int movieId = Integer.parseInt(movieIds);
+        movieId = Integer.parseInt(movieIds);
 
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -143,8 +145,11 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         rec_yingping.setLayoutManager(manager2);
         adapters = new CommentAdapter(list_comment, this);
         rec_yingping.setAdapter(adapters);
-        p.toModelQueryMovieInformation(movieId);
+        rec_yingping.setLoadingMoreEnabled(true);
+        rec_yingping.setPullRefreshEnabled(true);
+        rec_yingping.setLoadingListener(this);
         p.toModelFindAllMovieComment(movieId, 1,10);
+        p.toModelQueryMovieInformation(movieId);
     }
 
     @Override
@@ -159,7 +164,8 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
 
     @Override
     public void setComment(FindAllMovieCommentBean comment) {
-
+        rec_yingping.refreshComplete();
+        rec_yingping.loadMoreComplete();
         Log.i("movieComment", "movieComment: " + comment);
         Log.i("movieComment", "movieComment: " + comment.getResult());
         this.list_comment.addAll(comment.getResult());
@@ -179,5 +185,16 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     }
 
 
+    @Override
+    public void onRefresh() {
+        list_comment.clear();
+        p.toModelFindAllMovieComment(movieId, 1,10);
+    }
 
+    int page;
+    @Override
+    public void onLoadMore() {
+        page++;
+        p.toModelFindAllMovieComment(movieId, page,10);
+    }
 }

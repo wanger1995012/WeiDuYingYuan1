@@ -104,4 +104,8 @@ public interface Api {
     @GET
     public Observable<ResponseBody> XTTZXXID(@Url String url, @Header("userId") String userId, @Header("sessionId") String session,@QueryMap Map<String,Object> map);
 
+    //意见反馈
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> DYDZ(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,Object> map);
 }

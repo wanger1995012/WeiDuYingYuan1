@@ -27,7 +27,7 @@ import java.util.List;
 public class ShowListAdapter2 extends RecyclerView.Adapter<ShowListAdapter2.Holder> {
     List<ComingSoonBean.ResultBean> list;
     Context context;
-
+    OnItemClickListener listener;
     public ShowListAdapter2(List<ComingSoonBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
@@ -41,7 +41,7 @@ public class ShowListAdapter2 extends RecyclerView.Adapter<ShowListAdapter2.Hold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, final int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int i) {
         holder.big_img.setImageURI(list.get(i).getImageUrl());
         holder.title.setText(list.get(i).getName());
         holder.jianjie.setText(list.get(i).getSummary());
@@ -65,6 +65,15 @@ public class ShowListAdapter2 extends RecyclerView.Adapter<ShowListAdapter2.Hold
                 }
             }
         });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = list.get(i).getId();
+                listener.onItemClick(holder.itemView, id);
+            }
+        });
+
     }
 
     @Override
@@ -86,4 +95,12 @@ public class ShowListAdapter2 extends RecyclerView.Adapter<ShowListAdapter2.Hold
             jianjie = itemView.findViewById(R.id.text_list_jianjie2);
         }
     }
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
 }

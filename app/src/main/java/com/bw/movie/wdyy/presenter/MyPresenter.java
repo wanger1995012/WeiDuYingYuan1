@@ -28,7 +28,7 @@ import static com.umeng.socialize.net.dplus.CommonNetImpl.TAG;
  * 时间:${data}
  * Description:这个是注释
  */
-public class MyPresenter<T> implements ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
     T tt;
     MyModel myModel;
 
@@ -370,4 +370,16 @@ public class MyPresenter<T> implements ContractInterface.PXQPL,ContractInterface
     }
 
 
+    @Override
+    public void PDYDZ(int commentId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("commentId", commentId);
+       myModel.DYDZ(map, new MyModel.MyCallBreak() {
+           @Override
+           public void sressco(Object o) {
+               ContractInterface.VDYDZ vdydz = (ContractInterface.VDYDZ) tt;
+               vdydz.VDYDZ((String) o);
+           }
+       });
+    }
 }

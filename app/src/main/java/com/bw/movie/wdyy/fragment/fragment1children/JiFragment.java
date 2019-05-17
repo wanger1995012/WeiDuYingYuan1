@@ -1,5 +1,6 @@
 package com.bw.movie.wdyy.fragment.fragment1children;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.bw.movie.wdyy.bean.ComingSoonBean;
 import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.contract.ContractInterface;
+import com.bw.movie.wdyy.hotactivity.DetailsActivity;
 import com.bw.movie.wdyy.presenter.MyPresenter;
 
 import java.util.ArrayList;
@@ -50,6 +52,14 @@ public class JiFragment extends Fragment implements ContractInterface.ViewMovieL
         recyclerView.setLayoutManager(manager);
         adapter = new ShowListAdapter2(list, getContext());
         recyclerView.setAdapter(adapter);
+        adapter.setListener(new ShowListAdapter2.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(),DetailsActivity.class);
+                intent.putExtra("MovieId",position+"");
+                startActivity(intent);
+            }
+        });
         p.toModelChild2();
 
     }
