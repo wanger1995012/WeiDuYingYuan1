@@ -65,10 +65,9 @@
                 android:layout_height="@dimen/dp_16"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginStart="286dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginRight="53dp"
+                android:layout_marginRight="@dimen/dp_90"
                 android:id="@+id/yypj_dianzan"
                 android:background="@drawable/yypj_dianzan1" />
             <TextView
@@ -77,7 +76,7 @@
                 android:id="@+id/yypj_renshu"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/yypj_dianzan"
-                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginLeft="@dimen/dp_3"
                 android:text="12"
                 android:textColor="#999"
                 android:textSize="@dimen/sp_12"

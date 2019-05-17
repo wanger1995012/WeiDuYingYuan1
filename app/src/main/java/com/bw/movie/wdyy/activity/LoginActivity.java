@@ -103,7 +103,6 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
                     //没网
                     Intent intent = new Intent(LoginActivity.this, MeiwangActivity.class);
                     startActivity(intent);
-                    finish();
                 }
             }
         });

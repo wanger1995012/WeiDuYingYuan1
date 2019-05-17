@@ -102,7 +102,7 @@ public class CommentAdapter extends XRecyclerView.Adapter<CommentAdapter.Holder>
             }
         });
 
-        //点击评论的图片
+        //点击评论
         holder.pingPingImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

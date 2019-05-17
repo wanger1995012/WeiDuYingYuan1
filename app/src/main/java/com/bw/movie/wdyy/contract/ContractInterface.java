@@ -9,6 +9,8 @@ import com.bw.movie.wdyy.bean.HotMovieListBean;
 import com.bw.movie.wdyy.bean.NowPlayingBean;
 import com.bw.movie.wdyy.bean.TongzhiBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
+import com.bw.movie.wdyy.bean.YYLunboBean;
+import com.bw.movie.wdyy.bean.YYPiaojiaBean;
 import com.bw.movie.wdyy.bean.YypjBean;
 import com.bw.movie.wdyy.bean.YyxqBean;
 
@@ -136,17 +138,41 @@ public class ContractInterface {
         public void PXTTZXXID(int xiaoxiID);
         public void onDestory();
     }
-    //设置影院详情和评论的V层接口
+    //设置影院详情和评论，轮播旋转木马,票价的V层接口
     public interface VXQPL{
         public void Vyyxq(YyxqBean yyxqBea);
+        public void VyyLB(List<YYLunboBean.ResultBean> lst);
+        public void VyyPiaojia(List<YYPiaojiaBean.ResultBean> lst);
         public void Vyypj(List<YypjBean.ResultBean> lst);
     }
-    //设置影院详情和评论的P层接口
+    //设置影院详情和评论,轮播旋转木马的P层接口
     public interface PXQPL{
         public void Pyyxq(String cinemaId);
+        public void PyyLB(String cinemaId);
         public void Pyypj(String cinemaId,int page,int count);
+        public void Pyypiaojia(String cinemaId,int movieId);
         public void onDestory();
     }
+    //影院点赞的V
+    public interface VYYDZ{
+        public void VYYDianzan(String str);
+    }
+    //影院点赞的P
+    public interface PYYDZ{
+        public void PYYDianzan(int commentId);
+        public void onDestory();
+    }
+    //提交影院评论
+    //影院点赞的V
+    public interface VYYXPL{
+        public void VYYXiepinglun(String str);
+    }
+    //影院点赞的P
+    public interface PYYXPL{
+        public void PYYXiepinglun(String commentId,String commentContent);
+        public void onDestory();
+    }
+
     //设置电影点赞V
     public interface VDYDZ{
         public void VDYDZ(String str);
