@@ -542,9 +542,29 @@ public class MyModel {
 
     //电影点赞
     public void DYDZ(Map<String, Object> map, final MyCallBreak callBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        Log.e("userid", "Yijianfan: " + USERID + SESSIONID);
-        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat", USERID, SESSIONID, map)
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        Log.e("userid","Yijianfan: "+USERID +SESSIONID);
+        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat",USERID,SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            //gson.fromJson(json,);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
+
+
+
 
         //影院点赞
         public void yingyuandianzan (Map < String, Object > map,final MyCallBreak callBreak){

@@ -416,7 +416,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
     }
 
 
-    @Override
+
     public void PDYDZ(int commentId) {
         Map<String, Object> map = new HashMap<>();
         map.put("commentId", commentId);
@@ -427,6 +427,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
                 vdydz.VDYDZ((String) o);
             }
         });
+    }
 
         public void PYYDianzan ( int commentId){
             Map<String, Object> map = new HashMap<>();
@@ -440,4 +441,4 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
             });
         }
     }
-}
+
