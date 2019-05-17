@@ -71,8 +71,7 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
     @BindView(R.id.yingyuan_radio)
     LinearLayout yingyuanRadio;
     Unbinder unbinder1;
-    int YYID;
-    int I;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -119,12 +118,53 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
         //设置P层
         pYingyuan = new MyPresenter(this);
         pYingyuan.PTuijian(1, 10);
+        //进入后首先展示
+        zhanshi1();
         //设置推荐影院的点击搜索
         TuijianCacli();
         //设置附近影院的点击搜索
         FujinCacli();
         //设置影院的搜索框
         MoHucaxun();
+    }
+
+    private void zhanshi1() {
+        //设置按钮的点击监听
+        yingyuanTuijian.setBackground(getResources().getDrawable(R.drawable.shap1));
+        yingyuanTuijian.setTextColor(Color.WHITE);
+        yingyuanFujin.setBackground(getResources().getDrawable(R.drawable.myshap1));
+        yingyuanFujin.setTextColor(Color.BLACK);
+        list.clear();
+        //设置适配器
+        tuijianAdapter = new TuijianAdapter(list, getActivity());
+        yingyuanrecycler.setAdapter(tuijianAdapter);
+        pYingyuan.PTuijian(1, 10);
+        //设置上下拉的监听
+        yingyuanrecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                //下拉刷新
+                pYingyuan.PTuijian(1, 10);
+            }
+
+            @Override
+            public void onLoadMore() {
+                //上拉加载
+                page++;
+                pYingyuan.PTuijian(page, 10);
+            }
+        });
+        tuijianAdapter.setMyCall(new TuijianAdapter.MyCall() {
+            @Override
+            public void weiGuanzhu(String str) {
+                Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void QvxiaoGuanzhu(String str) {
+                Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void MoHucaxun() {
@@ -140,7 +180,7 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
                 //设置适配器
                 tuijianAdapter = new TuijianAdapter(list, getActivity());
                 yingyuanrecycler.setAdapter(tuijianAdapter);
-                pYingyuan.PYYMhucaxun(cinemaName,1, 10);
+                pYingyuan.PYYMhucaxun(cinemaName, 1, 10);
 
                 tuijianAdapter.setMyCall(new TuijianAdapter.MyCall() {
                     @Override
@@ -251,12 +291,6 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
 
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @Override
     public void VTuijian(List<TuijianBean.ResultBean> lst) {
         yingyuanrecycler.loadMoreComplete();
         yingyuanrecycler.refreshComplete();
@@ -288,5 +322,11 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
         super.onDestroy();
         pYingyuan.onDestory();
         pYingyuan = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder1.unbind();
     }
 }
