@@ -14,12 +14,10 @@ import java.util.List;
  */
 public class YingyuanFragmentPagerAdapter extends FragmentPagerAdapter {
     List<Fragment> list;
-    String[] titles;
 
-    public YingyuanFragmentPagerAdapter(FragmentManager fm, List<Fragment> list, String[] titles) {
+    public YingyuanFragmentPagerAdapter(FragmentManager fm, List<Fragment> list) {
         super(fm);
         this.list = list;
-        this.titles = titles;
     }
 
     @Override
@@ -30,11 +28,5 @@ public class YingyuanFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return list.size();
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles[position];
     }
 }

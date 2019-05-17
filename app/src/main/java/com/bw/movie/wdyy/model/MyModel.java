@@ -20,6 +20,8 @@ import com.bw.movie.wdyy.bean.LoginBean;
 
 import com.bw.movie.wdyy.bean.TongzhiBean;
 import com.bw.movie.wdyy.bean.TuijianBean;
+import com.bw.movie.wdyy.bean.YypjBean;
+import com.bw.movie.wdyy.bean.YyxqBean;
 import com.bw.movie.wdyy.bean.ZhuceBean;
 import com.bw.movie.wdyy.utile.RetrofitUtil;
 import com.bw.movie.wdyy.view.Api;
@@ -270,6 +272,49 @@ public class MyModel {
                     }
                 });
     }
+    //附近影院
+    public void FujinYingyuan(Map<String,Object> map,final MyCallBreak callBreak){
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        Log.e("userid", "yingyuan: "+USERID+SESSIONID );
+        gets.Fujinyingyuan("/movieApi/cinema/v1/findNearbyCinemas",USERID+"",SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "fujin: "+json );
+                            Gson gson=new Gson();
+                            TuijianBean tuijianBean = gson.fromJson(json, TuijianBean.class);
+                            callBreak.sressco(tuijianBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //模糊
+    public void YYMohucaxun(Map<String,Object> map,final MyCallBreak callBreak){
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.YYMohucaxun("/movieApi/cinema/v1/findAllCinemas",USERID+"",SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("ab", "mohucaxun: "+json );
+                            Gson gson=new Gson();
+                            TuijianBean tuijianBean = gson.fromJson(json, TuijianBean.class);
+                            callBreak.sressco(tuijianBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
     //未关注
     public void Weiguanzhu(Map<String,Object> map,final MyCallBreak callBreak){
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
@@ -358,7 +403,7 @@ public class MyModel {
                 });
     }
 
-    //关注影院
+    //关注电影
     public void GZDY(Map<String,Object> map,final MyCallBreak callBreak){
         final Api gets = RetrofitUtil.getUtil().gets(Api.class);
         gets.GZDY("/movieApi/movie/v1/verify/findMoviePageList",USERID,SESSIONID,map)
@@ -417,6 +462,48 @@ public class MyModel {
                             JSONObject object=new JSONObject(json);
                             String m = object.getString("message");
                             callBreak.sressco(m);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //影院详情
+    public void Yingyuanxiangqing(Map<String,Object> map,final MyCallBreak callBreak) {
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.Yingyuanxiangqing("/movieApi/cinema/v1/findCinemaInfo", USERID, SESSIONID, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "guzhu: " + json);
+                            Gson gson = new Gson();
+                            YyxqBean beans = gson.fromJson(json, YyxqBean.class);
+                            callBreak.sressco(beans);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    //影院评价
+    public void Yingyuanpingjia(Map<String,Object> map,final MyCallBreak callBreak) {
+        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        gets.Yingyuanpingjia("/movieApi/cinema/v1/findAllCinemaComment", USERID, SESSIONID, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Log.e("aaa", "guzhu: " + json);
+                            Gson gson = new Gson();
+                            YypjBean beans = gson.fromJson(json, YypjBean.class);
+                            callBreak.sressco(beans);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

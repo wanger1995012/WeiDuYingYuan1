@@ -61,6 +61,12 @@ public interface Api {
     //推荐影院
     @GET
     public Observable<ResponseBody> Tuijianyingyuan(@Url String url, @Header("userId") String userId, @Header("session") String session,@QueryMap Map<String,Object> map);
+    //推荐影院
+    @GET
+    public Observable<ResponseBody>Fujinyingyuan(@Url String url, @Header("userId") String userId, @Header("session") String session,@QueryMap Map<String,Object> map);
+    //模糊查询
+    @GET
+    public Observable<ResponseBody>YYMohucaxun(@Url String url, @Header("userId") String userId, @Header("session") String session,@QueryMap Map<String,Object> map);
     //未关注
     @GET
     public Observable<ResponseBody> Weiguanzhu(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
@@ -73,6 +79,12 @@ public interface Api {
     //关注电影
     @GET
     public Observable<ResponseBody> GZDY(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
+    //影院详情
+    @GET
+    public Observable<ResponseBody> Yingyuanxiangqing(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
+    //影院评价
+    @GET
+    public Observable<ResponseBody> Yingyuanpingjia(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@QueryMap Map<String,Object>map);
     //重置密码
     @FormUrlEncoded
     @POST
