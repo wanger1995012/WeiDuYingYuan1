@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_312"
+        android:layout_height="@dimen/dp_123"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/listbg"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_10">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_137"
+            android:layout_marginTop="@dimen/dp_10">
+            <TextView
+                android:id="@+id/text_list_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:text="title"/>
+
+            <ImageView
+                android:id="@+id/image_zan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/text_list_name"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/zanb" />
+
+            <TextView
+                android:id="@+id/text_list_jianjie2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:layout_marginTop="@dimen/dp_25"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_list2"
+            android:layout_width="@dimen/dp_103"
+            android:layout_height="@dimen/dp_129"
+            fresco:roundedCornerRadius="@dimen/dp_4"
+            android:layout_marginLeft="@dimen/dp_34"
+            android:background="@drawable/shape1"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image_fenge2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fenge"
+        android:layout_marginTop="@dimen/dp_133"
+        android:layout_marginBottom="@dimen/dp_10"/>
+
+
+
+</RelativeLayout>

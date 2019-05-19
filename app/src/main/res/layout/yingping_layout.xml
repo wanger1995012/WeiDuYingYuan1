@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simple_draw_view4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/yingping_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:layout_marginTop="@dimen/sp_20"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:background="@drawable/xiang"
+            android:layout_marginLeft="@dimen/dp_24"/>
+
+        <TextView
+            android:id="@+id/text_movie_name4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_25"
+            android:layout_marginStart="@dimen/dp_60"
+            android:text="电影名称" />
+
+        <ImageView
+            android:id="@+id/image2_dianzan4"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_marginTop="@dimen/sp_20"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/zanb" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_120"
+            android:background="@drawable/shape_raduios">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:text="影评"
+                android:textColor="#333333"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginLeft="@dimen/dp_24"/>
+            <ImageView
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_3"
+                android:layout_marginLeft="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_42"
+                android:background="@drawable/shap1" />
+
+            <ImageView
+                android:id="@+id/yingping_yincang"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:src="@drawable/xia"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp_14"
+                android:layout_marginRight="@dimen/dp_24"/>
+
+
+
+                <com.jcodecraeer.xrecyclerview.XRecyclerView
+                    android:id="@+id/recycler_yingping222"
+                    android:layout_width="@dimen/dp_312"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_65"
+                    android:layout_marginLeft="@dimen/dp_24">
+                </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+
+            <ImageView
+                android:id="@+id/ping_input_img"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/yypj_xiepinglun"
+                android:layout_marginRight="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_20" />
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

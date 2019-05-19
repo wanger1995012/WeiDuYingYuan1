@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context=".activity.LunboActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"></android.support.v4.view.ViewPager>
+
+        <RadioGroup
+            android:id="@+id/lunbo_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="526dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/lunbo_radio1"
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_10"
+                android:background="@drawable/lunbo_select"
+                android:button="@null"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/lunbo_radio2"
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_10"
+                android:button="@null"
+                android:background="@drawable/lunbo_select" />
+
+            <RadioButton
+                android:id="@+id/lunbo_radio3"
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_10"
+                android:button="@null"
+                android:background="@drawable/lunbo_select"  />
+
+            <RadioButton
+                android:id="@+id/lunbo_radio4"
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_10"
+                android:button="@null"
+                android:background="@drawable/lunbo_select"  />
+        </RadioGroup>
+    </RelativeLayout>
+</RadioGroup>

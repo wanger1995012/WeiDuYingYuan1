@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+    <com.mcxtzhang.swipemenulib.SwipeMenuLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        >
+        <TextView
+            android:layout_width="@dimen/dp_290"
+            android:layout_height="wrap_content"
+            android:textColor="#333"
+            android:textSize="@dimen/sp_16"
+            android:text="购票信息"
+            android:textStyle="bold"
+            android:id="@+id/tongzhi_title"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
+            android:text="12:01"
+            android:textColor="#333"
+            android:id="@+id/tongzhi_timeout"
+            android:textSize="@dimen/sp_12" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        >
+        <TextView
+            android:layout_width="@dimen/dp_209"
+            android:layout_height="wrap_content"
+            android:textColor="#333"
+            android:textSize="@dimen/sp_12"
+            android:text="您已成功"
+            android:id="@+id/tongzhi_content"
+            />
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="1"
+            android:background="@drawable/tongzhishape1"
+            android:textColor="#fff"
+            android:id="@+id/tongzhi_xiaoxi"
+            android:visibility="gone"
+            android:textSize="@dimen/sp_12" />
+    </RelativeLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="match_parent"
+            android:text="设为已读"
+            android:id="@+id/tongzhi_weidubtn"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:background="@drawable/shap_my"
+            />
+
+    </com.mcxtzhang.swipemenulib.SwipeMenuLayout>
+</LinearLayout>
