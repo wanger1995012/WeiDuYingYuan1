@@ -46,6 +46,7 @@
         <activity android:name=".activity.XinXiActivity" />
         <activity android:name=".activity.XiuGaiActivity" />
         <activity android:name=".activity.YiJianActivity" />
+<<<<<<< HEAD
         <activity android:name=".activity.YijianJieguoActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,10 +54,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+        <activity android:name=".activity.YijianJieguoActivity" />
+>>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
         <activity android:name=".hotactivity.HotActivity" />
         <activity android:name=".hotactivity.DetailsActivity" />
         <activity android:name=".activity.MyGuanzhuActivity" />
         <activity android:name=".activity.MyChongzhiActivity" />
+<<<<<<< HEAD
         <activity android:name=".activity.XiaoxiActivity" />
         <activity android:name=".activity.YYXiangqingActivity" />
         <activity android:name=".activity.XiePinglunActivity"></activity>
@@ -68,6 +73,14 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+=======
+        <activity android:name=".hotactivity.DetailsActivity" />
+        <activity android:name=".activity.MyGuanzhuActivity" />
+        <activity android:name=".activity.MyChongzhiActivity" />
+        <activity android:name=".activity.XiaoxiActivity" />
+        <activity android:name=".activity.YYXiangqingActivity" />
+        <activity android:name=".activity.XiePinglunActivity"></activity>
+>>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
     </application>
 
 </manifest>
