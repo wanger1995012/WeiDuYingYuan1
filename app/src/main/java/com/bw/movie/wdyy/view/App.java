@@ -43,6 +43,7 @@ public class App extends Application {
         Database db =  helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
 
+
         T.init(this);
         instance = this;
     }

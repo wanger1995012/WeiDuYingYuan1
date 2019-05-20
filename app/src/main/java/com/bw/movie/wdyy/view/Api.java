@@ -110,4 +110,10 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> DYDZ(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,Object> map);
+
+    //post请求提交 电影 评论
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> sendCount(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,String> map);
+
 }

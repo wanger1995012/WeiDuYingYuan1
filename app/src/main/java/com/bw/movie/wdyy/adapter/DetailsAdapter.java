@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.wdyy.R;
@@ -45,8 +47,8 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
     List<FindAllMovieCommentBean.ResultBean> list_comment;
     Context context;
     DetailsActivity activity;
-    //ContractInterface.PresenterInterface p = new MyPresenter<>(this);
-
+    ContractInterface.PresenterInterface p = new MyPresenter<>(this);
+    TextView xiang_movie_name;
     public DetailsAdapter(List<DetailsBean.ResultBean> list,List<DetailsBean.ResultBean.ShortFilmListBean> list_bo,List<FindAllMovieCommentBean.ResultBean> list_comment, Context context) {
         this.list = list;
         this.context = context;
@@ -59,11 +61,31 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.by_id_layout, null);
+
         return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final Holder holder, final int i) {
+
+
+//--------------------------------------------------------------------------------//
+//        activity.clickPing.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                activity.layout_input.setVisibility(View.VISIBLE);
+//            }
+//        });
+//        activity.input_send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String s = activity.input_count.getText().toString();
+//                p.toModelSendCounts(list.get(i).getId(), s);
+//                activity.layout_input.setVisibility(View.GONE);
+//            }
+//        });
+//--------------------------------------------------------------------------------//
+
 
 //        p.toModelFindAllMovieComment(list.get(i).getId(), 1,10);
         activity.view.setImageURI(list.get(i).getImageUrl());
@@ -113,7 +135,15 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
         holder.text2_xiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*View view1 = LayoutInflater.from(context).inflate(R.layout.xiangqing_layout,null);
+                xiang_movie_name = view1.findViewById(R.id.xiang_movie_name);
+                BottomSheetDialog dialog = new BottomSheetDialog(context);
+                dialog.setContentView(R.layout.xiangqing_layout);
+                xiang_movie_name.setText(list.get(i).getName());
+                dialog.show();*/
 
+                activity.simpleDrawView.setImageURI(list.get(i).getImageUrl());
+                activity.simpleDrawView.setAlpha(50);
                 activity.recyclerView.setVisibility(View.GONE);
                 activity.simpleDrawView.setVisibility(View.VISIBLE);
                 activity.simpleDrawView.setImageURI(list.get(i).getImageUrl());
@@ -209,6 +239,26 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
                 activity.rec_yingping.setVisibility(View.VISIBLE);
                 activity.ying_simpleDrawView4.setVisibility(View.VISIBLE);
                 activity.ying_yingpingLayout.setVisibility(View.VISIBLE);
+
+
+                activity.clickPing.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        activity.layout_input.setVisibility(View.VISIBLE);
+                        activity.ying_yingpingLayout.setVisibility(View.GONE);
+                    }
+                });
+                activity.input_send.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String s = activity.input_count.getText().toString();
+                        activity.p.toModelSendCounts(list.get(i).getId() , s);
+                        activity.layout_input.setVisibility(View.GONE);
+                        activity.ying_yingpingLayout.setVisibility(View.VISIBLE);
+                        Toast.makeText(context, s,Toast.LENGTH_LONG).show();
+                    }
+                });
+
                 activity.ying_yingpingYincang.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -221,7 +271,18 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
             }
         });
 
+        //购票事件
+        holder.text2_goupiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //带参跳转
+            }
+        });
+
+
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -239,7 +300,6 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
         public Holder(@NonNull View itemView) {
             super(itemView);
             //jcv = itemView.findViewById(R.id.video_view1);
-
             image2_dianzan = itemView.findViewById(R.id.image2_dianzan);
             relativeLayout = itemView.findViewById(R.id.relative_touming);
             simpleDraweeView2 = itemView.findViewById(R.id.simple_draw_movie);

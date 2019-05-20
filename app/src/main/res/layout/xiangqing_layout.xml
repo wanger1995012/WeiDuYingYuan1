@@ -6,16 +6,16 @@
     android:layout_height="wrap_content">
 
     <com.facebook.drawee.view.SimpleDraweeView
+        android:visibility="gone"
         android:id="@+id/simple_draw_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         />
 
 
     <RelativeLayout
-        android:id="@+id/layout_xianshi"
         android:visibility="gone"
+        android:id="@+id/layout_xianshi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
