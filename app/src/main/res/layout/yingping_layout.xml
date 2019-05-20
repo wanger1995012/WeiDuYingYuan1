@@ -13,6 +13,7 @@
 
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/yingping_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

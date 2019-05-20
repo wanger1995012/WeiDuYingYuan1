@@ -102,6 +102,7 @@ public class CommentAdapter extends XRecyclerView.Adapter<CommentAdapter.Holder>
             }
         });
 
+
         //点击评论
         holder.pingPingImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +138,7 @@ public class CommentAdapter extends XRecyclerView.Adapter<CommentAdapter.Holder>
 
         public Holder(@NonNull View itemView) {
             super(itemView);
+
             pingImg = itemView.findViewById(R.id.ping_img);
             pingPingImg = itemView.findViewById(R.id.ping_ping_img);
             pingZanImg = itemView.findViewById(R.id.ping_zan_img);

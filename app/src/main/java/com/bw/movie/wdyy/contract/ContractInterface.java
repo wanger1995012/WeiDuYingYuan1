@@ -55,6 +55,7 @@ public class ContractInterface {
     }
     public interface DetailsShow{
         public void MovieDetailsShow(Object bean);
+        public void setPing(String ping);
     }
     public interface FindAllMovieComment{
         public void setComment(FindAllMovieCommentBean comment);
@@ -76,6 +77,7 @@ public class ContractInterface {
         public void toModel3();
         public void toModelQueryMovieInformation(int MovieId);
         public void toModelFindAllMovieComment(int MovieId,int page,int count);
+        public void toModelSendCounts(int CommentId,String input);
     }
     //设置意见的V接口，设置版本的V接口
     public interface VYiJian{

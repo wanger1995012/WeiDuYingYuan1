@@ -28,7 +28,7 @@ import java.util.Map;
  * Description:这个是注释
  */
 
-public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterface.PYYDZ,ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface.PYYXPL,ContractInterface.PYYDZ,ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
 
     T tt;
     MyModel myModel;
@@ -397,6 +397,21 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
                 ContractInterface.FindAllMovieComment f = (ContractInterface.FindAllMovieComment) tt;
                 f.setComment((FindAllMovieCommentBean) o);
                 Log.i("movieComment", "movieComment o =: " + o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelSendCounts(int CommentId, String input) {
+        Map<String, String> map = new HashMap<>();
+        map.put("movieId", CommentId+"");
+        map.put("commentContent", input);
+        myModel.sendCount(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
+                Log.i("message", "sressco: " + o);
+                d.setPing((String) o);
             }
         });
     }
