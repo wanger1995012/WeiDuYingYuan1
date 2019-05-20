@@ -89,6 +89,8 @@ public class MyModel {
                             //将赋值
                             USERID = bean.getResult().getUserId();
                             SESSIONID = bean.getResult().getSessionId();
+                            Log.i("tagss", "USERID:    " + USERID);
+                            Log.i("tagss", "SESSIONID: " + SESSIONID);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -540,16 +542,41 @@ public class MyModel {
                 });
     }
 
+    //发送
+    public void sendCount(Map <String,String> map, final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.sendCount("/movieApi/movie/v1/findCommentReply",USERID,SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+
+                        try {
+                            String json = responseBody.string();
+                            Log.i("message", "message: " + json);
+                            JSONObject object = new JSONObject(json);
+                            String ss = object.getString("message");
+                            Log.i("message", "message: " + ss);
+                            myCallBreak.sressco(ss);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+    }
+
     //电影点赞
     public void DYDZ(Map<String, Object> map, final MyCallBreak callBreak) {
 
         final Api gets = RetrofitUtil.getUtil().gets(Api.class);
         Log.e("userid","Yijianfan: "+USERID +SESSIONID);
-        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat",USERID,SESSIONID,map)
+        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat",USERID,SESSIONID,map);
 
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        Api getss = RetrofitUtil.getUtil().gets(Api.class);
         Log.e("userid", "Yijianfan: " + USERID + SESSIONID);
-        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat", USERID, SESSIONID, map)
+        getss.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat", USERID, SESSIONID, map)
 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -558,17 +585,13 @@ public class MyModel {
                     public void call(ResponseBody responseBody) {
                         try {
                             String json = responseBody.string();
-
                             Gson gson = new Gson();
                             //gson.fromJson(json,);
-                        } catch (IOException e) {
-
                             Log.e("aaa", "yijian: " + json);
                             JSONObject object = new JSONObject(json);
                             String m = object.getString("message");
                             callBreak.sressco(m);
                         } catch (Exception e) {
-
                             e.printStackTrace();
                         }
                     }
@@ -677,9 +700,6 @@ public class MyModel {
     }
 }
 
-        //设置接口
-        public interface MyCallBreak {
-            public void sressco(Object o);
-        }
-    }
+
+
 

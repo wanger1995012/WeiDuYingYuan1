@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
-    <color name="colorPrimary1">#008577</color>
-    <color name="colorPrimaryDark1">#00574B</color>
-    <color name="colorAccent1">#D81B60</color>
-=======
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
->>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
+
+
+
+
+
     <color name="bai">#fff</color>
     <color name="hui">#e5e5e5</color>
     <color name="hei">#000</color>
     <color name="tongzhi">#BD1452</color>
-<<<<<<< HEAD
+
     <color name="Welcome">#048ad0</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
     <!-- action背景 -->
     <color name="action_color_blue">#048ad0</color>
     <color name="action_color_alpha">#99ffffff</color>
@@ -99,6 +93,4 @@
     <color name="actionsheet_blue">#037BFF</color>
     <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
-=======
->>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
 </resources>

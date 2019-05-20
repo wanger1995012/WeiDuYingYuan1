@@ -29,7 +29,8 @@ import java.util.Map;
  */
 
 
-public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface.PYYXPL, ContractInterface.PYYDZ, ContractInterface.PXQPL, ContractInterface.PXTTZ, ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface.PYYXPL,ContractInterface.PYYDZ,ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+
 
     T tt;
     MyModel myModel;
@@ -402,6 +403,21 @@ public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface
         });
     }
 
+    @Override
+    public void toModelSendCounts(int CommentId, String input) {
+        Map<String, String> map = new HashMap<>();
+        map.put("movieId", CommentId+"");
+        map.put("commentContent", input);
+        myModel.sendCount(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
+                Log.i("message", "sressco: " + o);
+                d.setPing((String) o);
+            }
+        });
+    }
+
     public void Pxiugai(String oldpwd, String newpwd, String newpwd2) {
         Map<String, String> map = new HashMap<>();
         map.put("oldPwd", oldpwd);
@@ -431,7 +447,7 @@ public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface
 
     }
 
-    }
+
 
     public void PYYDianzan(int commentId) {
         Map<String, Object> map = new HashMap<>();
@@ -444,19 +460,8 @@ public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface
             }
         });
 
-
-
-        public void PYYDianzan ( int commentId){
-            Map<String, Object> map = new HashMap<>();
-            map.put("commentId", commentId);
-            myModel.yingyuandianzan(map, new MyModel.MyCallBreak() {
-                @Override
-                public void sressco(Object o) {
-                    ContractInterface.VYYDZ vyydz = (ContractInterface.VYYDZ) tt;
-                    vyydz.VYYDianzan((String) o);
-                }
-            });
-        }
-
     }
+}
+
+
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/layout_input"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:layout_alignParentBottom="true"
+        android:background="#e5e5e5"
+        android:layout_marginBottom="@dimen/dp_10">
+        <EditText
+            android:id="@+id/input_ping"
+            android:layout_width="@dimen/dp_284"
+            android:layout_height="@dimen/dp_60"
+            android:background="@drawable/shape_input"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:hint="写评论"
+            android:textColor="#000"
+            android:paddingLeft="@dimen/dp_10"
+            android:textColorHint="#000"/>
+        <TextView
+            android:id="@+id/input_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            android:padding="@dimen/dp_5"
+            android:textColor="#000"
+            android:layout_marginRight="@dimen/dp_10"
+            android:textSize="@dimen/sp_16"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

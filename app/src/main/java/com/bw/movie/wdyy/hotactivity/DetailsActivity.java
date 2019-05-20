@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.adapter.CommentAdapter;
@@ -31,7 +34,7 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     public RecyclerView recyclerView;
     CommentAdapter adapters ;
     List<DetailsBean.ResultBean> mList = new ArrayList<>();
-    ContractInterface.PresenterInterface p = new MyPresenter<>(this);
+    public ContractInterface.PresenterInterface p = new MyPresenter<>(this);
     List<DetailsBean.ResultBean.ShortFilmListBean> list_bo = new ArrayList<>();
     List<FindAllMovieCommentBean.ResultBean> list_comment = new ArrayList<>();
     @BindView(R.id.recycler_view_by_id)
@@ -114,11 +117,22 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     public RelativeLayout ying_yingpingLayout;
     private int movieId;
 
+    public ImageView clickPing;
+
+    public EditText input_count;
+    public TextView input_send;
+    public RelativeLayout layout_input;
+    private int commentId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
+        layout_input = findViewById(R.id.layout_input);
+        input_count = findViewById(R.id.input_ping);
+        input_send  = findViewById(R.id.input_send);
+        clickPing = findViewById(R.id.ping_input_img);
         recyclerView = findViewById(R.id.recycler_view_by_id);
         view = findViewById(R.id.parent_simple);
         rec_yingping =findViewById(R.id.recycler_yingping222);
@@ -131,6 +145,9 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         Intent intent = getIntent();
         String movieIds = intent.getStringExtra("MovieId");
         movieId = Integer.parseInt(movieIds);
+
+
+
 
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -161,6 +178,13 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         Log.i("tags", "MovieDetailsShow: " + mList.get(0).getImageUrl());
     }
 
+    @Override
+    public void setPing(String ping) {
+        if(ping.equals("评论成功")){
+            Toast.makeText(this, ping,Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     @Override
     public void setComment(FindAllMovieCommentBean comment) {
@@ -169,6 +193,7 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         Log.i("movieComment", "movieComment: " + comment);
         Log.i("movieComment", "movieComment: " + comment.getResult());
         this.list_comment.addAll(comment.getResult());
+        commentId = comment.getResult().get(0).getCommentId();
         adapters.notifyDataSetChanged();
     }
 
