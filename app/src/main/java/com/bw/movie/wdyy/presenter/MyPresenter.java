@@ -28,7 +28,8 @@ import java.util.Map;
  * Description:这个是注释
  */
 
-public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterface.PYYDZ,ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+
+public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface.PYYXPL, ContractInterface.PYYDZ, ContractInterface.PXQPL, ContractInterface.PXTTZ, ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
 
     T tt;
     MyModel myModel;
@@ -427,7 +428,23 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
                 vdydz.VDYDZ((String) o);
             }
         });
+
     }
+
+    }
+
+    public void PYYDianzan(int commentId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("commentId", commentId);
+        myModel.yingyuandianzan(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VYYDZ vyydz = (ContractInterface.VYYDZ) tt;
+                vyydz.VYYDianzan((String) o);
+            }
+        });
+
+
 
         public void PYYDianzan ( int commentId){
             Map<String, Object> map = new HashMap<>();
@@ -440,5 +457,6 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
                 }
             });
         }
+
     }
 
