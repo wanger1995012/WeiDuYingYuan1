@@ -572,11 +572,11 @@ public class MyModel {
 
         final Api gets = RetrofitUtil.getUtil().gets(Api.class);
         Log.e("userid","Yijianfan: "+USERID +SESSIONID);
-        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat",USERID,SESSIONID,map)
+        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat",USERID,SESSIONID,map);
 
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
+        Api getss = RetrofitUtil.getUtil().gets(Api.class);
         Log.e("userid", "Yijianfan: " + USERID + SESSIONID);
-        gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat", USERID, SESSIONID, map)
+        getss.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat", USERID, SESSIONID, map)
 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -585,23 +585,13 @@ public class MyModel {
                     public void call(ResponseBody responseBody) {
                         try {
                             String json = responseBody.string();
-<<<<<<< HEAD
-=======
-
                             Gson gson = new Gson();
                             //gson.fromJson(json,);
-                        } catch (IOException e) {
-
                             Log.e("aaa", "yijian: " + json);
->>>>>>> 81014d96a55325099be299f7a047c450fa8d3775
                             JSONObject object = new JSONObject(json);
                             String m = object.getString("message");
                             callBreak.sressco(m);
                         } catch (Exception e) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 81014d96a55325099be299f7a047c450fa8d3775
                             e.printStackTrace();
                         }
                     }
@@ -710,9 +700,6 @@ public class MyModel {
     }
 }
 
-        //设置接口
-        public interface MyCallBreak {
-            public void sressco(Object o);
-        }
-    }
+
+
 
