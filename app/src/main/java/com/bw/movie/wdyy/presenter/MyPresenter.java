@@ -28,11 +28,8 @@ import java.util.Map;
  * Description:这个是注释
  */
 
-<<<<<<< HEAD
+
 public class MyPresenter<T> implements ContractInterface.PDYDZ,ContractInterface.PYYXPL, ContractInterface.PYYDZ, ContractInterface.PXQPL, ContractInterface.PXTTZ, ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
-=======
-public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterface.PYYDZ,ContractInterface.PXQPL,ContractInterface.PXTTZ,ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
->>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
 
     T tt;
     MyModel myModel;
@@ -420,7 +417,7 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
     }
 
 
-    @Override
+
     public void PDYDZ(int commentId) {
         Map<String, Object> map = new HashMap<>();
         map.put("commentId", commentId);
@@ -431,7 +428,9 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
                 vdydz.VDYDZ((String) o);
             }
         });
-<<<<<<< HEAD
+
+    }
+
     }
 
     public void PYYDianzan(int commentId) {
@@ -444,7 +443,8 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
                 vyydz.VYYDianzan((String) o);
             }
         });
-=======
+
+
 
         public void PYYDianzan ( int commentId){
             Map<String, Object> map = new HashMap<>();
@@ -457,6 +457,6 @@ public class MyPresenter<T> implements ContractInterface.PYYXPL,ContractInterfac
                 }
             });
         }
->>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
+
     }
-}
+
