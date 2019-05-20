@@ -545,7 +545,6 @@ public class MyModel {
         Api gets = RetrofitUtil.getUtil().gets(Api.class);
         Log.e("userid", "Yijianfan: " + USERID + SESSIONID);
         gets.DYDZ("/movieApi/movie/v1/verify/movieCommentGreat", USERID, SESSIONID, map)
-<<<<<<< HEAD
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -563,9 +562,7 @@ public class MyModel {
                     }
                 });
     }
-=======
 
->>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
         //影院点赞
         public void yingyuandianzan (Map < String, Object > map,final MyCallBreak callBreak){
             final Api gets = RetrofitUtil.getUtil().gets(Api.class);
@@ -577,10 +574,7 @@ public class MyModel {
                         public void call(ResponseBody responseBody) {
                             try {
                                 String json = responseBody.string();
-<<<<<<< HEAD
-=======
                                 Log.e("aaa", "yijian: " + json);
->>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
                                 Log.e("aaa", "yingyuandianzan: " + json);
                                 JSONObject object = new JSONObject(json);
                                 String m = object.getString("message");
@@ -656,16 +650,9 @@ public class MyModel {
                     });
         }
 
-<<<<<<< HEAD
     //设置接口
     public interface MyCallBreak {
         public void sressco(Object o);
     }
 }
-=======
-        //设置接口
-        public interface MyCallBreak {
-            public void sressco(Object o);
-        }
-    }
->>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
+

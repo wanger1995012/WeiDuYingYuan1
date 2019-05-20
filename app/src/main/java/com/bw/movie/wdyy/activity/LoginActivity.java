@@ -1,10 +1,14 @@
 package com.bw.movie.wdyy.activity;
 
 import android.Manifest;
+
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,8 +26,10 @@ import android.widget.Toast;
 import com.bw.movie.wdyy.R;
 import com.bw.movie.wdyy.contract.ContractInterface;
 import com.bw.movie.wdyy.presenter.MyPresenter;
+
 import com.bw.movie.wdyy.utile.EncryptUtil;
 import com.bw.movie.wdyy.utile.WeiXinUtil;
+import com.bw.movie.wdyy.utile.network.NetBroadcastReceiver;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import butterknife.BindView;
@@ -45,14 +51,55 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
     @BindView(R.id.login_CheckBox)
     android.widget.CheckBox CheckBox;
     private SharedPreferences sp;
+    private IntentFilter intentFilter;
+    private NetBroadcastReceiver networkChangeReceiver;
+    NetworkInfo networkInfo;
+    ConnectivityManager connectivityManager;
+
+    //网络变化接受者
+    class  NetworkChangeReceiver extends BroadcastReceiver {//网络变化接收者
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            connectivityManager = (ConnectivityManager)getSystemService(LoginActivity.CONNECTIVITY_SERVICE);
+            networkInfo = connectivityManager.getActiveNetworkInfo();
+            if(NetworkInfo.State.CONNECTED==connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState()){
+                Toast.makeText(LoginActivity.this, "当前网络为WiFi", Toast.LENGTH_SHORT).show();
+            } else if (NetworkInfo.State.CONNECTED==connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState()){
+                Toast.makeText(LoginActivity.this, "当前网络为移动网络", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(LoginActivity.this, "当前网络不可用", Toast.LENGTH_SHORT).show();
+                //没网
+                Intent intent1=new Intent(LoginActivity.this,MeiwangActivity.class);
+                startActivity(intent1);
+                Log.e("a111", "onCreate: ；没网" );
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        //注册广播接收者，监测网络变化
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        networkChangeReceiver = new NetBroadcastReceiver();
+        registerReceiver(networkChangeReceiver , intentFilter);
         pLogin = new MyPresenter(this);
+        if(networkInfo==null ){
+            //有网
+            initV();
+            Log.e("a111", "onCreate: 有网" );
+        }else {
+            //没网
+            Intent intent1=new Intent(LoginActivity.this,MeiwangActivity.class);
+            startActivity(intent1);
+            Log.e("a111", "onCreate: 11；没网" );
+        }
+    }
 
+    private void initV() {
         sp = getSharedPreferences("ssp", MODE_PRIVATE);
         boolean flag = sp.getBoolean("flag", false);
 
@@ -95,15 +142,9 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
                 String encryptUtil = EncryptUtil.encrypt(pwd);
                 String encryptUtil2 = EncryptUtil.encrypt(pwd);
                 Log.e("tag",encryptUtil+"----");
-                //判断网络
-                if (isConnectIsNomarl(LoginActivity.this)) {
-                    //有网
-                    pLogin.PInterface(phone, encryptUtil, encryptUtil2);
-                } else {
-                    //没网
-                    Intent intent = new Intent(LoginActivity.this, MeiwangActivity.class);
-                    startActivity(intent);
-                }
+
+                    pLogin.PInterface(phone,encryptUtil,encryptUtil2);
+
             }
         });
         //设置快速注册点击事件
@@ -153,14 +194,16 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
 
     @Override
     protected void onDestroy() {
+        //取消广播注册
+        unregisterReceiver(networkChangeReceiver);
         super.onDestroy();
         pLogin.onDestory();
         pLogin = null;
     }
 
-    /**
+/*    *//**
      * 判断网络是否连接
-     */
+     *//*
     private boolean isConnectIsNomarl(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = connectivityManager.getActiveNetworkInfo();
@@ -169,5 +212,5 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
             return true;
         }
         return false;
-    }
+    }*/
 }
