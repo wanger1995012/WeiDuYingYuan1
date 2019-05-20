@@ -4,6 +4,10 @@ import android.app.Application;
 
 import com.baway.rikao0411.greendao.gen.DaoMaster;
 import com.baway.rikao0411.greendao.gen.DaoSession;
+<<<<<<< HEAD
+import com.bw.movie.wdyy.utile.T;
+=======
+>>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.common.util.ByteConstants;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -20,6 +24,10 @@ import org.greenrobot.greendao.database.Database;
 public class App extends Application {
     public static final boolean ENCRYPTED = true;
     public static DaoSession daoSession;
+<<<<<<< HEAD
+    private static App        instance;
+=======
+>>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,5 +46,15 @@ public class App extends Application {
         //注意这里是getWritableDb()
         Database db =  helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
+<<<<<<< HEAD
+
+        T.init(this);
+        instance = this;
+    }
+
+    public static App getInstance() {
+        return instance;
+=======
+>>>>>>> 9234417e158775ca1bb6653706e5b1c712ef6d6a
     }
 }
