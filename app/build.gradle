@@ -8,10 +8,16 @@ android {
             storeFile file('E:/weixin/movie.keystore')
             storePassword '123456'
         }
+        syp {
+            keyAlias 'key'
+            keyPassword '123456'
+            storeFile file('C:/Users/Administrator/syp.jks')
+            storePassword '123456'
+        }
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.bw.movie.wdyy"
+        applicationId "com.bw.movie"
         minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
@@ -37,6 +43,11 @@ android {
 
             jniLibs.srcDirs = ['libs']
 
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
         }
     }
 

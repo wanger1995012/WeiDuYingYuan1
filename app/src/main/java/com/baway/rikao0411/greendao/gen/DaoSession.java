@@ -8,7 +8,7 @@ import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
-import com.bw.movie.wdyy.bean.ZhuceBean;
+import com.bw.movie.bean.ZhuceBean;
 
 import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
 

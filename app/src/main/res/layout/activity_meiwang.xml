@@ -36,6 +36,24 @@
                 android:textColor="#8c8c8c"
                 />
         </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:layout_marginRight="@dimen/dp_50"
+            android:background="@drawable/shap_my"
+            android:text="设置网络"
+            android:id="@+id/btn_shezhiwnagluo"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:layout_marginRight="@dimen/dp_50"
+            android:background="@drawable/shap_my"
+            android:text="返回"
+            android:id="@+id/btn_fanhui"
+            />
     </LinearLayout>
 
 </LinearLayout>

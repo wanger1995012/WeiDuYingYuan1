@@ -7,7 +7,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.bw.movie.wdyy.activity.LunboActivity;
+import com.bw.movie.R;
+import com.bw.movie.activity.LunboActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
