@@ -29,6 +29,7 @@ public class YYXQ_YYPLAdapter extends RecyclerView.Adapter<YYXQ_YYPLAdapter.hold
     List<YypjBean.ResultBean> list;
     Context context;
     MyCall myCall;
+    int aa;
     public YYXQ_YYPLAdapter(List<YypjBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
@@ -66,12 +67,14 @@ public class YYXQ_YYPLAdapter extends RecyclerView.Adapter<YYXQ_YYPLAdapter.hold
         holder.yypj_dianzan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aa=list.get(i).getGreatNum();
                 //判断是否点赞
-                if (list.get(i).getIsGreat()==1){
+                if (list.get(i).getIsGreat()==0){
                     //是点过赞
                     holder.yypj_dianzan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.yypj_dianzan));
                     list.get(i).setIsGreat(1);
-                    list.get(i).setGreatNum(list.get(i).getGreatNum()+1);
+                    aa++;
+                    list.get(i).setGreatNum(aa);
                     holder.yypj_dianzanshu.setText(list.get(i).getGreatNum()+"");
                     myCall.YYDZ(list,i);
                 }else {
