@@ -99,6 +99,8 @@ public class YYXiangqingActivity extends AppCompatActivity implements ContractIn
         fanhuiInit();
         //设置影院票价
         PiaojiaoInit();
+        //设置票价跳转到购票页
+        
     }
     //返回
     private void fanhuiInit() {

@@ -281,7 +281,7 @@ public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface
         @Override
         public void Pyypiaojia(String cinemaId, int movieId) {
             Map<String, Object> map = new HashMap<>();
-            map.put("cinemaId", cinemaId);
+            map.put("cinemasId", cinemaId);
             map.put("movieId", movieId);
             myModel.Yingyuanpiaojia(map, new MyModel.MyCallBreak() {
                 @Override
