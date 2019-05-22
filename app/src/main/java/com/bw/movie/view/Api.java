@@ -120,4 +120,14 @@ public interface Api {
     @POST
     public Observable<ResponseBody> weixindenglu(@Url String url,@FieldMap Map<String,Object> map);
 
+    //根据电影ID查询影院信息
+    @GET
+    public Observable<ResponseBody> FindYuan(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @Query("movieId") int movieId);
+
+
+    //根据电影ID和影院ID查询电影票的信息
+    @GET
+    public Observable<ResponseBody> FindPiao(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId ,@Query("cinemasId") String cinemasId, @Query("movieId") int movieId);
+
+
 }

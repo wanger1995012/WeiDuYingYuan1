@@ -1,6 +1,7 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.bw.movie.R;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.contract.ContractInterface;
+import com.bw.movie.hotactivity.ByIdMoveMovieActivity;
 import com.bw.movie.hotactivity.DetailsActivity;
 import com.bw.movie.presenter.MyPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -266,6 +268,11 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
             @Override
             public void onClick(View view) {
                 //带参跳转
+                int movieId = activity.movieId;
+                Intent intent = new Intent(context, ByIdMoveMovieActivity.class);
+                intent.putExtra("movieId",movieId+"");
+                intent.putExtra("name",list.get(i).getName());
+                activity.startActivity(intent);
             }
         });
 

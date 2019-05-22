@@ -89,6 +89,9 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="6KevuzfZR69e6EO1Ak8Sq2qPRR4SiuWF" />
 
+        <activity android:name=".hotactivity.ByIdMoveMovieActivity" />
+        <activity android:name=".hotactivity.XuanZuoActivity" />
+        <activity android:name=".hotactivity.TimeListActivity"></activity>
     </application>
 
 </manifest>

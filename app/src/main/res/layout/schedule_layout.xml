@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/yuanjiao"
+        android:layout_width="@dimen/dp_312"
+        android:layout_height="@dimen/dp_70"
+        android:layout_marginBottom="@dimen/dp_20">
+
+        <TextView
+            android:id="@+id/piao_ting"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="超清大屏"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#666666"/>
+        <TextView
+            android:id="@+id/piao_begin_time"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17:00"
+            android:textSize="@dimen/sp_24"
+            android:textColor="#333333"/>
+        <TextView
+            android:layout_marginLeft="@dimen/dp_75"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="——"
+            android:textSize="@dimen/sp_24"
+            android:textColor="#333333"/>
+        <TextView
+            android:id="@+id/piao_end_time"
+            android:layout_marginLeft="@dimen/dp_120"
+            android:layout_marginTop="@dimen/dp_39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17:00"
+            android:textSize="@dimen/sp_18"
+            android:textColor="#333333"/>
+
+        <TextView
+            android:layout_marginLeft="@dimen/dp_170"
+            android:layout_marginTop="@dimen/dp_39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="end"
+            android:textSize="@dimen/sp_18"
+            android:textColor="#333333"/>
+
+        <TextView
+            android:layout_marginLeft="@dimen/dp_170"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥"
+            android:textSize="@dimen/sp_18"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/dp_88"
+            android:textColor="#666"/>
+
+        <ImageView
+            android:id="@+id/image_into_xuan"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_24"
+            android:background="@drawable/com_icon_next_default_hdpi"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_alignParentEnd="true"/>
+
+
+        <TextView
+            android:id="@+id/piao_price"
+            android:layout_marginLeft="@dimen/dp_170"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_34"
+            android:text="0.01"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/dp_24"
+            android:textColor="#b11450"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
