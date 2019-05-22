@@ -1,11 +1,13 @@
 package com.bw.movie.contract;
 
 import com.bw.movie.adapter.GZYYBean;
+import com.bw.movie.bean.CinemaBean;
 import com.bw.movie.bean.ComingSoonBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
 import com.bw.movie.bean.NowPlayingBean;
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
 import com.bw.movie.bean.YYLunboBean;
@@ -51,6 +53,7 @@ public class ContractInterface {
     public interface DetailsShow{
         public void MovieDetailsShow(Object bean);
         public void setPing(String ping);
+        public void setYuanPiao(ScheduleBean yuanPiao);
     }
     public interface FindAllMovieComment{
         public void setComment(FindAllMovieCommentBean comment);
@@ -63,6 +66,10 @@ public class ContractInterface {
         public void ShowMovieList3(ComingSoonBean bean);
     }
 
+    public interface ViewFindYuan{
+        public void findYuan(CinemaBean cinemaBean);
+    }
+
     public interface PresenterInterface{
         public void toModelChild1();
         public void toModelChild2();
@@ -73,6 +80,8 @@ public class ContractInterface {
         public void toModelQueryMovieInformation(int MovieId);
         public void toModelFindAllMovieComment(int MovieId,int page,int count);
         public void toModelSendCounts(int CommentId,String input);
+        public void toModelFindYuan(int movieId);
+        public void toModelFindSchedule(String schedule, int movieId);
     }
     //设置意见的V接口，设置版本的V接口
     public interface VYiJian{

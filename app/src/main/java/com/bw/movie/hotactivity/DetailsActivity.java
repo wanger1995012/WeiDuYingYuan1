@@ -18,6 +18,7 @@ import com.bw.movie.adapter.CommentAdapter;
 import com.bw.movie.adapter.DetailsAdapter;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.contract.ContractInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -115,7 +116,7 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     public XRecyclerView rec_yingping;
     @BindView(R.id.yingping_layout)
     public RelativeLayout ying_yingpingLayout;
-    private int movieId;
+    public int movieId;
 
     public ImageView clickPing;
 
@@ -183,6 +184,11 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         if(ping.equals("评论成功")){
             Toast.makeText(this, ping,Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void setYuanPiao(ScheduleBean yuanPiao) {
+
     }
 
 

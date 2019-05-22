@@ -3,6 +3,7 @@ package com.bw.movie.presenter;
 import android.util.Log;
 
 import com.bw.movie.adapter.GZYYBean;
+import com.bw.movie.bean.CinemaBean;
 import com.bw.movie.bean.ComingSoonBean;
 
 import com.bw.movie.bean.FindAllMovieCommentBean;
@@ -10,6 +11,7 @@ import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.NowPlayingBean;
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
 import com.bw.movie.bean.YYLunboBean;
@@ -418,7 +420,29 @@ public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface
             });
         }
 
-        public void Pxiugai(String oldpwd, String newpwd, String newpwd2) {
+    @Override
+    public void toModelFindYuan(int movieId) {
+        myModel.FindYuan(movieId, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewFindYuan v = (ContractInterface.ViewFindYuan) tt;
+                v.findYuan((CinemaBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelFindSchedule(String schedule, int movieId) {
+        myModel.QueryP(schedule, movieId, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
+                d.setYuanPiao((ScheduleBean) o);
+            }
+        });
+    }
+
+    public void Pxiugai(String oldpwd, String newpwd, String newpwd2) {
             Map<String, String> map = new HashMap<>();
             map.put("oldPwd", oldpwd);
             map.put("newPwd", newpwd);
