@@ -1,21 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 android {
+    compileSdkVersion 28
+
     signingConfigs {
-        config {
-            keyAlias 'bw_movie'
-            keyPassword '123456'
-            storeFile file('E:/weixin/movie.keystore')
-            storePassword '123456'
-        }
-        syp {
-            keyAlias 'key'
-            keyPassword '123456'
-            storeFile file('C:/Users/Administrator/syp.jks')
-            storePassword '123456'
+        debug {
+            storeFile file("movie.keystore")
+            storePassword "123456"
+            keyAlias "bw_movie"
+            keyPassword "123456"
         }
     }
-    compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.bw.movie"
         minSdkVersion 22

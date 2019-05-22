@@ -1,5 +1,6 @@
 package com.bw.movie.fragment;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.bw.movie.R;
 import com.bw.movie.adapter.TuijianAdapter;
 import com.bw.movie.bean.TuijianBean;
 import com.bw.movie.contract.ContractInterface;
+import com.bw.movie.dongtai.PermissionsUtils;
 import com.bw.movie.presenter.MyPresenter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -75,8 +77,6 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
     @BindView(R.id.yingyuan_radio)
     LinearLayout yingyuanRadio;
     Unbinder unbinder1;
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -133,6 +133,61 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
         FujinCacli();
         //设置影院的搜索框
         MoHucaxun();
+
+
+        /**
+         * 定位权限
+         * Manifest.permission.ACCESS_FINE_LOCATION
+         * Manifest.permission.ACCESS_COARSE_LOCATION
+         * 相机相册权限
+         * Manifest.permission.CAMERA
+         * 手机状态权限
+         * Manifest.permission.READ_CALL_LOG,
+         * Manifest.permission.READ_PHONE_STATE,
+         * Manifest.permission.CALL_PHONE,
+         * Manifest.permission.WRITE_CALL_LOG,
+         * Manifest.permission.USE_SIP,
+         * Manifest.permission.PROCESS_OUTGOING_CALLS,
+         * Manifest.permission.ADD_VOICEMAIL
+         * 读写权限
+         * Manifest.permission.READ_EXTERNAL_STORAGE,
+         * Manifest.permission.WRITE_EXTERNAL_STORAGE
+         *
+         */
+        String[] permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION ,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.CAMERA,
+                Manifest.permission.READ_CALL_LOG,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.WRITE_CALL_LOG,
+                Manifest.permission.USE_SIP,
+                Manifest.permission.PROCESS_OUTGOING_CALLS,
+                Manifest.permission.ADD_VOICEMAIL,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+//        PermissionsUtils.showSystemSetting = false;//是否支持显示系统设置权限设置窗口跳转
+        //创建监听权限的接口对象
+        PermissionsUtils.IPermissionsResult permissionsResult = new PermissionsUtils.IPermissionsResult() {
+            @Override
+            public void passPermissons() {
+                Toast.makeText(getContext(), "权限通过，可以做其他事情!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void forbitPermissons() {
+//            finish();
+                Toast.makeText(getContext(), "权限不通过!", Toast.LENGTH_SHORT).show();
+            }
+        };
+        //这里的this不是上下文，是Activity对象！
+        PermissionsUtils.getInstance().chekPermissions(getActivity(), permissions, permissionsResult);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //就多一个参数this
+        PermissionsUtils.getInstance().onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
     }
 
     //定位
@@ -226,20 +281,20 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
                 //设置适配器
                 tuijianAdapter = new TuijianAdapter(list, getActivity());
                 yingyuanrecycler.setAdapter(tuijianAdapter);
-                pYingyuan.PTuijian(1, 10);
+                pYingyuan.PFujin("103.56553241213687","28.997989569889246",1, 10);
                 //设置上下拉的监听
                 yingyuanrecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
                     @Override
                     public void onRefresh() {
                         //下拉刷新
-                        pYingyuan.PFujin("", "", 1, 10);
+                        pYingyuan.PFujin("103.56553241213687","28.997989569889246", 1, 10);
                     }
 
                     @Override
                     public void onLoadMore() {
                         //上拉加载
                         page++;
-                        pYingyuan.PFujin("", "", page, 10);
+                        pYingyuan.PFujin("103.56553241213687","28.997989569889246", page, 10);
                     }
                 });
                 tuijianAdapter.setMyCall(new TuijianAdapter.MyCall() {

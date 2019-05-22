@@ -4,10 +4,25 @@
     package="com.bw.movie">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--手机状态权限-->
+    <uses-permission android:name="permission:android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="permission:android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="permission:android.permission.CALL_PHONE"/>
+    <uses-permission android:name="permission:android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="permission:android.permission.USE_SIP"/>
+    <uses-permission android:name=" permission:android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="permission:com.android.voicemail.permission.ADD_VOICEMAIL"/>
+    <!--读写权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--定位权限-->
+    <uses-permission android:name="permission:android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="permission:android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--相机权限-->
+    <uses-permission android:name="permission:android.permission.CAMERA"/>
+
     <uses-permission
         android:name="android.permission.MANAGE_DOCUMENTS"
         tools:ignore="ProtectedPermissions" />
@@ -84,7 +99,7 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-
+        <!--百度-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="6KevuzfZR69e6EO1Ak8Sq2qPRR4SiuWF" />
