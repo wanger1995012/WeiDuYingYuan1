@@ -24,11 +24,13 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.ZhuceBean;
+import com.bw.movie.model.MyModel;
 import com.bw.movie.view.App;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -68,13 +70,14 @@ public class XinXiActivity extends AppCompatActivity {
     //调用照相机返回图片文件
     private File tempFile;
     int i = 0;
-
+    ZhuceBean zhuceBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xin_xi);
         ButterKnife.bind(this);
         mContext = this;
+<<<<<<< HEAD
         //拿到数据库中的信息
 //        List<ZhuceBean> zhuceBeans = App.daoSession.loadAll(ZhuceBean.class);
 //        String nickName = zhuceBeans.get(0).getNickName();
@@ -82,6 +85,22 @@ public class XinXiActivity extends AppCompatActivity {
 //        long riqi = zhuceBeans.get(0).getBirthday();
 //        int sex = zhuceBeans.get(0).getSex();
 //        long youxiang = zhuceBeans.get(0).getLastLoginTime();
+=======
+        //拿到bean中信息
+        MyModel myModel=new MyModel();
+        myModel.setXinXiMyCall(new MyModel.XinXiMyCall() {
+            @Override
+            public void sressco(ZhuceBean bean) {
+                zhuceBean=bean;
+            }
+        });
+        Log.e("denglua22", "onCreate: "+zhuceBean.toString() );
+        String nickName = zhuceBean.getNickName();
+        String phone = zhuceBean.getPhone();
+        long riqi = zhuceBean.getBirthday();
+        int sex = zhuceBean.getSex();
+        long youxiang = zhuceBean.getLastLoginTime();
+>>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
         //设置返回
         FanhuiInit();
         //设置用户头像
@@ -100,6 +119,7 @@ public class XinXiActivity extends AppCompatActivity {
         myxinxiBtnXiugai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(XinXiActivity.this, XiuGaiActivity.class);
                 intent.putExtra("aaa","12");//a传b在此处写你传的值
                 startActivityForResult(intent, 4);

@@ -8,7 +8,6 @@ import org.greenrobot.greendao.annotation.Generated;
  * 时间:${data}
  * Description:这个是注释
  */
-@Entity
 public class ZhuceBean {
     public long birthday;
     public String headPic;
@@ -16,9 +15,8 @@ public class ZhuceBean {
     public String nickName;
     public String phone;
     public int sex;
-    @Generated(hash = 825527806)
-    public ZhuceBean(long birthday, String headPic, long lastLoginTime,
-            String nickName, String phone, int sex) {
+
+    public ZhuceBean(long birthday, String headPic, long lastLoginTime, String nickName, String phone, int sex) {
         this.birthday = birthday;
         this.headPic = headPic;
         this.lastLoginTime = lastLoginTime;
@@ -26,9 +24,10 @@ public class ZhuceBean {
         this.phone = phone;
         this.sex = sex;
     }
-    @Generated(hash = 2008076874)
+
     public ZhuceBean() {
     }
+
     public long getBirthday() {
         return this.birthday;
     }
