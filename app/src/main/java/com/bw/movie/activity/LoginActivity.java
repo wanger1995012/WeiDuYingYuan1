@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.bw.movie.bean.LoginBean;
 import com.bw.movie.contract.ContractInterface;
 import com.bw.movie.presenter.MyPresenter;
 
@@ -32,6 +33,8 @@ import com.bw.movie.utile.network.NetBroadcastReceiver;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,6 +68,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
     // IWXAPI 是第三方app和微信通信的openApi接口
     private IWXAPI api;
 
+    private SharedPreferences sp1;
     //网络变化接受者
     class  NetworkChangeReceiver extends BroadcastReceiver {//网络变化接收者
         @Override
@@ -76,8 +80,6 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
                 Log.e("a111", "onCreate: 有网" );
             }else {
                 //没网
-                Intent intent1=new Intent(LoginActivity.this,MeiwangActivity.class);
-                startActivity(intent1);
                 Log.e("a111", "onCreate: 11；没网" );
             }
         }
@@ -175,10 +177,28 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
     }
 
     @Override
-    public void login(String str) {
+    public void login(Object o) {
+        LoginBean beans= (LoginBean) o;
+        String str= beans.getMessage();
+        String name=beans.getResult().getUserInfo().getNickName();
+        String HeadPic=beans.getResult().getUserInfo().getHeadPic();
+        String Phone=beans.getResult().getUserInfo().getPhone();
+        int Sex=beans.getResult().getUserInfo().getSex();
+        long LastLoginTim=beans.getResult().getUserInfo().getLastLoginTime();
+        long Birthday=beans.getResult().getUserInfo().getBirthday();
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
         if (str.equals("登陆成功")) {
             Intent intent = new Intent(LoginActivity.this, ShowActivity.class);
+            sp1=getSharedPreferences("xinxi", MODE_PRIVATE);
+
+            SharedPreferences.Editor edit = sp1.edit();
+                edit.putString("NickName",name);
+                edit.putString("HeadPic",HeadPic);
+                edit.putString("Phone",Phone);
+                edit.putInt("Sex",Sex);
+                edit.putLong("LastLoginTime",LastLoginTim);
+                edit.putLong("Birthday",Birthday);
+                edit.commit();
             startActivity(intent);
         }
     }
