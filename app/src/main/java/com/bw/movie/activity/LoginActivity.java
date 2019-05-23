@@ -180,7 +180,6 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
         if (str.equals("登陆成功")) {
             Intent intent = new Intent(LoginActivity.this, ShowActivity.class);
             startActivity(intent);
-            finish();
         }
     }
 

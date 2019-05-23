@@ -42,7 +42,7 @@ public class MeiwangActivity extends AppCompatActivity {
             } else if (NetworkInfo.State.CONNECTED == connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState()) {
                 Toast.makeText(MeiwangActivity.this, "当前网络为移动网络", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(MeiwangActivity.this, "当前网络不可用", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MeiwangActivity.this, "当前网络不可用11", Toast.LENGTH_SHORT).show();
             }
 
         }
