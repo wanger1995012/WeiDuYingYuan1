@@ -171,6 +171,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
         if (Build.VERSION.SDK_INT >= 23) {
             String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
             ActivityCompat.requestPermissions(this, mPermissionList, 123);
+
         }
     }
 
@@ -178,6 +179,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
     public void login(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
         if (str.equals("登陆成功")) {
+
             Intent intent = new Intent(LoginActivity.this, ShowActivity.class);
             startActivity(intent);
         }

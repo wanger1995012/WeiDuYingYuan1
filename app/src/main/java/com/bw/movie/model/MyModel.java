@@ -1,5 +1,7 @@
 package com.bw.movie.model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 
@@ -19,11 +21,13 @@ import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
+import com.bw.movie.bean.XiaDanBean;
 import com.bw.movie.bean.YYLunboBean;
 import com.bw.movie.bean.YYPiaojiaBean;
 import com.bw.movie.bean.YypjBean;
 import com.bw.movie.bean.YyxqBean;
 import com.bw.movie.bean.ZhuceBean;
+import com.bw.movie.contract.ContractInterface;
 import com.bw.movie.utile.RetrofitUtil;
 import com.bw.movie.view.Api;
 import com.bw.movie.view.App;
@@ -31,6 +35,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -47,6 +52,9 @@ public class MyModel {
     private static int USERID;
     private static String SESSIONID;
     XinXiMyCall xinXiMy;
+
+
+
     //登录
     public void Login(Map<String, String> map, final MyCallBreak callBreak) {
         RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
@@ -70,7 +78,9 @@ public class MyModel {
                             //获取登录的数据
                             Gson gson = new Gson();
                             LoginBean bean = gson.fromJson(json, LoginBean.class);
+
                             Log.e("denglua", "call: "+bean.getResult().getUserInfo().getNickName() );
+                            Log.e("denglua", "call: "+bean.getResult().getUserId() );
                             ZhuceBean zhuceBean = new ZhuceBean();
                             zhuceBean.setNickName(bean.getResult().getUserInfo().getNickName());
                             zhuceBean.setBirthday(bean.getResult().getUserInfo().getBirthday());
@@ -78,16 +88,19 @@ public class MyModel {
                             zhuceBean.setLastLoginTime(bean.getResult().getUserInfo().getLastLoginTime());
                             zhuceBean.setPhone(bean.getResult().getUserInfo().getPhone());
                             zhuceBean.setSex(bean.getResult().getUserInfo().getSex());
-<<<<<<< HEAD
+
                             Log.e("aaa", "call: " + zhuceBean.getNickName());
 
-=======
+
                             Log.e("denglua1", "call: " + zhuceBean.nickName);
                             xinXiMy.sressco(zhuceBean);
->>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
+
                             //将赋值
                             USERID = bean.getResult().getUserId();
                             SESSIONID = bean.getResult().getSessionId();
+
+                            //Log.i("userIds", "USERID: ="  + USERID+"");
+                            //Log.i("userIds", "SESSIONID:= "  + SESSIONID+"");
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -740,6 +753,27 @@ public class MyModel {
                             ScheduleBean scheduleBean = gson.fromJson(json, ScheduleBean.class);
                             myCallBreak.sressco(scheduleBean);
                         } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+    }
+    //去下蛋
+    public void ToXiaDan(Map<String,Object> map , final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.quXiaDan("/movieApi/movie/v1/verify/buyMovieTicket" ,USERID+"", SESSIONID, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            XiaDanBean xiaDanBean = gson.fromJson(json, XiaDanBean.class);
+                            myCallBreak.sressco(xiaDanBean);
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
