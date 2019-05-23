@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.adapter.FlowAdapter;
@@ -24,12 +25,19 @@ import com.bw.movie.adapter.HotAdapter;
 import com.bw.movie.adapter.JiAdapter;
 import com.bw.movie.adapter.ReAdapter;
 import com.bw.movie.bean.ComingSoonBean;
+import com.bw.movie.bean.Commingbean;
 import com.bw.movie.bean.HotMovieListBean;
+import com.bw.movie.bean.Hotbean;
 import com.bw.movie.bean.NowPlayingBean;
+import com.bw.movie.bean.Nowbean;
 import com.bw.movie.contract.ContractInterface;
+import com.bw.movie.dao.greendao.gen.DaoMaster;
+import com.bw.movie.dao.greendao.gen.HotbeanDao;
 import com.bw.movie.hotactivity.DetailsActivity;
 import com.bw.movie.hotactivity.HotActivity;
 import com.bw.movie.presenter.MyPresenter;
+import com.bw.movie.utile.RetrofitUtil;
+import com.bw.movie.view.App;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +55,8 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
     List<HotMovieListBean.ResultBean> bean1 = new ArrayList<>();
     List<NowPlayingBean.ResultBean>   bean2 = new ArrayList<>();
     List<ComingSoonBean.ResultBean>   bean3 = new ArrayList<>();
+
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
-    int a;
     RecyclerCoverFlow flow;
     RecyclerView rc1,rc2,rc3;
     RelativeLayout hot,re,ji;
@@ -65,7 +73,7 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
     TextView textFimlSe;
     RelativeLayout layoutFimlSe;
     int isShow = 1;
-
+    public  boolean netWork;
 
 
     @Nullable
@@ -94,12 +102,58 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        netWork = RetrofitUtil.isNetWork(getContext());
+        if(netWork){
+            p.toModel1();
+            p.toModel2();
+            p.toModel3();
+        }else{
+            //第1个RecyclerView 没网显示
+            List<Hotbean> hotbeans1 = App.daoSession2.loadAll(Hotbean.class);
+            for (int i = 0; i < hotbeans1.size(); i++) {
+                HotMovieListBean.ResultBean bean = new HotMovieListBean.ResultBean();
+                bean.setFollowMovie(hotbeans1.get(i).getFollowMovie());
+                bean.setId(hotbeans1.get(i).getId());
+                bean.setImageUrl(hotbeans1.get(i).getImageUrl());
+                bean.setName(hotbeans1.get(i).getName());
+                bean.setRank(hotbeans1.get(i).getRank());
+                bean.setSummary(hotbeans1.get(i).getSummary());
+                bean1.add(bean);
+            }
+            //第二个RecyclerView 没网显示
+            List<Nowbean> nowbeans = App.daoSession2.loadAll(Nowbean.class);
+            for (int i = 0; i < nowbeans.size(); i++) {
+                NowPlayingBean.ResultBean bean = new NowPlayingBean.ResultBean();
+                bean.setFollowMovie(hotbeans1.get(i).getFollowMovie());
+                bean.setId(hotbeans1.get(i).getId());
+                bean.setImageUrl(hotbeans1.get(i).getImageUrl());
+                bean.setName(hotbeans1.get(i).getName());
+                bean.setRank(hotbeans1.get(i).getRank());
+                bean.setSummary(hotbeans1.get(i).getSummary());
+                bean2.add(bean);
+            }
+            //第3个RecyclerView 没网显示
+            List<Commingbean> commingbeans = App.daoSession2.loadAll(Commingbean.class);
+            for (int i = 0; i < commingbeans.size(); i++) {
+                ComingSoonBean.ResultBean bean = new ComingSoonBean.ResultBean();
+                bean.setFollowMovie(hotbeans1.get(i).getFollowMovie());
+                bean.setId(hotbeans1.get(i).getId());
+                bean.setImageUrl(hotbeans1.get(i).getImageUrl());
+                bean.setName(hotbeans1.get(i).getName());
+                bean.setRank(hotbeans1.get(i).getRank());
+                bean.setSummary(hotbeans1.get(i).getSummary());
+                bean3.add(bean);
+            }
+            //适配器
+            setRc1();
+            setRc2();
+            setRc3();
+            setFlow();
+        }
+        //适配器
         setRc1();
         setRc2();
         setRc3();
-        p.toModel1();
-        p.toModel2();
-        p.toModel3();
         hotClick();
         TranSlate();//平移
         flow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
@@ -177,8 +231,6 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
                 }
             }
         });
-
-
     }
 
     private void TranSlate() {
@@ -241,9 +293,14 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         adapter4.setListener(new FlowAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getContext(),DetailsActivity.class);
-                intent.putExtra("MovieId",position+"");
-                startActivity(intent);
+                if(netWork){
+                    Intent intent = new Intent(getContext(),DetailsActivity.class);
+                    intent.putExtra("MovieId",position+"");
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getContext(), "请检查网络连接后再点击",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
@@ -258,9 +315,13 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         adapter3.setListener(new JiAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getContext(),DetailsActivity.class);
-                intent.putExtra("MovieId",position+"");
-                startActivity(intent);
+                if(netWork){
+                    Intent intent = new Intent(getContext(),DetailsActivity.class);
+                    intent.putExtra("MovieId",position+"");
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getContext(), "请检查网络连接后再点击",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -275,9 +336,13 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         adapter2.setListener(new ReAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getContext(),DetailsActivity.class);
-                intent.putExtra("MovieId",position+"");
-                startActivity(intent);
+                if(netWork){
+                    Intent intent = new Intent(getContext(),DetailsActivity.class);
+                    intent.putExtra("MovieId",position+"");
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getContext(), "请检查网络连接后再点击",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -293,9 +358,13 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         adapter1.setListener(new HotAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getContext(),DetailsActivity.class);
-                intent.putExtra("MovieId",position+"");
-                startActivity(intent);
+                if(netWork){
+                    Intent intent = new Intent(getContext(),DetailsActivity.class);
+                    intent.putExtra("MovieId",position+"");
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getContext(), "请检查网络连接后再点击",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
