@@ -1,11 +1,15 @@
 package com.bw.movie.utile;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.facebook.common.util.ByteConstants;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -56,4 +60,16 @@ public class RetrofitUtil {
     public <T>T gets(Class<T> tClass){
         return retrofit.create(tClass);
     }
+
+    public static boolean isNetWork(Context context){
+        if(context != null){
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo info = manager.getActiveNetworkInfo();
+            if(info != null){
+                return info.isConnected();
+            }
+        }
+        return false;
+    }
+
 }

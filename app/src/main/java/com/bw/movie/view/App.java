@@ -1,12 +1,13 @@
 package com.bw.movie.view;
 
 import android.app.Application;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
-import com.baway.rikao0411.greendao.gen.DaoMaster;
-import com.baway.rikao0411.greendao.gen.DaoSession;
 
+import com.bw.movie.dao.greendao.gen.DaoMaster;
+import com.bw.movie.dao.greendao.gen.DaoSession;
 import com.bw.movie.utile.T;
 
 import com.facebook.cache.disk.DiskCacheConfig;
@@ -24,8 +25,12 @@ import org.greenrobot.greendao.database.Database;
  */
 public class App extends Application {
     public static final boolean ENCRYPTED = true;
+
+        private static App        instance;
     public static DaoSession daoSession;
-    private static App        instance;
+    public static DaoSession daoSession2;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -44,6 +49,12 @@ public class App extends Application {
         //注意这里是getWritableDb()
         Database db =  helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
+
+
+        DaoMaster.DevOpenHelper helper2 =  new DaoMaster.DevOpenHelper(this, "types");
+        SQLiteDatabase database = helper2.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(database);
+        daoSession2 = daoMaster.newSession();
 
 
         T.init(this);

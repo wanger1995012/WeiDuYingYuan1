@@ -92,7 +92,7 @@ public class XuanZuoActivity extends AppCompatActivity {
                         text_sum_price.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                
+                                Toast.makeText(XuanZuoActivity.this, "微信支付成功",Toast.LENGTH_LONG).show();
                             }
                         });
                         break;
@@ -102,7 +102,7 @@ public class XuanZuoActivity extends AppCompatActivity {
                         text_sum_price.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
+                                Toast.makeText(XuanZuoActivity.this, "支付宝支付成功",Toast.LENGTH_LONG).show();
                             }
                         });
                         break;
