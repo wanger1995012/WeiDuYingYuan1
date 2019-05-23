@@ -1,4 +1,4 @@
-package com.baway.rikao0411.greendao.gen;
+package com.bw.movie.dao.greendao.gen;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,11 +21,17 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
+        CommingbeanDao.createTable(db, ifNotExists);
+        HotbeanDao.createTable(db, ifNotExists);
+        NowbeanDao.createTable(db, ifNotExists);
         ZhuceBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
+        CommingbeanDao.dropTable(db, ifExists);
+        HotbeanDao.dropTable(db, ifExists);
+        NowbeanDao.dropTable(db, ifExists);
         ZhuceBeanDao.dropTable(db, ifExists);
     }
 
@@ -45,6 +51,9 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
+        registerDaoClass(CommingbeanDao.class);
+        registerDaoClass(HotbeanDao.class);
+        registerDaoClass(NowbeanDao.class);
         registerDaoClass(ZhuceBeanDao.class);
     }
 

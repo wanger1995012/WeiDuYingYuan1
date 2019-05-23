@@ -1,4 +1,4 @@
-package com.baway.rikao0411.greendao.gen;
+package com.bw.movie.dao.greendao.gen;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;

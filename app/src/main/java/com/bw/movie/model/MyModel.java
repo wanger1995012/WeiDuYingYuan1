@@ -10,10 +10,11 @@ import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
+import com.bw.movie.bean.Hotbean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.NowPlayingBean;
 
-import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
+
 
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
@@ -77,8 +78,13 @@ public class MyModel {
                             zhuceBean.setLastLoginTime(bean.getResult().getUserInfo().getLastLoginTime());
                             zhuceBean.setPhone(bean.getResult().getUserInfo().getPhone());
                             zhuceBean.setSex(bean.getResult().getUserInfo().getSex());
+<<<<<<< HEAD
+                            Log.e("aaa", "call: " + zhuceBean.getNickName());
+
+=======
                             Log.e("denglua1", "call: " + zhuceBean.nickName);
                             xinXiMy.sressco(zhuceBean);
+>>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
                             //将赋值
                             USERID = bean.getResult().getUserId();
                             SESSIONID = bean.getResult().getSessionId();
@@ -148,6 +154,7 @@ public class MyModel {
                             String json = responseBody.string();
                             Gson gson = new Gson();
                             HotMovieListBean hotMovieListBean = gson.fromJson(json, HotMovieListBean.class);
+//                            Hotbean hotbean = (Hotbean) hotMovieListBean.getResult();
                             myCallBreak.sressco(hotMovieListBean);
                         } catch (Exception e) {
                             e.printStackTrace();

@@ -28,7 +28,7 @@ android {
     }
     greendao {
         schemaVersion 1
-        daoPackage 'com.baway.rikao0411.greendao.gen'
+        daoPackage 'com.bw.movie.dao.greendao.gen'
         targetGenDir 'src/main/java'
     }
     sourceSets {

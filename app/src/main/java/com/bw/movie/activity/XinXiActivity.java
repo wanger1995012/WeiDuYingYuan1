@@ -77,6 +77,15 @@ public class XinXiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_xin_xi);
         ButterKnife.bind(this);
         mContext = this;
+<<<<<<< HEAD
+        //拿到数据库中的信息
+//        List<ZhuceBean> zhuceBeans = App.daoSession.loadAll(ZhuceBean.class);
+//        String nickName = zhuceBeans.get(0).getNickName();
+//        String phone = zhuceBeans.get(0).getPhone();
+//        long riqi = zhuceBeans.get(0).getBirthday();
+//        int sex = zhuceBeans.get(0).getSex();
+//        long youxiang = zhuceBeans.get(0).getLastLoginTime();
+=======
         //拿到bean中信息
         MyModel myModel=new MyModel();
         myModel.setXinXiMyCall(new MyModel.XinXiMyCall() {
@@ -91,20 +100,21 @@ public class XinXiActivity extends AppCompatActivity {
         long riqi = zhuceBean.getBirthday();
         int sex = zhuceBean.getSex();
         long youxiang = zhuceBean.getLastLoginTime();
+>>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
         //设置返回
         FanhuiInit();
         //设置用户头像
         TouxiangInit();
         //设置用户的信息
-        myxinxiNicheng.setText(nickName);
-        myxinxiPhone.setText(phone);
-        myxinxiRiqi.setText(riqi + "");
-        if (sex == 1) {
-            myxinxiSex.setText("男");
-        } else {
-            myxinxiSex.setText("女");
-        }
-        myxinxiYouxiang.setText(youxiang + "");
+//        myxinxiNicheng.setText(nickName);
+//        myxinxiPhone.setText(phone);
+//        myxinxiRiqi.setText(riqi + "");
+//        if (sex == 1) {
+//            myxinxiSex.setText("男");
+//        } else {
+//            myxinxiSex.setText("女");
+//        }
+//        myxinxiYouxiang.setText(youxiang + "");
         //设置修改的点击事件
         myxinxiBtnXiugai.setOnClickListener(new View.OnClickListener() {
             @Override
