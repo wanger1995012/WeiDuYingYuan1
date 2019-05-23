@@ -53,7 +53,8 @@ public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface
                 @Override
                 public void sressco(Object o) {
                     ContractInterface.VLogin vLogin = (ContractInterface.VLogin) tt;
-                    vLogin.login((String) o);
+                    LoginBean beans= (LoginBean) o;
+                    vLogin.login(beans);
                 }
             });
         }

@@ -6,6 +6,7 @@ import com.bw.movie.bean.ComingSoonBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
+import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
@@ -26,7 +27,7 @@ public class ContractInterface {
     //V
     public interface VLogin{
         //登录
-        public void login(String str);
+        public void login(Object o);
         //注册
         public void VZhuce(String str);
     }
