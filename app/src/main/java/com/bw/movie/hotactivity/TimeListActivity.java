@@ -83,7 +83,7 @@ public class TimeListActivity extends AppCompatActivity implements ContractInter
         recyclerView.setAdapter(adapter);
         adapter.setMyCallBack(new ScheduleAdapter.MyCallBack() {
             @Override
-            public void clickListener(View view, String begin, String end, String ting , double price) {
+            public void clickListener(View view, String begin, String end, String ting , double price,String id) {
                 Intent intent1 = new Intent(TimeListActivity.this, XuanZuoActivity.class);
                 intent1.putExtra("begin",begin);
                 intent1.putExtra("end",end);
@@ -92,6 +92,7 @@ public class TimeListActivity extends AppCompatActivity implements ContractInter
                 intent1.putExtra("y_address",y_address);
                 intent1.putExtra("m_name", m_name);
                 intent1.putExtra("price" , price+"");
+                intent1.putExtra("id" , id+"");
                 startActivity(intent1);
             }
         });

@@ -129,5 +129,8 @@ public interface Api {
     @GET
     public Observable<ResponseBody> FindPiao(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId ,@Query("cinemasId") String cinemasId, @Query("movieId") int movieId);
 
-
+    //去下单
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> quXiaDan(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
 }

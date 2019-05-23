@@ -1,6 +1,7 @@
 package com.bw.movie.view;
 
 import android.app.Application;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.baidu.mapapi.CoordType;
@@ -30,11 +31,13 @@ public class App extends Application {
     public static DaoSession daoSession;
     public static DaoSession daoSession2;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         //设置fresco的缓存路径及大小
+        Context context = getApplicationContext();
+
+
         DiskCacheConfig diskCacheConfig=DiskCacheConfig.newBuilder(this)
                 .setMaxCacheSize(200*ByteConstants.MB)
                 .setBaseDirectoryName("com.bw.fresco")
@@ -70,4 +73,5 @@ public class App extends Application {
     public static App getInstance() {
         return instance;
     }
+
 }

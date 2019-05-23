@@ -14,6 +14,7 @@ import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
+import com.bw.movie.bean.XiaDanBean;
 import com.bw.movie.bean.YYLunboBean;
 import com.bw.movie.bean.YYPiaojiaBean;
 import com.bw.movie.bean.YypjBean;
@@ -439,6 +440,21 @@ public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface
             public void sressco(Object o) {
                 ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
                 d.setYuanPiao((ScheduleBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelXiaDan(String scheduleId, int amount, String sign) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("scheduleId", scheduleId + "");
+        map.put("amount", amount+"");
+        map.put("sign", sign+"");
+        myModel.ToXiaDan(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ViewXiaDan v = (ContractInterface.ViewXiaDan) tt;
+                v.XiaDan((XiaDanBean) o);
             }
         });
     }
