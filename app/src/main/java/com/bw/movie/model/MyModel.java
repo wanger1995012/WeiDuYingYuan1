@@ -45,7 +45,7 @@ import rx.schedulers.Schedulers;
 public class MyModel {
     private static int USERID;
     private static String SESSIONID;
-
+    XinXiMyCall xinXiMy;
     //登录
     public void Login(Map<String, String> map, final MyCallBreak callBreak) {
         RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
@@ -66,9 +66,10 @@ public class MyModel {
                             String m1 = object1.getString("message");
                             callBreak.sressco(m1);
 
-                            //添加数据到数据库
+                            //获取登录的数据
                             Gson gson = new Gson();
                             LoginBean bean = gson.fromJson(json, LoginBean.class);
+                            Log.e("denglua", "call: "+bean.getResult().getUserInfo().getNickName() );
                             ZhuceBean zhuceBean = new ZhuceBean();
                             zhuceBean.setNickName(bean.getResult().getUserInfo().getNickName());
                             zhuceBean.setBirthday(bean.getResult().getUserInfo().getBirthday());
@@ -76,14 +77,11 @@ public class MyModel {
                             zhuceBean.setLastLoginTime(bean.getResult().getUserInfo().getLastLoginTime());
                             zhuceBean.setPhone(bean.getResult().getUserInfo().getPhone());
                             zhuceBean.setSex(bean.getResult().getUserInfo().getSex());
-                            Log.e("aaa", "call: " + zhuceBean.getNickName());
-                            ZhuceBeanDao daoSession = App.daoSession.getZhuceBeanDao();
-                            daoSession.insert(zhuceBean);
+                            Log.e("denglua1", "call: " + zhuceBean.nickName);
+                            xinXiMy.sressco(zhuceBean);
                             //将赋值
                             USERID = bean.getResult().getUserId();
                             SESSIONID = bean.getResult().getSessionId();
-                            Log.i("tagss", "USERID:    " + USERID);
-                            Log.i("tagss", "SESSIONID: " + SESSIONID);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -687,7 +685,11 @@ public class MyModel {
                             String json = responseBody.string();
                             Gson gson=new Gson();
                             LoginBean beans=gson.fromJson(json,LoginBean.class);
+                            String message=beans.getMessage();
+                            Log.e("message","111:z"+json);
                             callBreak.sressco(beans);
+                            USERID = beans.getResult().getUserId();
+                            SESSIONID = beans.getResult().getSessionId();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -741,5 +743,13 @@ public class MyModel {
     //设置接口
     public interface MyCallBreak {
         public void sressco(Object o);
+    }
+    //设置接口
+    public interface XinXiMyCall{
+        public void sressco(ZhuceBean bean);
+    }
+
+    public void setXinXiMyCall(XinXiMyCall xinXiMyCall) {
+        this.xinXiMy = xinXiMyCall;
     }
 }

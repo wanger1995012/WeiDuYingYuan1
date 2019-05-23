@@ -486,6 +486,7 @@ public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface
     public void PWXDL(String code) {
         Map<String, Object> map = new HashMap<>();
         map.put("code", code);
+        Log.e("code", "PWXDL: "+code );
         myModel.weixindenglu(map, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {

@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.bw.movie.activity.LoginActivity;
+import com.bw.movie.activity.ShowActivity;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.contract.ContractInterface;
 import com.bw.movie.presenter.MyPresenter;
@@ -60,10 +62,10 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler,Cont
     @Override
     public void onResp(BaseResp baseResp) {
         if (baseResp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
-            //Log.e("tag","微信登录");
+            Log.e("tag1","微信登录");
             SendAuth.Resp authResp = (SendAuth.Resp) baseResp;
             String code = authResp.code;
-            //Log.e("tag",code);
+            Log.e("tag1",code);
             pwxdl.PWXDL(code);
         }
     }
@@ -73,14 +75,14 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler,Cont
         LoginBean loginBean = (LoginBean)str;
         if(loginBean.getMessage().equals("登陆成功")){
             Toast.makeText(this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
-            int userId = loginBean.getResult().getUserId();
-            String sessionId = loginBean.getResult().getSessionId();
-            SharedPreferences sp=getSharedPreferences("config",MODE_PRIVATE);
-            SharedPreferences.Editor edit = sp.edit();
-            edit.putString("userId", String.valueOf(userId));
-            edit.putString("sessionId",sessionId);
-            edit.commit();
-            Intent intentss = new Intent(WXEntryActivity.this,LoginActivity.class);
+//            int userId = loginBean.getResult().getUserId();
+//            String sessionId = loginBean.getResult().getSessionId();
+//            SharedPreferences sp=getSharedPreferences("config",MODE_PRIVATE);
+//            SharedPreferences.Editor edit = sp.edit();
+//            edit.putString("userId", String.valueOf(userId));
+//            edit.putString("sessionId",sessionId);
+//            edit.commit();
+            Intent intentss = new Intent(WXEntryActivity.this,ShowActivity.class);
             startActivity(intentss);
         }else{
             Toast.makeText(this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();

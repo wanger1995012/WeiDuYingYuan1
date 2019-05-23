@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 import com.bw.movie.R;
+import com.bw.movie.activity.GouPiaoActivity;
 import com.bw.movie.activity.LoginActivity;
 import com.bw.movie.activity.MyGuanzhuActivity;
 import com.bw.movie.activity.MyQianActivity;
@@ -93,7 +94,8 @@ public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
         myjilu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(getActivity(),GouPiaoActivity.class);
+                startActivity(intent);
             }
         });
     }
