@@ -4,6 +4,7 @@ import android.util.Log;
 
 
 import com.bw.movie.adapter.GZYYBean;
+import com.bw.movie.bean.CinemaBean;
 import com.bw.movie.bean.ComingSoonBean;
 import com.bw.movie.bean.DetailsBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
@@ -14,6 +15,7 @@ import com.bw.movie.bean.NowPlayingBean;
 
 import com.baway.rikao0411.greendao.gen.ZhuceBeanDao;
 
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
 import com.bw.movie.bean.YYLunboBean;
@@ -693,6 +695,49 @@ public class MyModel {
                         }
                     }
                 });
+    }
+
+    //根据电影Id 查询影院
+    public void FindYuan(int movieId , final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.FindYuan("/movieApi/movie/v1/findCinemasListByMovieId", USERID+"", SESSIONID,movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            CinemaBean cinemaBean = gson.fromJson(json, CinemaBean.class);
+                            myCallBreak.sressco(cinemaBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    //通过电影ID和影院ID查询电影票
+    public void QueryP(String y_id, int movieId , final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.FindPiao("/movieApi/movie/v1/findMovieScheduleList",USERID+"", SESSIONID,y_id+"",movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            ScheduleBean scheduleBean = gson.fromJson(json, ScheduleBean.class);
+                            myCallBreak.sressco(scheduleBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
     }
 
     //设置接口

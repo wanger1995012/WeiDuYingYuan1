@@ -107,6 +107,11 @@
         <activity android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             />
+
+        <activity android:name=".hotactivity.ByIdMoveMovieActivity" />
+        <activity android:name=".hotactivity.XuanZuoActivity" />
+        <activity android:name=".hotactivity.TimeListActivity"></activity>
+
     </application>
 
 </manifest>

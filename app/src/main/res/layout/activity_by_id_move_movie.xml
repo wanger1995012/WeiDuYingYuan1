@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".hotactivity.ByIdMoveMovieActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/yuan_movie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_18"
+            android:text="name"
+            android:layout_marginTop="@dimen/dp_35"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:textColor="#333333"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_10"
+            android:text="选择合适的影院"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:textColor="#b11450"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"
+            android:id="@+id/x_recycler_view_yuan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/yuan_back"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/myxinxifanhui" />
+
+</RelativeLayout>
