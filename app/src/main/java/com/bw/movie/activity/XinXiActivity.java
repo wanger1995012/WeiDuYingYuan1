@@ -2,6 +2,7 @@ package com.bw.movie.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -30,8 +31,11 @@ import com.bw.movie.view.App;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,6 +75,7 @@ public class XinXiActivity extends AppCompatActivity {
     private File tempFile;
     int i = 0;
     ZhuceBean zhuceBean;
+    private SharedPreferences sp1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +92,15 @@ public class XinXiActivity extends AppCompatActivity {
 //        long youxiang = zhuceBeans.get(0).getLastLoginTime();
 
         //拿到bean中信息
+<<<<<<< HEAD
+        sp1=getSharedPreferences("xinxi", MODE_PRIVATE);
+        String name=sp1.getString("NickName","");
+        String HeadPic=sp1.getString("HeadPic","");
+        String Phone=sp1.getString("Phone","");
+        int Sex=sp1.getInt("Sex",123);
+        long LastLoginTime=sp1.getLong("LastLoginTime",123);
+        long Birthday=sp1.getLong("Birthday",123);
+=======
         MyModel myModel=new MyModel();
         myModel.setXinXiMyCall(new MyModel.XinXiMyCall() {
             @Override
@@ -100,12 +114,33 @@ public class XinXiActivity extends AppCompatActivity {
         long riqi = zhuceBean.getBirthday();
         int sex = zhuceBean.getSex();
         long youxiang = zhuceBean.getLastLoginTime();
+<<<<<<< HEAD
 
+=======
+>>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
+>>>>>>> fe9889c404df20d6b3b307afaeb27e9d7a03a754
+>>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
         //设置返回
         FanhuiInit();
         //设置用户头像
         TouxiangInit();
         //设置用户的信息
+<<<<<<< HEAD
+        //设置毫秒值
+        long date=Birthday;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
+        // time为转换格式后的字符串
+        String time = dateFormat.format(new Date(date));
+        myxinxiNicheng.setText(name);
+        myxinxiPhone.setText(Phone);
+        myxinxiRiqi.setText(time);
+        if (Sex == 1) {
+            myxinxiSex.setText("男");
+        } else {
+            myxinxiSex.setText("女");
+        }
+        myxinxiYouxiang.setText(LastLoginTime+"");
+=======
 //        myxinxiNicheng.setText(nickName);
 //        myxinxiPhone.setText(phone);
 //        myxinxiRiqi.setText(riqi + "");
@@ -115,6 +150,7 @@ public class XinXiActivity extends AppCompatActivity {
 //            myxinxiSex.setText("女");
 //        }
 //        myxinxiYouxiang.setText(youxiang + "");
+>>>>>>> fe9889c404df20d6b3b307afaeb27e9d7a03a754
         //设置修改的点击事件
         myxinxiBtnXiugai.setOnClickListener(new View.OnClickListener() {
             @Override

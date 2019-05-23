@@ -71,7 +71,7 @@ public class ZhuceActivity extends AppCompatActivity implements ContractInterfac
     }
 
     @Override
-    public void login(String str) {
+    public void login(Object o) {
 
     }
 

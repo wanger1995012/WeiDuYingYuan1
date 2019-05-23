@@ -76,9 +76,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LunboActivity" />
-        <activity android:name=".activity.LoginActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.ZhuceActivity" />
-        <activity android:name=".activity.ShowActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.ShowActivity" />
         <activity
             android:name=".activity.MeiwangActivity"
             android:launchMode="singleTask" />

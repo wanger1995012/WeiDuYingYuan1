@@ -51,10 +51,13 @@ import rx.schedulers.Schedulers;
 public class MyModel {
     private static int USERID;
     private static String SESSIONID;
+<<<<<<< HEAD
     XinXiMyCall xinXiMy;
 
 
 
+=======
+>>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
     //登录
     public void Login(Map<String, String> map, final MyCallBreak callBreak) {
         RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
@@ -67,18 +70,15 @@ public class MyModel {
                     public void call(ResponseBody responseBody) {
                         try {
                             String json = responseBody.string();
-                            JSONObject object = new JSONObject(json);
-                            String m = object.getString("message");
-                            callBreak.sressco(m);
-                            Log.e("aaa", "login: " + json);
-                            JSONObject object1 = new JSONObject(json);
-                            String m1 = object1.getString("message");
-                            callBreak.sressco(m1);
-
-                            //获取登录的数据
                             Gson gson = new Gson();
                             LoginBean bean = gson.fromJson(json, LoginBean.class);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+                            callBreak.sressco(bean);
+=======
+>>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
                             Log.e("denglua", "call: "+bean.getResult().getUserInfo().getNickName() );
                             Log.e("denglua", "call: "+bean.getResult().getUserId() );
                             ZhuceBean zhuceBean = new ZhuceBean();
@@ -94,6 +94,7 @@ public class MyModel {
 
                             Log.e("denglua1", "call: " + zhuceBean.nickName);
                             xinXiMy.sressco(zhuceBean);
+<<<<<<< HEAD
 
                             //将赋值
                             USERID = bean.getResult().getUserId();
@@ -101,6 +102,15 @@ public class MyModel {
 
                             //Log.i("userIds", "USERID: ="  + USERID+"");
                             //Log.i("userIds", "SESSIONID:= "  + SESSIONID+"");
+=======
+>>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
+>>>>>>> fe9889c404df20d6b3b307afaeb27e9d7a03a754
+                            //将赋值
+                            USERID = bean.getResult().getUserId();
+                            SESSIONID = bean.getResult().getSessionId();
+                            Log.e("ab123", "call: "+USERID );
+                            Log.e("ab123", "call: "+SESSIONID );
+>>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -784,13 +794,5 @@ public class MyModel {
     //设置接口
     public interface MyCallBreak {
         public void sressco(Object o);
-    }
-    //设置接口
-    public interface XinXiMyCall{
-        public void sressco(ZhuceBean bean);
-    }
-
-    public void setXinXiMyCall(XinXiMyCall xinXiMyCall) {
-        this.xinXiMy = xinXiMyCall;
     }
 }

@@ -89,7 +89,7 @@ public class MyGuanzhuYingyuan extends Fragment implements ContractInterface.VGZ
         myguanzhuYingyuan.loadMoreComplete();
         myguanzhuYingyuan.refreshComplete();
         list.clear();
-        this.list.addAll(lst);
+        list.addAll(lst);
         guanZhuyingyuanAdapter.notifyDataSetChanged();
     }
 
