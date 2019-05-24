@@ -1,10 +1,12 @@
 package com.bw.movie.hotactivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,12 +18,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.bw.movie.bean.XiaDanBean;
+import com.bw.movie.contract.ContractInterface;
+import com.bw.movie.presenter.MyPresenter;
+import com.bw.movie.utile.EncryptUtil;
 import com.bw.movie.view.MoveSeatView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class XuanZuoActivity extends AppCompatActivity {
+public class XuanZuoActivity extends AppCompatActivity implements ContractInterface.ViewXiaDan {
 
     @BindView(R.id.xuan_yuan_name)
     TextView xuanYuanName;
@@ -45,6 +54,9 @@ public class XuanZuoActivity extends AppCompatActivity {
     TextView zhifu,text_sum_price;
     RadioGroup group;
     public float i1;
+    private String id;
+    int is = 0;
+    ContractInterface.PresenterInterface p = new MyPresenter<>(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +80,7 @@ public class XuanZuoActivity extends AppCompatActivity {
         String y_name = intent.getStringExtra("y_name");
         String m_name = intent.getStringExtra("m_name");
         String y_address = intent.getStringExtra("y_address");
+        id = intent.getStringExtra("id");
         xuanYuanName.setText(y_name);
         xuanYuanAddress.setText(y_address);
         xuanYingName.setText(m_name);
@@ -80,7 +93,6 @@ public class XuanZuoActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linear_xian);
         //点击对勾，显示此布局//点击对勾，显示此布局
         relative_xian_cang = findViewById(R.id.relative_xian_cang);
-
         price = findViewById(R.id.price_jia);
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -92,7 +104,7 @@ public class XuanZuoActivity extends AppCompatActivity {
                         text_sum_price.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(XuanZuoActivity.this, "微信支付成功",Toast.LENGTH_LONG).show();
+
                             }
                         });
                         break;
@@ -111,13 +123,7 @@ public class XuanZuoActivity extends AppCompatActivity {
         });
 
 
-        //点击对勾的监听
-        image_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                relative_xian_cang.setVisibility(View.VISIBLE);
-            }
-        });
+
         //点击隐藏微信和支付宝的支付界面
         image_yincang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +160,6 @@ public class XuanZuoActivity extends AppCompatActivity {
             }
 
             //选中座位时
-            int is = 0;
             @Override
             public void checked(int row, int column) {
                 is++;
@@ -166,6 +171,7 @@ public class XuanZuoActivity extends AppCompatActivity {
                 double i = v * is;
                 i1 = (float) i;
                 price.setText(i1+"");
+                text_sum_price.setText("微信支付"+i1+"元");
 
             }
             //取消一个座位时
@@ -179,6 +185,7 @@ public class XuanZuoActivity extends AppCompatActivity {
                     linearLayout.setVisibility(View.GONE);
                 }
                 price.setText(i1 +"");
+                text_sum_price.setText("微信支付"+i1+"元");
             }
 
             @Override
@@ -187,10 +194,34 @@ public class XuanZuoActivity extends AppCompatActivity {
             }
 
         });
+
+        //点击对勾的监听
+        image_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sp = getSharedPreferences("name", MODE_PRIVATE);
+                String userId = sp.getString("userId","1363");
+                Log.i("xiadan", "tupian -onClick: " + userId);
+                Log.i("xiadan", "tupian -onClick: " + id +"  " + is + "   " +EncryptUtil.MD5(userId+id+is+"movie") );
+                p.toModelXiaDan(id,is, EncryptUtil.MD5(userId+id+is+"movie"));
+                relative_xian_cang.setVisibility(View.VISIBLE);
+            }
+        });
 //        int i = seatsTotal / 15;
 //        Log.e("tag","   %     " + seatsTotal % 15);
         moveSeatView.setData(7, 15);
 
 
+    }
+
+
+    @Override
+    public void XiaDan(XiaDanBean object) {
+        if(object.getMessage().equals("下单成功")){
+            Toast.makeText(this, object.getMessage(),Toast.LENGTH_LONG).show();
+            Log.i("xiadan", "XiaDan: "    + object.getStatus());
+            Log.i("xiadan", "XiaDan: "    + object.getMessage());
+            Log.i("xiadan", "XiaDan: "    + object.getOrderId());
+        }
     }
 }

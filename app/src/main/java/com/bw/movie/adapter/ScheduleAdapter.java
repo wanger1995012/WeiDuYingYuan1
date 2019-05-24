@@ -38,7 +38,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Holder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Holder holder, int i) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int i) {
         final String screeningHall = list.get(i).getScreeningHall();
         holder.piaoTing.setText(screeningHall);
         final String beginTime = list.get(i).getBeginTime();
@@ -51,7 +51,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Holder
         holder.imageIntoXuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myCallBack.clickListener(holder.itemView,beginTime,endTime,screeningHall,price);
+                myCallBack.clickListener(holder.itemView,beginTime,endTime,screeningHall,price,list.get(i).getId()+"");
             }
         });
 
@@ -82,6 +82,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Holder
     }
 
     public interface MyCallBack{
-        public void clickListener(View view, String begin, String end, String ting,double price);
+        public void clickListener(View view, String begin, String end, String ting,double price,String id);
     }
 }
