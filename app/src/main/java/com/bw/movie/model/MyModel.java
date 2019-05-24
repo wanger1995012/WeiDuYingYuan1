@@ -21,6 +21,7 @@ import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
+import com.bw.movie.bean.WXPlyBean;
 import com.bw.movie.bean.XiaDanBean;
 import com.bw.movie.bean.YYLunboBean;
 import com.bw.movie.bean.YYPiaojiaBean;
@@ -51,13 +52,11 @@ import rx.schedulers.Schedulers;
 public class MyModel {
     private static int USERID;
     private static String SESSIONID;
-<<<<<<< HEAD
-    XinXiMyCall xinXiMy;
 
 
 
-=======
->>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
+
+
     //登录
     public void Login(Map<String, String> map, final MyCallBreak callBreak) {
         RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
@@ -72,13 +71,9 @@ public class MyModel {
                             String json = responseBody.string();
                             Gson gson = new Gson();
                             LoginBean bean = gson.fromJson(json, LoginBean.class);
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
                             callBreak.sressco(bean);
-=======
->>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
+
                             Log.e("denglua", "call: "+bean.getResult().getUserInfo().getNickName() );
                             Log.e("denglua", "call: "+bean.getResult().getUserId() );
                             ZhuceBean zhuceBean = new ZhuceBean();
@@ -90,11 +85,7 @@ public class MyModel {
                             zhuceBean.setSex(bean.getResult().getUserInfo().getSex());
 
                             Log.e("aaa", "call: " + zhuceBean.getNickName());
-
-
                             Log.e("denglua1", "call: " + zhuceBean.nickName);
-                            xinXiMy.sressco(zhuceBean);
-<<<<<<< HEAD
 
                             //将赋值
                             USERID = bean.getResult().getUserId();
@@ -102,15 +93,10 @@ public class MyModel {
 
                             //Log.i("userIds", "USERID: ="  + USERID+"");
                             //Log.i("userIds", "SESSIONID:= "  + SESSIONID+"");
-=======
->>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
->>>>>>> fe9889c404df20d6b3b307afaeb27e9d7a03a754
-                            //将赋值
-                            USERID = bean.getResult().getUserId();
-                            SESSIONID = bean.getResult().getSessionId();
+
                             Log.e("ab123", "call: "+USERID );
                             Log.e("ab123", "call: "+SESSIONID );
->>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -789,6 +775,26 @@ public class MyModel {
                     }
                 });
 
+    }
+    //去支付，根据支付类型和支付的订单号
+    public void toPay(Map<String , Object> map,final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.toPay("/movieApi/movie/v1/verify/pay" ,USERID+"", SESSIONID, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            WXPlyBean wxPlyBean = gson.fromJson(json, WXPlyBean.class);
+                            myCallBreak.sressco(wxPlyBean);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     //设置接口

@@ -181,6 +181,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
     public void login(Object o) {
         LoginBean beans= (LoginBean) o;
         String str= beans.getMessage();
+        int userId=beans.getResult().getUserId();
         String name=beans.getResult().getUserInfo().getNickName();
         String HeadPic=beans.getResult().getUserInfo().getHeadPic();
         String Phone=beans.getResult().getUserInfo().getPhone();
@@ -194,6 +195,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
             sp1=getSharedPreferences("xinxi", MODE_PRIVATE);
 
             SharedPreferences.Editor edit = sp1.edit();
+                edit.putInt("userId",userId);
                 edit.putString("NickName",name);
                 edit.putString("HeadPic",HeadPic);
                 edit.putString("Phone",Phone);

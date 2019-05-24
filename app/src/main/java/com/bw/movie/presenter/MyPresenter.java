@@ -14,6 +14,7 @@ import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
+import com.bw.movie.bean.WXPlyBean;
 import com.bw.movie.bean.XiaDanBean;
 import com.bw.movie.bean.YYLunboBean;
 import com.bw.movie.bean.YYPiaojiaBean;
@@ -455,6 +456,20 @@ public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface
             public void sressco(Object o) {
                 ContractInterface.ViewXiaDan v = (ContractInterface.ViewXiaDan) tt;
                 v.XiaDan((XiaDanBean) o);
+            }
+        });
+    }
+
+    @Override
+    public void toModelPay(int payType, String orderId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("payType", payType);
+        map.put("orderId", orderId);
+        myModel.toPay(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.WXPly wx = (ContractInterface.WXPly) tt;
+                wx.WXPly((WXPlyBean) o);
             }
         });
     }

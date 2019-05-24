@@ -201,6 +201,7 @@
 
         <RelativeLayout
             android:visibility="gone"
+            android:clickable="true"
             android:background="#fff"
             android:id="@+id/relative_xian_cang"
             android:layout_width="match_parent"

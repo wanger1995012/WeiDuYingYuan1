@@ -3,11 +3,11 @@ package com.bw.movie.hotactivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.view.ViewPager;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,20 +17,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.bw.movie.R;
+import com.bw.movie.bean.WXPlyBean;
 import com.bw.movie.bean.XiaDanBean;
 import com.bw.movie.contract.ContractInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.utile.EncryptUtil;
 import com.bw.movie.view.MoveSeatView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import freemarker.log.Logger;
 
-public class XuanZuoActivity extends AppCompatActivity implements ContractInterface.ViewXiaDan {
+public class XuanZuoActivity extends AppCompatActivity implements ContractInterface.ViewXiaDan ,ContractInterface.WXPly {
 
     @BindView(R.id.xuan_yuan_name)
     TextView xuanYuanName;
@@ -57,6 +60,7 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
     private String id;
     int is = 0;
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
+    private String orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,33 +98,7 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
         //点击对勾，显示此布局//点击对勾，显示此布局
         relative_xian_cang = findViewById(R.id.relative_xian_cang);
         price = findViewById(R.id.price_jia);
-        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i){
-                    case R.id.radio_b1:
-                        //微信
-                        text_sum_price.setText("微信支付"+i1+"元");
-                        text_sum_price.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
 
-                            }
-                        });
-                        break;
-                    case R.id.radio_b2:
-                        //支付宝
-                        text_sum_price.setText("支付宝支付"+i1+"元");
-                        text_sum_price.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(XuanZuoActivity.this, "支付宝支付成功",Toast.LENGTH_LONG).show();
-                            }
-                        });
-                        break;
-                }
-            }
-        });
 
 
 
@@ -171,8 +149,6 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
                 double i = v * is;
                 i1 = (float) i;
                 price.setText(i1+"");
-                text_sum_price.setText("微信支付"+i1+"元");
-
             }
             //取消一个座位时
             @Override
@@ -185,8 +161,10 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
                     linearLayout.setVisibility(View.GONE);
                 }
                 price.setText(i1 +"");
-                text_sum_price.setText("微信支付"+i1+"元");
             }
+
+
+
 
             @Override
             public String[] checkedSeatTxt(int row, int column) {
@@ -195,18 +173,53 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
 
         });
 
+
+        rb1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //微信
+                text_sum_price.setText("微信支付"+price.getText().toString()+"元");
+                text_sum_price.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        p.toModelPay(1,orderId);
+                        Toast.makeText(XuanZuoActivity.this, "微信支付"+price.getText().toString()+"元",Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+        rb2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //支付宝
+                text_sum_price.setText("支付宝支付"+price.getText().toString()+"元");
+                text_sum_price.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        p.toModelPay(2,orderId);
+                        Toast.makeText(XuanZuoActivity.this, "支付宝支付"+price.getText().toString()+"元",Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
         //点击对勾的监听
         image_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sp = getSharedPreferences("name", MODE_PRIVATE);
-                String userId = sp.getString("userId","1363");
+                SharedPreferences xinxi = getSharedPreferences("xinxi", MODE_PRIVATE);
+                int userId = xinxi.getInt("userId", 0);
                 Log.i("xiadan", "tupian -onClick: " + userId);
                 Log.i("xiadan", "tupian -onClick: " + id +"  " + is + "   " +EncryptUtil.MD5(userId+id+is+"movie") );
                 p.toModelXiaDan(id,is, EncryptUtil.MD5(userId+id+is+"movie"));
                 relative_xian_cang.setVisibility(View.VISIBLE);
+                text_sum_price.setText("微信支付"+price.getText().toString()+"元");
             }
         });
+
+
+
+
 //        int i = seatsTotal / 15;
 //        Log.e("tag","   %     " + seatsTotal % 15);
         moveSeatView.setData(7, 15);
@@ -217,6 +230,7 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
 
     @Override
     public void XiaDan(XiaDanBean object) {
+        orderId = object.getOrderId();
         if(object.getMessage().equals("下单成功")){
             Toast.makeText(this, object.getMessage(),Toast.LENGTH_LONG).show();
             Log.i("xiadan", "XiaDan: "    + object.getStatus());
@@ -224,4 +238,62 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
             Log.i("xiadan", "XiaDan: "    + object.getOrderId());
         }
     }
+
+    @Override
+    public void WXPly(WXPlyBean bean) {
+        IWXAPI api = WXAPIFactory.createWXAPI(XuanZuoActivity.this, "wxb3852e6a6b7d9516");
+        //注册App！！1
+        api.registerApp("wxb3852e6a6b7d9516");
+        PayReq req = new PayReq();
+        req.appId = bean.getAppId();
+        req.partnerId = bean.getPartnerId();
+        req.prepayId = bean.getPrepayId();
+        req.nonceStr = bean.getNonceStr();
+        req.timeStamp = bean.getTimeStamp();
+        req.packageValue = bean.getPackageValue();
+        req.sign = bean.getSign();
+        req.extData = "app data"; // optional
+        Toast.makeText(this, "正常调起支付", Toast.LENGTH_SHORT).show();
+        api.sendReq(req);
+        Log.i("zhifu", "zhifu: " + bean.result);
+        pay(bean.result);
+
+
+    }
+
+
+    //data就是你发起支付后给你返回的那一大段信息
+
+    private void pay(final String data) {
+        final String orderInfo = data;   // 订单信息
+        Runnable payRunnable = new Runnable() {
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(XuanZuoActivity.this);
+                String result = alipay.pay(orderInfo,true);
+                Message msg = new Message();
+                msg.what = 1000;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+
+
+    }
+
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==1000){
+                String result= (String) msg.obj;//支付后返回的信息
+                Log.i("zhifubao", "TestActivity: "    + result);
+                //Logger.i("TestActivity", result);
+            }
+
+        }
+    };
 }

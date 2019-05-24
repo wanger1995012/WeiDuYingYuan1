@@ -133,4 +133,12 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> quXiaDan(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
+
+
+    //去下单
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> toPay(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
+
+
 }

@@ -11,6 +11,7 @@ import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
+import com.bw.movie.bean.WXPlyBean;
 import com.bw.movie.bean.XiaDanBean;
 import com.bw.movie.bean.YYLunboBean;
 import com.bw.movie.bean.YYPiaojiaBean;
@@ -76,6 +77,10 @@ public class ContractInterface {
         public void XiaDan(XiaDanBean obj);
     }
 
+    public interface WXPly{
+        public void WXPly(WXPlyBean bean);
+    }
+
     public interface PresenterInterface{
         public void toModelChild1();
         public void toModelChild2();
@@ -89,6 +94,7 @@ public class ContractInterface {
         public void toModelFindYuan(int movieId);
         public void toModelFindSchedule(String schedule, int movieId);
         public void toModelXiaDan(String scheduleId,int amount , String sign);
+        public void toModelPay(int payType , String orderId);
     }
     //设置意见的V接口，设置版本的V接口
     public interface VYiJian{
