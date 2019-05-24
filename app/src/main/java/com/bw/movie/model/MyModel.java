@@ -22,6 +22,7 @@ import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
 import com.bw.movie.bean.TuijianBean;
+import com.bw.movie.bean.WXPlyBean;
 import com.bw.movie.bean.XiaDanBean;
 import com.bw.movie.bean.YYLunboBean;
 import com.bw.movie.bean.YYPiaojiaBean;
@@ -34,6 +35,7 @@ import com.bw.movie.view.Api;
 import com.bw.movie.view.App;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -52,6 +54,7 @@ import rx.schedulers.Schedulers;
 public class MyModel {
     private static int USERID;
     private static String SESSIONID;
+
     //登录
     public void Login(Map<String, String> map, final MyCallBreak callBreak) {
         RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
@@ -66,7 +69,24 @@ public class MyModel {
                             String json = responseBody.string();
                             Gson gson = new Gson();
                             LoginBean bean = gson.fromJson(json, LoginBean.class);
+
                             callBreak.sressco(bean);
+
+                            Log.e("denglua", "call: "+bean.getResult().getUserInfo().getNickName() );
+                            Log.e("denglua", "call: "+bean.getResult().getUserId() );
+                            ZhuceBean zhuceBean = new ZhuceBean();
+                            zhuceBean.setNickName(bean.getResult().getUserInfo().getNickName());
+                            zhuceBean.setBirthday(bean.getResult().getUserInfo().getBirthday());
+                            zhuceBean.setHeadPic(bean.getResult().getUserInfo().getHeadPic());
+                            zhuceBean.setLastLoginTime(bean.getResult().getUserInfo().getLastLoginTime());
+                            zhuceBean.setPhone(bean.getResult().getUserInfo().getPhone());
+                            zhuceBean.setSex(bean.getResult().getUserInfo().getSex());
+
+                            Log.e("aaa", "call: " + zhuceBean.getNickName());
+                            Log.e("denglua1", "call: " + zhuceBean.nickName);
+
+                            callBreak.sressco(bean);
+
 
                             //将赋值
                             USERID = bean.getResult().getUserId();
@@ -74,6 +94,12 @@ public class MyModel {
 
                             //Log.i("userIds", "USERID: ="  + USERID+"");
                             //Log.i("userIds", "SESSIONID:= "  + SESSIONID+"");
+
+
+                            Log.e("ab123", "call: "+USERID );
+                            Log.e("ab123", "call: "+SESSIONID );
+
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -751,10 +777,11 @@ public class MyModel {
                 });
 
     }
-    //购票记录
-    public void goupiaojilu(Map<String,Object> map , final MyCallBreak myCallBreak){
+
+    //去支付，根据支付类型和支付的订单号
+    public void toPay(Map<String , Object> map,final MyCallBreak myCallBreak){
         Api api = RetrofitUtil.getUtil().gets(Api.class);
-        api.goupiaojilu("/movieApi/user/v1/verify/findUserBuyTicketRecordList" ,USERID+"", SESSIONID, map)
+        api.toPay("/movieApi/movie/v1/verify/pay" ,USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -763,6 +790,53 @@ public class MyModel {
                         try {
                             String json = responseBody.string();
                             Gson gson = new Gson();
+                            WXPlyBean wxPlyBean = gson.fromJson(json, WXPlyBean.class);
+                            myCallBreak.sressco(wxPlyBean);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+    }
+
+    //去支付，根据支付类型和支付的订单号
+    public void toPay2(Map<String , Object> map,final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.toPay2("/movieApi/movie/v1/verify/pay" ,USERID+"", SESSIONID, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            JSONObject object = new JSONObject(json);
+                            String result = object.getString("result");
+                            myCallBreak.sressco(result);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+    }
+
+
+    //购票记录
+    public void goupiaojilu(Map<String,Object> map , final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.goupiaojilu("/movieApi/user/v1/verify/findUserBuyTicketRecordList" ,USERID+"", SESSIONID, map)
+
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+
                             MyFoodedBean beans = gson.fromJson(json, MyFoodedBean.class);
                             myCallBreak.sressco(beans);
                         } catch (IOException e) {
@@ -772,6 +846,9 @@ public class MyModel {
                 });
 
     }
+
+
+
     //我的页面的修改
     public void WDxiugai (Map < String, Object > map,final MyCallBreak callBreak){
         final Api gets = RetrofitUtil.getUtil().gets(Api.class);
