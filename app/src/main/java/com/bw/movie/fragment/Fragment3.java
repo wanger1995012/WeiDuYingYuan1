@@ -152,7 +152,6 @@ public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),XinXiActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
     }

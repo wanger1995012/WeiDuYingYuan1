@@ -53,7 +53,7 @@
                     android:layout_width="@dimen/dp_60"
                     android:layout_height="@dimen/dp_30"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/shap_my">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -62,6 +62,7 @@
                         android:text="去付款"
                         android:id="@+id/goupiao_qvfukuan"
                         android:textColor="#ffffff"
+                        android:background="@drawable/shap_my"
                         android:textSize="@dimen/sp_12" />
                 </RelativeLayout>
             </RelativeLayout>

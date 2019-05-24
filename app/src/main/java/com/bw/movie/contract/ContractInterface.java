@@ -6,6 +6,7 @@ import com.bw.movie.bean.ComingSoonBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
+import com.bw.movie.bean.MyFoodedBean;
 import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
@@ -200,5 +201,31 @@ public class ContractInterface {
     //设置微信登录的P
     public interface PWXDL{
         public void PWXDL(String code);
+    }
+    //设置微信登录的V
+    public interface VGPJL{
+        public void VGPJL(List<MyFoodedBean.ResultBean> lst);
+    }
+    //设置微信登录的P
+    public interface PGPJL{
+        public void VGPJL(int page,int count,int status);
+    }
+    //设置我的信息修改的V
+    public interface VWDxiugai{
+        public void VWDxiugai(String str);
+    }
+    //设置我的信息修改的P
+    public interface PWDxiugai{
+        public void PWDxiugai(String nickName,String sex,String email);
+    }
+    //电影的关注V
+    public interface VDYguanzhu{
+        public void VDYguanzhu(String str);
+        public void VDYqvxiaoguanzhu(String str);
+    }
+    //电影的关注V
+    public interface PDYguanzhu{
+        public void PDYguanzhu(int movieId);
+        public void PDYqvxiaoguanzhu(int movieId);
     }
 }

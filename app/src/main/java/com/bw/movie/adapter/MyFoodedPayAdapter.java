@@ -2,6 +2,7 @@ package com.bw.movie.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,7 +33,6 @@ import butterknife.ButterKnife;
 public class MyFoodedPayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<MyFoodedBean.ResultBean> mPay;
     private Context mContext;
-
     public MyFoodedPayAdapter(Context mContext,List<MyFoodedBean.ResultBean> mPay) {
         this.mContext = mContext;
         this.mPay = mPay;
@@ -60,8 +60,8 @@ public class MyFoodedPayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ViewHolder mHolder = (ViewHolder) viewHolder;
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
+        final ViewHolder mHolder = (ViewHolder) viewHolder;
         //下单时间
 
 
@@ -84,8 +84,21 @@ public class MyFoodedPayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (mPay.get(i).getStatus()==1){
             //待付款
             mHolder.goupiao.setVisibility(View.VISIBLE);
-            Intent intent=new Intent(mContext,XuanZuoActivity.class);
-            mContext.startActivity(intent);
+
+            mHolder.goupiao.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(mContext,XuanZuoActivity.class);
+                    intent.putExtra("begin",mPay.get(i).getBeginTime());
+                    intent.putExtra("end",mPay.get(i).getEndTime());
+                    intent.putExtra("ting",mPay.get(i).getScreeningHall());
+                    intent.putExtra("y_name", mPay.get(i).getCinemaName());
+                    intent.putExtra("m_name", mPay.get(i).getMovieName());
+                    intent.putExtra("price" , mPay.get(i).getPrice()*mPay.get(i).getAmount()+"");
+                    intent.putExtra("id" , mPay.get(i).getId()+"");
+                    mContext.startActivity(intent);
+                }
+            });
         }else {
             //已付款
             mHolder.goupiao.setVisibility(View.GONE);
@@ -123,6 +136,4 @@ public class MyFoodedPayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ButterKnife.bind(this, itemView);
         }
     }
-
-
 }

@@ -82,20 +82,9 @@ public class XinXiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_xin_xi);
         ButterKnife.bind(this);
         mContext = this;
-<<<<<<< HEAD
-=======
-
-        //拿到数据库中的信息
-//        List<ZhuceBean> zhuceBeans = App.daoSession.loadAll(ZhuceBean.class);
-//        String nickName = zhuceBeans.get(0).getNickName();
-//        String phone = zhuceBeans.get(0).getPhone();
-//        long riqi = zhuceBeans.get(0).getBirthday();
-//        int sex = zhuceBeans.get(0).getSex();
-//        long youxiang = zhuceBeans.get(0).getLastLoginTime();
 
         //拿到bean中信息
-<<<<<<< HEAD
->>>>>>> 2faf8bec401c3a0af78a72fd7510c0441ab673ae
+
         sp1=getSharedPreferences("xinxi", MODE_PRIVATE);
         String name=sp1.getString("NickName","");
         String HeadPic=sp1.getString("HeadPic","");
@@ -103,29 +92,6 @@ public class XinXiActivity extends AppCompatActivity {
         int Sex=sp1.getInt("Sex",123);
         long LastLoginTime=sp1.getLong("LastLoginTime",123);
         long Birthday=sp1.getLong("Birthday",123);
-<<<<<<< HEAD
-=======
-=======
-        MyModel myModel=new MyModel();
-        myModel.setXinXiMyCall(new MyModel.XinXiMyCall() {
-            @Override
-            public void sressco(ZhuceBean bean) {
-                zhuceBean=bean;
-            }
-        });
-        Log.e("denglua22", "onCreate: "+zhuceBean.toString() );
-        String nickName = zhuceBean.getNickName();
-        String phone = zhuceBean.getPhone();
-        long riqi = zhuceBean.getBirthday();
-        int sex = zhuceBean.getSex();
-        long youxiang = zhuceBean.getLastLoginTime();
-<<<<<<< HEAD
-
-=======
->>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
->>>>>>> fe9889c404df20d6b3b307afaeb27e9d7a03a754
->>>>>>> ebd991760444b25bdc6a5393ea5b4157f4867c7e
->>>>>>> 2faf8bec401c3a0af78a72fd7510c0441ab673ae
         //设置返回
         FanhuiInit();
         //设置用户头像

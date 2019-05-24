@@ -6,15 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.bw.movie.R;
 import com.bw.movie.bean.LoginBean;
+import com.bw.movie.contract.ContractInterface;
+import com.bw.movie.presenter.MyPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class XiuGaiActivity extends AppCompatActivity {
+public class XiuGaiActivity extends AppCompatActivity implements ContractInterface.VWDxiugai {
 
 
     @BindView(R.id.edit_nicheng)
@@ -30,11 +33,13 @@ public class XiuGaiActivity extends AppCompatActivity {
     @BindView(R.id.btn_xiugai)
     Button btnXiugai;
     int a=0;
+    ContractInterface.PWDxiugai pwDxiugai;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xiu_gai);
         ButterKnife.bind(this);
+        pwDxiugai=new MyPresenter(this);
         //设置确认修改后的点击事件
         btnXiugai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +71,17 @@ public class XiuGaiActivity extends AppCompatActivity {
                 intent.putExtra("LastLoginTime",userInfoBean.getLastLoginTime());
                 setResult(RESULT_OK,intent);
                 finish();
+                //去P
+                pwDxiugai.PWDxiugai(nicheng,sex,youxiang+"");
             }
         });
+    }
+
+    @Override
+    public void VWDxiugai(String str) {
+        Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+        if (str.equals("修改成功")){
+            finish();
+        }
     }
 }

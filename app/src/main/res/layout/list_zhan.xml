@@ -31,8 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignBottom="@+id/text_list_name"
-                android:layout_marginRight="@dimen/dp_10"
-                android:background="@drawable/zanb" />
+                android:layout_marginRight="@dimen/dp_10" />
 
             <TextView
                 android:id="@+id/text_list_jianjie"
