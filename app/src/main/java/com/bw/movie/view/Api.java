@@ -133,7 +133,7 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> quXiaDan(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
-<<<<<<< HEAD
+
 
 
     //去下单
@@ -142,7 +142,7 @@ public interface Api {
     public Observable<ResponseBody> toPay(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
 
 
-=======
+
     //根据电影ID和影院ID查询电影票的信息
     @GET
     public Observable<ResponseBody> goupiaojilu(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @QueryMap Map<String,Object>map);
@@ -156,5 +156,5 @@ public interface Api {
     //电影取消关注
     @GET
     public Observable<ResponseBody> DYqvxiaoguanzhu(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId ,@QueryMap Map<String,Object> map);
->>>>>>> fd3f1f0be4173604414a293fd06f4110e96fce3f
+
 }

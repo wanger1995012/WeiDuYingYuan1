@@ -92,7 +92,7 @@ public class XinXiActivity extends AppCompatActivity {
         int Sex=sp1.getInt("Sex",123);
         long LastLoginTime=sp1.getLong("LastLoginTime",123);
         long Birthday=sp1.getLong("Birthday",123);
-<<<<<<< HEAD
+
 
         Log.e("denglua22", "onCreate: "+zhuceBean.toString() );
         String nickName = zhuceBean.getNickName();
@@ -103,8 +103,7 @@ public class XinXiActivity extends AppCompatActivity {
 
 
 
-=======
->>>>>>> fd3f1f0be4173604414a293fd06f4110e96fce3f
+
         //设置返回
         FanhuiInit();
         //设置用户头像
@@ -125,7 +124,7 @@ public class XinXiActivity extends AppCompatActivity {
         }
         myxinxiYouxiang.setText(LastLoginTime+"");
 
-<<<<<<< HEAD
+
 //        myxinxiNicheng.setText(nickName);
 //        myxinxiPhone.setText(phone);
 //        myxinxiRiqi.setText(riqi + "");
@@ -136,8 +135,7 @@ public class XinXiActivity extends AppCompatActivity {
 //        }
 //        myxinxiYouxiang.setText(youxiang + "");
 
-=======
->>>>>>> fd3f1f0be4173604414a293fd06f4110e96fce3f
+
         //设置修改的点击事件
         myxinxiBtnXiugai.setOnClickListener(new View.OnClickListener() {
             @Override
