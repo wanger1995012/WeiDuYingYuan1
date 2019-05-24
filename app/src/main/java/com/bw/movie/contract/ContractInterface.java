@@ -6,7 +6,6 @@ import com.bw.movie.bean.ComingSoonBean;
 import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
-import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;

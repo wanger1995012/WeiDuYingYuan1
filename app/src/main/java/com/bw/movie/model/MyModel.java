@@ -60,25 +60,7 @@ public class MyModel {
                             String json = responseBody.string();
                             Gson gson = new Gson();
                             LoginBean bean = gson.fromJson(json, LoginBean.class);
-<<<<<<< HEAD
                             callBreak.sressco(bean);
-=======
-                            Log.e("denglua", "call: "+bean.getResult().getUserInfo().getNickName() );
-                            ZhuceBean zhuceBean = new ZhuceBean();
-                            zhuceBean.setNickName(bean.getResult().getUserInfo().getNickName());
-                            zhuceBean.setBirthday(bean.getResult().getUserInfo().getBirthday());
-                            zhuceBean.setHeadPic(bean.getResult().getUserInfo().getHeadPic());
-                            zhuceBean.setLastLoginTime(bean.getResult().getUserInfo().getLastLoginTime());
-                            zhuceBean.setPhone(bean.getResult().getUserInfo().getPhone());
-                            zhuceBean.setSex(bean.getResult().getUserInfo().getSex());
-<<<<<<< HEAD
-                            Log.e("aaa", "call: " + zhuceBean.getNickName());
-
-=======
-                            Log.e("denglua1", "call: " + zhuceBean.nickName);
-                            xinXiMy.sressco(zhuceBean);
->>>>>>> e437a522b3282db22cc8c584e0aab0d5b471245b
->>>>>>> fe9889c404df20d6b3b307afaeb27e9d7a03a754
                             //将赋值
                             USERID = bean.getResult().getUserId();
                             SESSIONID = bean.getResult().getSessionId();
