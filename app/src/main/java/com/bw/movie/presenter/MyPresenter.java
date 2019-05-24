@@ -10,6 +10,7 @@ import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
 import com.bw.movie.bean.LoginBean;
+import com.bw.movie.bean.MyFoodedBean;
 import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
@@ -34,7 +35,7 @@ import java.util.Map;
  */
 
 
-public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface.PDYDZ,ContractInterface.PYYXPL, ContractInterface.PYYDZ, ContractInterface.PXQPL, ContractInterface.PXTTZ, ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PWDxiugai,ContractInterface.PDYguanzhu,ContractInterface.PGPJL,ContractInterface.PWXDL,ContractInterface.PDYDZ,ContractInterface.PYYXPL, ContractInterface.PYYDZ, ContractInterface.PXQPL, ContractInterface.PXTTZ, ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
 
         T tt;
         MyModel myModel;
@@ -539,6 +540,63 @@ public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface
                 ContractInterface.VWXDL vwxdl = (ContractInterface.VWXDL) tt;
                 LoginBean beans= (LoginBean) o;
                 vwxdl.VWXDL(beans);
+            }
+        });
+    }
+
+    @Override
+    public void VGPJL(int page, int count, int status) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("count", count);
+        map.put("page", page);
+        map.put("status", status);
+        myModel.goupiaojilu(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VGPJL vgpjl= (ContractInterface.VGPJL) tt;
+                MyFoodedBean beans= (MyFoodedBean) o;
+                vgpjl.VGPJL(beans.getResult());
+            }
+        });
+    }
+
+    @Override
+    public void PDYguanzhu(int movieId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("movieId", movieId);
+        myModel.DYguanzhu(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VDYguanzhu vdYguanzhu = (ContractInterface.VDYguanzhu) tt;
+                vdYguanzhu.VDYguanzhu((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PDYqvxiaoguanzhu(int movieId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("movieId", movieId);
+        myModel.DYqvxiaoguanzhu(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VDYguanzhu vdYguanzhu = (ContractInterface.VDYguanzhu) tt;
+                vdYguanzhu.VDYqvxiaoguanzhu((String) o);
+            }
+        });
+    }
+
+    @Override
+    public void PWDxiugai(String nickName, String sex, String email) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("nickName", nickName);
+        map.put("sex", sex);
+        map.put("email", email);
+        myModel.WDxiugai(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.VWDxiugai vwDxiugai = (ContractInterface.VWDxiugai) tt;
+                vwDxiugai.VWDxiugai((String) o);
             }
         });
     }
