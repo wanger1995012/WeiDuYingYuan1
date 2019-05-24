@@ -12,12 +12,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_50"
         >
-        <android.support.v7.widget.RecyclerView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <Button
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_25"
+                android:background="@drawable/shap1"
+                android:text="未付款"
+                android:id="@+id/guopiao_weifukuan"
+                />
+            <Button
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_25"
+                android:background="@drawable/shap1"
+                android:text="已付款"
+                android:id="@+id/guopiao_yifu"
+                android:layout_marginLeft="@dimen/dp_24"
+                />
+        </LinearLayout>
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:layout_marginTop="@dimen/dp_30"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/goupiao_recycler"
-            ></android.support.v7.widget.RecyclerView>
+            ></com.jcodecraeer.xrecyclerview.XRecyclerView>
     </LinearLayout>
 
 </LinearLayout>

@@ -48,7 +48,7 @@ public class GuanzhuDianyingAdapter extends RecyclerView.Adapter<GuanzhuDianying
         //将毫秒值转换为年月日
         dateTime=list.get(i).getReleaseTime();
         //将毫秒值转换为年月日
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String time =  formatter.format(dateTime);
         holder.GZDY_releaseTime.setText(time);
     }

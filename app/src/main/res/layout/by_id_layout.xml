@@ -38,7 +38,7 @@
             android:layout_marginTop="@dimen/sp_20"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/zanb" />
+           />
 
         <RelativeLayout
             android:layout_width="wrap_content"

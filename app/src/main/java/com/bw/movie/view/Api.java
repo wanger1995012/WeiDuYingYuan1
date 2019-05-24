@@ -133,4 +133,17 @@ public interface Api {
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> quXiaDan(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
+    //根据电影ID和影院ID查询电影票的信息
+    @GET
+    public Observable<ResponseBody> goupiaojilu(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId , @QueryMap Map<String,Object>map);
+    //影院写评论
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> WDxiugai(@Url String url, @Header("userId") int userId, @Header("sessionId") String session,@FieldMap Map<String,Object> map);
+    //电影关注
+    @GET
+    public Observable<ResponseBody> DYguanzhu(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId ,@QueryMap Map<String,Object> map);
+    //电影取消关注
+    @GET
+    public Observable<ResponseBody> DYqvxiaoguanzhu(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId ,@QueryMap Map<String,Object> map);
 }

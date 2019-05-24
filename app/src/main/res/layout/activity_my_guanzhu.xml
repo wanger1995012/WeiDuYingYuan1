@@ -20,7 +20,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_50"
             android:orientation="horizontal"
-            android:background="@drawable/myshap1"
             >
 
             <RadioButton
