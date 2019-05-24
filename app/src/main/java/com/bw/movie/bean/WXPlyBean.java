@@ -29,15 +29,7 @@ public class WXPlyBean {
     private String status;
     private String timeStamp;
     private String packageValue;
-    public String result;
 
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
 
     public String getAppId() {
         return appId;

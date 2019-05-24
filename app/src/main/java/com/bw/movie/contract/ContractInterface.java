@@ -81,6 +81,10 @@ public class ContractInterface {
         public void WXPly(WXPlyBean bean);
     }
 
+    public interface ZFBPly{
+        public void ZFBPly(String str);
+    }
+
     public interface PresenterInterface{
         public void toModelChild1();
         public void toModelChild2();
@@ -95,6 +99,7 @@ public class ContractInterface {
         public void toModelFindSchedule(String schedule, int movieId);
         public void toModelXiaDan(String scheduleId,int amount , String sign);
         public void toModelPay(int payType , String orderId);
+        public void toModelPays(int payType , String orderId);
     }
     //设置意见的V接口，设置版本的V接口
     public interface VYiJian{

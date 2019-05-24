@@ -1,5 +1,6 @@
 package com.bw.movie.hotactivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import freemarker.log.Logger;
 
-public class XuanZuoActivity extends AppCompatActivity implements ContractInterface.ViewXiaDan ,ContractInterface.WXPly {
+public class XuanZuoActivity extends AppCompatActivity implements ContractInterface.ViewXiaDan ,ContractInterface.WXPly ,ContractInterface.ZFBPly{
 
     @BindView(R.id.xuan_yuan_name)
     TextView xuanYuanName;
@@ -197,7 +198,7 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
                 text_sum_price.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        p.toModelPay(2,orderId);
+                        p.toModelPays(2,orderId);
                         Toast.makeText(XuanZuoActivity.this, "支付宝支付"+price.getText().toString()+"元",Toast.LENGTH_LONG).show();
                     }
                 });
@@ -255,15 +256,12 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
         req.extData = "app data"; // optional
         Toast.makeText(this, "正常调起支付", Toast.LENGTH_SHORT).show();
         api.sendReq(req);
-        Log.i("zhifu", "zhifu: " + bean.result);
-        pay(bean.result);
-
-
+//        Log.i("zhifu", "zhifu: " + bean.result);
     }
 
 
-    //data就是你发起支付后给你返回的那一大段信息
 
+    //data就是你发起支付后给你返回的那一大段信息
     private void pay(final String data) {
         final String orderInfo = data;   // 订单信息
         Runnable payRunnable = new Runnable() {
@@ -284,6 +282,7 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
 
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler mHandler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -296,4 +295,11 @@ public class XuanZuoActivity extends AppCompatActivity implements ContractInterf
 
         }
     };
+
+
+    @Override
+    public void ZFBPly(String str) {
+        pay(str);
+        Log.i("tagzfb", "ZFBPly: " + str);
+    }
 }

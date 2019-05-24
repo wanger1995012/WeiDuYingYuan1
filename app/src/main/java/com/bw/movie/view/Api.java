@@ -136,10 +136,15 @@ public interface Api {
 
 
 
-    //去下单
+    //去支付（微信）
     @FormUrlEncoded
     @POST
     public Observable<ResponseBody> toPay(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
+
+    //去支付(支付宝)
+    @FormUrlEncoded
+    @POST
+    public Observable<ResponseBody> toPay2(@Url String url,@Header("userId") String userId, @Header("sessionId") String sessionId ,@FieldMap Map<String,Object> map);
 
 
 

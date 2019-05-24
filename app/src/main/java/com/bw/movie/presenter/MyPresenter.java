@@ -10,7 +10,6 @@ import com.bw.movie.bean.FindAllMovieCommentBean;
 import com.bw.movie.bean.GZDYBean;
 import com.bw.movie.bean.HotMovieListBean;
 import com.bw.movie.bean.LoginBean;
-import com.bw.movie.bean.MyFoodedBean;
 import com.bw.movie.bean.NowPlayingBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.TongzhiBean;
@@ -35,7 +34,7 @@ import java.util.Map;
  */
 
 
-public class MyPresenter<T> implements ContractInterface.PDYguanzhu,ContractInterface.PWDxiugai,ContractInterface.PGPJL,ContractInterface.PWXDL,ContractInterface.PDYDZ,ContractInterface.PYYXPL, ContractInterface.PYYDZ, ContractInterface.PXQPL, ContractInterface.PXTTZ, ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
+public class MyPresenter<T> implements ContractInterface.PWXDL,ContractInterface.PDYDZ,ContractInterface.PYYXPL, ContractInterface.PYYDZ, ContractInterface.PXQPL, ContractInterface.PXTTZ, ContractInterface.PXiugaimima, ContractInterface.PGZyy, ContractInterface.PLogin, ContractInterface.PresenterInterface, ContractInterface.PYingyuan, ContractInterface.PGuanzhu {
 
         T tt;
         MyModel myModel;
@@ -418,6 +417,7 @@ public class MyPresenter<T> implements ContractInterface.PDYguanzhu,ContractInte
                 @Override
                 public void sressco(Object o) {
                     ContractInterface.DetailsShow d = (ContractInterface.DetailsShow) tt;
+                    Log.i("message", "sressco: " + o);
                     d.setPing((String) o);
                 }
             });
@@ -474,6 +474,20 @@ public class MyPresenter<T> implements ContractInterface.PDYguanzhu,ContractInte
         });
     }
 
+    @Override
+    public void toModelPays(int payType, String orderId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("payType", payType);
+        map.put("orderId", orderId);
+        myModel.toPay2(map, new MyModel.MyCallBreak() {
+            @Override
+            public void sressco(Object o) {
+                ContractInterface.ZFBPly z = (ContractInterface.ZFBPly) tt;
+                z.ZFBPly((String) o);
+            }
+        });
+    }
+
     public void Pxiugai(String oldpwd, String newpwd, String newpwd2) {
             Map<String, String> map = new HashMap<>();
             map.put("oldPwd", oldpwd);
@@ -518,69 +532,13 @@ public class MyPresenter<T> implements ContractInterface.PDYguanzhu,ContractInte
     public void PWXDL(String code) {
         Map<String, Object> map = new HashMap<>();
         map.put("code", code);
+        Log.e("code", "PWXDL: "+code );
         myModel.weixindenglu(map, new MyModel.MyCallBreak() {
             @Override
             public void sressco(Object o) {
                 ContractInterface.VWXDL vwxdl = (ContractInterface.VWXDL) tt;
                 LoginBean beans= (LoginBean) o;
                 vwxdl.VWXDL(beans);
-            }
-        });
-    }
-
-    @Override
-    public void VGPJL(int page, int count, int status) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("page", page);
-        map.put("count", count);
-        map.put("status", status);
-        myModel.goupiaojilu(map, new MyModel.MyCallBreak() {
-            @Override
-            public void sressco(Object o) {
-                ContractInterface.VGPJL vgpjl= (ContractInterface.VGPJL) tt;
-                MyFoodedBean beans= (MyFoodedBean) o;
-                vgpjl.VGPJL(beans.getResult());
-            }
-        });
-    }
-
-    @Override
-    public void PWDxiugai(String nickName, String sex, String email) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("nickName", nickName);
-        map.put("sex", sex);
-        map.put("email", email);
-        myModel.WDxiugai(map, new MyModel.MyCallBreak() {
-            @Override
-            public void sressco(Object o) {
-                ContractInterface.VWDxiugai vwDxiugai = (ContractInterface.VWDxiugai) tt;
-                vwDxiugai.VWDxiugai((String) o);
-            }
-        });
-    }
-    //电影关注
-    @Override
-    public void PDYguanzhu(int movieId) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("movieId", movieId);
-        myModel.DYguanzhu(map, new MyModel.MyCallBreak() {
-            @Override
-            public void sressco(Object o) {
-                ContractInterface.VDYguanzhu vdYguanzhu = (ContractInterface.VDYguanzhu) tt;
-                vdYguanzhu.VDYguanzhu((String) o);
-            }
-        });
-    }
-    //电影取消关注
-    @Override
-    public void PDYqvxiaoguanzhu(int movieId) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("movieId", movieId);
-        myModel.DYqvxiaoguanzhu(map, new MyModel.MyCallBreak() {
-            @Override
-            public void sressco(Object o) {
-                ContractInterface.VDYguanzhu vdYguanzhu = (ContractInterface.VDYguanzhu) tt;
-                vdYguanzhu.VDYqvxiaoguanzhu((String) o);
             }
         });
     }

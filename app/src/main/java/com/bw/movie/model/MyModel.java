@@ -35,6 +35,7 @@ import com.bw.movie.view.Api;
 import com.bw.movie.view.App;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -786,9 +787,8 @@ public class MyModel {
                 .subscribe(new Action1<ResponseBody>() {
                     @Override
                     public void call(ResponseBody responseBody) {
-                        String json = null;
                         try {
-                            json = responseBody.string();
+                            String json = responseBody.string();
                             Gson gson = new Gson();
                             WXPlyBean wxPlyBean = gson.fromJson(json, WXPlyBean.class);
                             myCallBreak.sressco(wxPlyBean);
@@ -798,9 +798,28 @@ public class MyModel {
 
                     }
                 });
+    }
 
+    //去支付，根据支付类型和支付的订单号
+    public void toPay2(Map<String , Object> map,final MyCallBreak myCallBreak){
+        Api api = RetrofitUtil.getUtil().gets(Api.class);
+        api.toPay2("/movieApi/movie/v1/verify/pay" ,USERID+"", SESSIONID, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            JSONObject object = new JSONObject(json);
+                            String result = object.getString("result");
+                            myCallBreak.sressco(result);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
-
+                    }
+                });
     }
 
 
