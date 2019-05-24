@@ -3,6 +3,7 @@ package com.bw.movie.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,7 +34,7 @@ import java.util.List;
  * @Date：2019/5/13 10:47
  * @Description：描述信息
  */
-public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder>  {
+public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> implements ContractInterface.VDYguanzhu {
     List<DetailsBean.ResultBean> list;
     List<DetailsBean.ResultBean.ShortFilmListBean> list_bo;
     List<FindAllMovieCommentBean.ResultBean> list_comment;
@@ -41,6 +42,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
     DetailsActivity activity;
     ContractInterface.PresenterInterface p = new MyPresenter<>(this);
     TextView xiang_movie_name;
+    ContractInterface.PDYguanzhu pdYguanzhu=new MyPresenter(this);
     public DetailsAdapter(List<DetailsBean.ResultBean> list,List<DetailsBean.ResultBean.ShortFilmListBean> list_bo,List<FindAllMovieCommentBean.ResultBean> list_comment, Context context) {
         this.list = list;
         this.context = context;
@@ -98,22 +100,36 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
         activity.movie_name2.setText(list.get(i).getName());
         //点赞暂时有BUG
         int movie = list.get(i).getFollowMovie();
+        Log.e("aa12", "onBindViewHolder: "+movie );
         if(movie == 1){
-            Glide.with(context).load(R.drawable.zanb).into(holder.image2_dianzan);
-        }else if(movie == 2){
-            Glide.with(context).load(R.drawable.zanh).into(holder.image2_dianzan);
+            //关注 false
+            holder.image2_dianzan.setBackground(ContextCompat.getDrawable(context, R.drawable.zanh));
+
+        }else{
+            //未关注
+            holder.image2_dianzan.setBackground(ContextCompat.getDrawable(context, R.drawable.zanb));
         }
+        //设置关注的点击事件
         holder.image2_dianzan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 int movie = list.get(i).getFollowMovie();
-                if(movie == 1){
-                    list.get(i).setFollowMovie(2);
-                }else if(movie == 2){
+                if(movie == 2){
+                    //未关注 false
+                    holder.image2_dianzan.setBackground(ContextCompat.getDrawable(context, R.drawable.zanh));
                     list.get(i).setFollowMovie(1);
+                    pdYguanzhu.PDYguanzhu(list.get(i).getId());
+                    notifyDataSetChanged();
+                }else{
+                    //已关注
+                    holder.image2_dianzan.setBackground(ContextCompat.getDrawable(context, R.drawable.zanb));
+                    list.get(i).setFollowMovie(2);
+                    pdYguanzhu.PDYqvxiaoguanzhu(list.get(i).getId());
+                    notifyDataSetChanged();
                 }
             }
         });
+
         Glide.with(context).load(list.get(i).getImageUrl()).into(holder.img);
         holder.image2_call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,6 +254,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
                     public void onClick(View view) {
                         activity.layout_input.setVisibility(View.VISIBLE);
                         activity.ying_yingpingLayout.setVisibility(View.GONE);
+
                     }
                 });
                 activity.input_send.setOnClickListener(new View.OnClickListener() {
@@ -247,7 +264,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
                         activity.p.toModelSendCounts(list.get(i).getId() , s);
                         activity.layout_input.setVisibility(View.GONE);
                         activity.ying_yingpingLayout.setVisibility(View.VISIBLE);
-                        Toast.makeText(context, s,Toast.LENGTH_LONG).show();
+
                     }
                 });
 
@@ -284,6 +301,16 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.Holder> 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public void VDYguanzhu(String str) {
+        Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void VDYqvxiaoguanzhu(String str) {
+        Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
     }
 
     public class Holder extends RecyclerView.ViewHolder {

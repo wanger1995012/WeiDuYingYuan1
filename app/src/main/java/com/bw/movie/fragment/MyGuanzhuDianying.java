@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,18 +48,17 @@ public class MyGuanzhuDianying extends Fragment implements ContractInterface.VGZ
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         //设置管理器
-        //设置管理器
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         myguanzhuDianying.setLayoutManager(layoutManager);
         //设置上下拉
         myguanzhuDianying.setLoadingMoreEnabled(true);
         myguanzhuDianying.setPullRefreshEnabled(true);
         //设置适配器
-        guanzhuDianyingAdapter=new GuanzhuDianyingAdapter(list,getActivity());
+        guanzhuDianyingAdapter=new GuanzhuDianyingAdapter(list,getContext());
         myguanzhuDianying.setAdapter(guanzhuDianyingAdapter);
         //P
         pgZyy=new MyPresenter(this);
@@ -96,7 +96,13 @@ public class MyGuanzhuDianying extends Fragment implements ContractInterface.VGZ
         myguanzhuDianying.loadMoreComplete();
         myguanzhuDianying.refreshComplete();
         list.clear();
-        this.list.addAll(lst);
+        list.addAll(lst);
         guanzhuDianyingAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        pgZyy.onDestory();
+        pgZyy=null;
     }
 }

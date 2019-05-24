@@ -183,6 +183,8 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
     public void setPing(String ping) {
         if(ping.equals("评论成功")){
             Toast.makeText(this, ping,Toast.LENGTH_LONG).show();
+            list_comment.clear();
+            p.toModelFindAllMovieComment(movieId, 1,10);
         }
     }
 
@@ -222,7 +224,7 @@ public class DetailsActivity extends AppCompatActivity implements ContractInterf
         p.toModelFindAllMovieComment(movieId, 1,10);
     }
 
-    int page;
+    int page=1;
     @Override
     public void onLoadMore() {
         page++;

@@ -109,6 +109,7 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true" />
+<<<<<<< HEAD
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
@@ -133,6 +134,11 @@
             android:screenOrientation="behind" >
         </activity>
 
+=======
+        <activity android:name=".hotactivity.ByIdMoveMovieActivity" />
+        <activity android:name=".hotactivity.XuanZuoActivity" />
+        <activity android:name=".hotactivity.TimeListActivity" />
+>>>>>>> fd3f1f0be4173604414a293fd06f4110e96fce3f
     </application>
 
 </manifest>
