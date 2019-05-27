@@ -95,7 +95,7 @@ public class MyPresenter<T> implements ContractInterface.PDYguanzhu,ContractInte
         @Override
         public void PBanben() {
             Map<String, String> map = new HashMap<>();
-            map.put("ak", "2");
+            map.put("ak", "1");
             myModel.Banbengengxin(map, new MyModel.MyCallBreak() {
                 @Override
                 public void sressco(Object o) {

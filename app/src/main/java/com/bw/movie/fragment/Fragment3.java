@@ -118,7 +118,6 @@ public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),MyGuanzhuActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
     }
@@ -140,7 +139,6 @@ public class Fragment3 extends Fragment implements ContractInterface.VYiJian {
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),YiJianActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
     }

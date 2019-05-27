@@ -37,9 +37,6 @@ public class YiJianActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.myyijian_fanhui:
-                Intent intent=new Intent(YiJianActivity.this,ShowActivity.class);
-                intent.putExtra("id",2);
-                startActivity(intent);
                 finish();
                 break;
             case R.id.myyijian_tijiao:
