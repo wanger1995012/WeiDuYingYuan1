@@ -253,7 +253,7 @@
                <ImageView
                    android:layout_width="@dimen/dp_60"
                    android:layout_height="@dimen/dp_60"
-                   android:layout_marginTop="@dimen/dp_130"
+                   android:layout_marginTop="@dimen/dp_100"
                    android:layout_marginLeft="@dimen/dp_24"
                    android:background="@drawable/myxinxifanhui"
                    android:id="@+id/myxinxi_fanhui"
@@ -263,7 +263,7 @@
                    android:layout_height="@dimen/dp_40"
                    android:text="修改信息"
                    android:textColor="#000"
-                   android:layout_marginTop="@dimen/dp_130"
+                   android:layout_marginTop="@dimen/dp_100"
                    android:layout_marginLeft="@dimen/dp_60"
                    android:id="@+id/myxinxi_btn_xiugai"
                    android:background="@drawable/myshap1"

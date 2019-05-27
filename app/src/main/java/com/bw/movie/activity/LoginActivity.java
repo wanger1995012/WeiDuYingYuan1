@@ -204,6 +204,7 @@ public class LoginActivity extends AppCompatActivity implements ContractInterfac
                 edit.putLong("Birthday",Birthday);
                 edit.commit();
             startActivity(intent);
+            finish();
         }
     }
 

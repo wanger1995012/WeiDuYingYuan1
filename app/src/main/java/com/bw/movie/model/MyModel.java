@@ -54,11 +54,11 @@ import rx.schedulers.Schedulers;
 public class MyModel {
     private static int USERID;
     private static String SESSIONID;
+    Api api = RetrofitUtil.getUtil().gets(Api.class);
 
     //登录
     public void Login(Map<String, String> map, final MyCallBreak callBreak) {
         RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
-        Api api = retrofitUtil.gets(Api.class);
         api.login("/movieApi/user/v1/login?", map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -110,7 +110,6 @@ public class MyModel {
     //注册
     public void Zhuce(Map<String, Object> map, final MyCallBreak callBreak) {
         RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
-        Api api = retrofitUtil.gets(Api.class);
         api.Zhuce("/movieApi/user/v1/registerUser", map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -134,7 +133,7 @@ public class MyModel {
     //通过传来的Id去查询电影信息
 
     public void QueryMovieInformation(int MovieId, final MyCallBreak myCallBreak) {
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
+
         api.QueryMovieInformation("/movieApi/movie/v1/findMoviesDetail", USERID + "", SESSIONID, MovieId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -155,8 +154,7 @@ public class MyModel {
 
 
     public void ShowMovie(final MyCallBreak myCallBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.MovieList("/movieApi/movie/v1/findHotMovieList", USERID + "", SESSIONID, 1, 10)
+        api.MovieList("/movieApi/movie/v1/findHotMovieList", USERID + "", SESSIONID, 1, 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -178,7 +176,6 @@ public class MyModel {
 
     //查询电影评论
     public void findAllMovieComment(int MovieId, int page, int count, final MyCallBreak myCallBreak) {
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.findAllMovieComment("/movieApi/movie/v1/findAllMovieComment", USERID + "", SESSIONID, MovieId, page, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -202,8 +199,7 @@ public class MyModel {
 
 
     public void ShowMovie2(final MyCallBreak myCallBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.MovieList("/movieApi/movie/v1/findReleaseMovieList", USERID + "", SESSIONID, 1, 10)
+        api.MovieList("/movieApi/movie/v1/findReleaseMovieList", USERID + "", SESSIONID, 1, 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -223,8 +219,7 @@ public class MyModel {
 
 
     public void ShowMovie3(final MyCallBreak myCallBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.MovieList("/movieApi/movie/v1/findComingSoonMovieList", USERID + "", SESSIONID, 1, 10)
+        api.MovieList("/movieApi/movie/v1/findComingSoonMovieList", USERID + "", SESSIONID, 1, 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -244,8 +239,7 @@ public class MyModel {
 
     //意见反馈
     public void Yijianfan(final MyCallBreak callBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.YiJianfan("/movieApi/tool/v1/verify/recordFeedBack", USERID, SESSIONID, "很好")
+        api.YiJianfan("/movieApi/tool/v1/verify/recordFeedBack", USERID, SESSIONID, "很好")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -266,8 +260,7 @@ public class MyModel {
 
     //版本更新
     public void Banbengengxin(Map<String, String> map, final MyCallBreak callBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Banbengeng("/movieApi/tool/v1/findNewVersion", USERID, SESSIONID, map)
+        api.Banbengeng("/movieApi/tool/v1/findNewVersion", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -288,8 +281,7 @@ public class MyModel {
 
     //推荐影院
     public void TuijianYingyuan(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Tuijianyingyuan("/movieApi/cinema/v1/findRecommendCinemas", USERID + "", SESSIONID, map)
+        api.Tuijianyingyuan("/movieApi/cinema/v1/findRecommendCinemas", USERID + "", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -310,8 +302,7 @@ public class MyModel {
 
     //附近影院
     public void FujinYingyuan(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Fujinyingyuan("/movieApi/cinema/v1/findNearbyCinemas", USERID + "", SESSIONID, map)
+        api.Fujinyingyuan("/movieApi/cinema/v1/findNearbyCinemas", USERID + "", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -332,8 +323,7 @@ public class MyModel {
 
     //模糊
     public void YYMohucaxun(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.YYMohucaxun("/movieApi/cinema/v1/findAllCinemas", USERID + "", SESSIONID, map)
+        api.YYMohucaxun("/movieApi/cinema/v1/findAllCinemas", USERID + "", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -354,8 +344,7 @@ public class MyModel {
 
     //未关注
     public void Weiguanzhu(Map<String, Object> map, final MyCallBreak callBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Weiguanzhu("/movieApi/cinema/v1/verify/followCinema", USERID, SESSIONID, map)
+        api.Weiguanzhu("/movieApi/cinema/v1/verify/followCinema", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -376,8 +365,7 @@ public class MyModel {
 
     //取消关注
     public void Qvxiaoguanzhu(Map<String, Object> map, final MyCallBreak callBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Qvxiaoguanzhu("/movieApi/cinema/v1/verify/cancelFollowCinema", USERID, SESSIONID, map)
+        api.Qvxiaoguanzhu("/movieApi/cinema/v1/verify/cancelFollowCinema", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -398,8 +386,7 @@ public class MyModel {
 
     //关注影院
     public void GZYY(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.GZYY("/movieApi/cinema/v1/verify/findCinemaPageList", USERID, SESSIONID, map)
+        api.GZYY("/movieApi/cinema/v1/verify/findCinemaPageList", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -420,8 +407,7 @@ public class MyModel {
 
     //重置密码
     public void Chongzhimima(Map<String, String> map, final MyCallBreak callBreak) {
-        Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Chongzhimima("/movieApi/user/v1/verify/modifyUserPwd", USERID, SESSIONID, map)
+        api.Chongzhimima("/movieApi/user/v1/verify/modifyUserPwd", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -442,8 +428,7 @@ public class MyModel {
 
     //关注电影
     public void GZDY(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.GZDY("/movieApi/movie/v1/verify/findMoviePageList", USERID, SESSIONID, map)
+        api.GZDY("/movieApi/movie/v1/verify/findMoviePageList", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -464,9 +449,8 @@ public class MyModel {
 
     //系统通知
     public void Xitongtonfzhi(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
         Log.e("userid", "yingyuan: " + USERID + SESSIONID);
-        gets.XTTZ("/movieApi/tool/v1/verify/findAllSysMsgList", USERID + "", SESSIONID, map)
+        api.XTTZ("/movieApi/tool/v1/verify/findAllSysMsgList", USERID + "", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -487,9 +471,8 @@ public class MyModel {
 
     //改变系统消息状态
     public void XitongtonfzhiXXID(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
         Log.e("userid", "yingyuan: " + USERID + SESSIONID);
-        gets.XTTZXXID("/movieApi/tool/v1/verify/changeSysMsgStatus", USERID + "", SESSIONID, map)
+        api.XTTZXXID("/movieApi/tool/v1/verify/changeSysMsgStatus", USERID + "", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -510,8 +493,7 @@ public class MyModel {
 
     //影院详情
     public void Yingyuanxiangqing(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Yingyuanxiangqing("/movieApi/cinema/v1/findCinemaInfo", USERID, SESSIONID, map)
+        api.Yingyuanxiangqing("/movieApi/cinema/v1/findCinemaInfo", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -532,8 +514,7 @@ public class MyModel {
 
     //影院评价
     public void Yingyuanpingjia(Map<String, Object> map, final MyCallBreak callBreak) {
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.Yingyuanpingjia("/movieApi/cinema/v1/findAllCinemaComment", USERID, SESSIONID, map)
+        api.Yingyuanpingjia("/movieApi/cinema/v1/findAllCinemaComment", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -554,7 +535,6 @@ public class MyModel {
 
     //发送
     public void sendCount(Map <String,String> map, final MyCallBreak myCallBreak){
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.sendCount("/movieApi/movie/v1/verify/movieComment",USERID,SESSIONID,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -606,8 +586,7 @@ public class MyModel {
     }
         //影院点赞
         public void yingyuandianzan (Map < String, Object > map,final MyCallBreak callBreak){
-            final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-            gets.Yingyuandianzan("/movieApi/cinema/v1/verify/cinemaCommentGreat", USERID, SESSIONID, map)
+            api.Yingyuandianzan("/movieApi/cinema/v1/verify/cinemaCommentGreat", USERID, SESSIONID, map)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Action1<ResponseBody>() {
@@ -628,8 +607,7 @@ public class MyModel {
 
         //影院写评论
         public void yingyuanxiepinglun (Map < String, Object > map,final MyCallBreak callBreak){
-            final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-            gets.Yingyuanxiepinglun("/movieApi/cinema/v1/verify/cinemaComment", USERID, SESSIONID, map)
+            api.Yingyuanxiepinglun("/movieApi/cinema/v1/verify/cinemaComment", USERID, SESSIONID, map)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Action1<ResponseBody>() {
@@ -649,8 +627,7 @@ public class MyModel {
         }
         //影院轮播
         public void Yingyuanlunbo (Map < String, Object > map,final MyCallBreak callBreak){
-            final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-            gets.YingyuanLunbo("/movieApi/movie/v1/findMovieListByCinemaId", map)
+            api.YingyuanLunbo("/movieApi/movie/v1/findMovieListByCinemaId", map)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Action1<ResponseBody>() {
@@ -670,8 +647,7 @@ public class MyModel {
         }
         //影院票价
         public void Yingyuanpiaojia (Map < String, Object > map,final MyCallBreak callBreak){
-            final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-            gets.YingyuanPiaojia("/movieApi/movie/v1/findMovieScheduleList", map)
+            api.YingyuanPiaojia("/movieApi/movie/v1/findMovieScheduleList", map)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Action1<ResponseBody>() {
@@ -691,8 +667,7 @@ public class MyModel {
         }
     //微信登录
     public void weixindenglu (Map < String, Object > map,final MyCallBreak callBreak){
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.weixindenglu("/movieApi/user/v1/weChatBindingLogin", map)
+        api.weixindenglu("/movieApi/user/v1/weChatBindingLogin", map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -716,7 +691,6 @@ public class MyModel {
 
     //根据电影Id 查询影院
     public void FindYuan(int movieId , final MyCallBreak myCallBreak){
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.FindYuan("/movieApi/movie/v1/findCinemasListByMovieId", USERID+"", SESSIONID,movieId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -737,7 +711,6 @@ public class MyModel {
 
     //通过电影ID和影院ID查询电影票
     public void QueryP(String y_id, int movieId , final MyCallBreak myCallBreak){
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.FindPiao("/movieApi/movie/v1/findMovieScheduleList",USERID+"", SESSIONID,y_id+"",movieId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -758,7 +731,6 @@ public class MyModel {
     }
     //去下蛋
     public void ToXiaDan(Map<String,Object> map , final MyCallBreak myCallBreak){
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.quXiaDan("/movieApi/movie/v1/verify/buyMovieTicket" ,USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -780,7 +752,6 @@ public class MyModel {
 
     //去支付，根据支付类型和支付的订单号
     public void toPay(Map<String , Object> map,final MyCallBreak myCallBreak){
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.toPay("/movieApi/movie/v1/verify/pay" ,USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -802,7 +773,6 @@ public class MyModel {
 
     //去支付，根据支付类型和支付的订单号
     public void toPay2(Map<String , Object> map,final MyCallBreak myCallBreak){
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.toPay2("/movieApi/movie/v1/verify/pay" ,USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -825,7 +795,6 @@ public class MyModel {
 
     //购票记录
     public void goupiaojilu(Map<String,Object> map , final MyCallBreak myCallBreak){
-        Api api = RetrofitUtil.getUtil().gets(Api.class);
         api.goupiaojilu("/movieApi/user/v1/verify/findUserBuyTicketRecordList" ,USERID+"", SESSIONID, map)
 
                 .subscribeOn(Schedulers.io())
@@ -851,8 +820,7 @@ public class MyModel {
 
     //我的页面的修改
     public void WDxiugai (Map < String, Object > map,final MyCallBreak callBreak){
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.WDxiugai("/movieApi/user/v1/verify/modifyUserInfo", USERID, SESSIONID, map)
+        api.WDxiugai("/movieApi/user/v1/verify/modifyUserInfo", USERID, SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -871,8 +839,7 @@ public class MyModel {
     }
     //电影关注
     public void DYguanzhu (Map < String, Object > map,final MyCallBreak callBreak){
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.DYguanzhu("/movieApi/movie/v1/verify/followMovie", USERID+"", SESSIONID, map)
+        api.DYguanzhu("/movieApi/movie/v1/verify/followMovie", USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -891,8 +858,7 @@ public class MyModel {
     }
     //电影取消关注
     public void DYqvxiaoguanzhu (Map < String, Object > map,final MyCallBreak callBreak){
-        final Api gets = RetrofitUtil.getUtil().gets(Api.class);
-        gets.DYqvxiaoguanzhu("/movieApi/movie/v1/verify/cancelFollowMovie", USERID+"", SESSIONID, map)
+        api.DYqvxiaoguanzhu("/movieApi/movie/v1/verify/cancelFollowMovie", USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {

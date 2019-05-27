@@ -76,7 +76,7 @@
                 android:layout_alignParentStart="true"
                 android:id="@+id/myxin"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginLeft="@dimen/dp_32"
                 android:layout_marginTop="21dp"
                 android:background="@drawable/myxinxi"
                 />
@@ -109,7 +109,7 @@
                 android:layout_alignParentStart="true"
                 android:id="@+id/myguanzhi"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginLeft="@dimen/dp_32"
                 android:layout_marginTop="21dp"
                 android:background="@drawable/myguanzhu"
                 />
@@ -132,7 +132,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="@dimen/dp_113"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="21dp"
                 android:background="@drawable/myjilu" />
 
             <TextView
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/myguanzhi"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/dp_100"
+                android:layout_marginStart="@dimen/dp_98"
                 android:layout_marginTop="10dp"
                 android:text="购票记录"
                 android:textColor="#000"
@@ -163,7 +163,7 @@
                 android:layout_alignParentStart="true"
                 android:id="@+id/myyijian"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginLeft="@dimen/dp_32"
                 android:layout_marginTop="21dp"
                 android:background="@drawable/myyijian"
                 />
@@ -186,7 +186,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="@dimen/dp_113"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="21dp"
                 android:background="@drawable/mybanben" />
 
             <TextView
@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/myzuibanben"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/dp_100"
+                android:layout_marginStart="@dimen/dp_98"
                 android:layout_marginTop="10dp"
                 android:text="最新版本"
                 android:textColor="#000"
@@ -206,8 +206,8 @@
                 android:layout_height="@dimen/dp_24"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="@dimen/dp_180"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="@dimen/dp_200"
+                android:layout_marginTop="21dp"
                 android:background="@drawable/mytuichu" />
 
             <TextView
@@ -215,7 +215,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mytuichudeng"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/dp_170"
+                android:layout_marginStart="@dimen/dp_187"
                 android:layout_marginTop="10dp"
                 android:text="退出登录"
                 android:textColor="#000"
