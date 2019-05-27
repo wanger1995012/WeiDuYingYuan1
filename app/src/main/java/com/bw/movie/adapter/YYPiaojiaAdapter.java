@@ -1,6 +1,7 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.bean.YYPiaojiaBean;
+import com.bw.movie.hotactivity.XuanZuoActivity;
 
 import java.util.List;
 
@@ -23,7 +25,6 @@ import java.util.List;
 public class YYPiaojiaAdapter extends RecyclerView.Adapter<YYPiaojiaAdapter.holder>{
     List<YYPiaojiaBean.ResultBean> list;
     Context context;
-    PJCall pjCall;
     public YYPiaojiaAdapter(List<YYPiaojiaBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
@@ -47,7 +48,13 @@ public class YYPiaojiaAdapter extends RecyclerView.Adapter<YYPiaojiaAdapter.hold
         holder.yy_piaojian_goupiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pjCall.pjCall(i);
+                Intent intent=new Intent(context,XuanZuoActivity.class);
+                intent.putExtra("begin",list.get(i).getBeginTime());
+                intent.putExtra("end",list.get(i).getEndTime());
+                intent.putExtra("ting",list.get(i).getScreeningHall());
+                intent.putExtra("price" , list.get(i).getPrice()+"");
+                intent.putExtra("id" , list.get(i).getId()+"");
+                context.startActivity(intent);
             }
         });
     }
@@ -69,12 +76,5 @@ public class YYPiaojiaAdapter extends RecyclerView.Adapter<YYPiaojiaAdapter.hold
             piaojia_shichang=itemView.findViewById(R.id.piaojia_shichang);
             piaojia_pice=itemView.findViewById(R.id.piaojia_jiage);
         }
-    }
-    public interface PJCall{
-        public void pjCall(int i);
-    }
-
-    public void setPjCall(PJCall pjCall) {
-        this.pjCall = pjCall;
     }
 }

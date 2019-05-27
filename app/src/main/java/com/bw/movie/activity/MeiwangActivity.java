@@ -58,7 +58,6 @@ public class MeiwangActivity extends AppCompatActivity {
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         networkChangeReceiver = new NetBroadcastReceiver();
         registerReceiver(new NetworkChangeReceiver(), intentFilter);
-        Log.e("a111", "onCreate: asdasd");
         //设置返回的点击监听
         btnFanhui.setOnClickListener(new View.OnClickListener() {
             @Override

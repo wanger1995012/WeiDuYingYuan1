@@ -170,13 +170,12 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
         PermissionsUtils.IPermissionsResult permissionsResult = new PermissionsUtils.IPermissionsResult() {
             @Override
             public void passPermissons() {
-                Toast.makeText(getContext(), "权限通过，可以做其他事情!", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void forbitPermissons() {
 //            finish();
-                Toast.makeText(getContext(), "权限不通过!", Toast.LENGTH_SHORT).show();
             }
         };
         //这里的this不是上下文，是Activity对象！
@@ -249,7 +248,6 @@ public class Fragment2 extends Fragment implements ContractInterface.VYingyuan {
                 tuijianAdapter = new TuijianAdapter(list, getActivity());
                 yingyuanrecycler.setAdapter(tuijianAdapter);
                 pYingyuan.PYYMhucaxun(cinemaName, 1, 10);
-
                 tuijianAdapter.setMyCall(new TuijianAdapter.MyCall() {
                     @Override
                     public void weiGuanzhu(String str) {
