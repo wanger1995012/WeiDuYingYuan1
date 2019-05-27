@@ -82,15 +82,6 @@ public class ShowActivity extends AppCompatActivity {
                 }
             }
         });
-        int id = getIntent().getIntExtra("id", 0);
-        getIn(id);
     }
-
-   public void getIn(int a){
-       if (a==2){
-           viewpagerShow.setCurrentItem(2,false);
-           radio.check(R.id.radio_btn3);
-       }
-   }
 
 }

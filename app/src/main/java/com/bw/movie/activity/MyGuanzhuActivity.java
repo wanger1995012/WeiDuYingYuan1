@@ -86,9 +86,6 @@ public class MyGuanzhuActivity extends AppCompatActivity {
         myguanzhuFanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MyGuanzhuActivity.this,ShowActivity.class);
-                intent.putExtra("id",2);
-                startActivity(intent);
                 finish();
             }
         });
