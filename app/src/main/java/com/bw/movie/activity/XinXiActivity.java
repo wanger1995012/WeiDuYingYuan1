@@ -94,14 +94,6 @@ public class XinXiActivity extends AppCompatActivity {
         long Birthday=sp1.getLong("Birthday",123);
 
 
-        Log.e("denglua22", "onCreate: "+zhuceBean.toString() );
-        String nickName = zhuceBean.getNickName();
-        String phone = zhuceBean.getPhone();
-        long riqi = zhuceBean.getBirthday();
-        int sex = zhuceBean.getSex();
-        long youxiang = zhuceBean.getLastLoginTime();
-
-
 
 
         //设置返回

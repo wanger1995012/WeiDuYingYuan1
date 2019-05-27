@@ -9,9 +9,8 @@
     <LinearLayout
         android:layout_width="@dimen/dp_312"
         android:layout_height="@dimen/dp_90"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_10"
-        android:gravity="center_horizontal"
+        android:background="@drawable/shape1"
         android:orientation="horizontal"
         android:padding="@dimen/dp_10">
 
@@ -19,14 +18,13 @@
             android:id="@+id/tuijian_sim"
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_10" />
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_3" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_90"
             android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginRight="@dimen/dp_24"
             android:orientation="vertical">
 
             <TextView
@@ -62,10 +60,9 @@
 
                 <ImageView
                     android:id="@+id/tuijian_guanzhu"
-                    android:layout_width="@dimen/dp_15"
+                    android:layout_width="@dimen/dp_16"
                     android:layout_height="@dimen/dp_16"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="12dp"
+                    android:layout_alignParentRight="true"
                     android:background="@drawable/guanzhu" />
             </RelativeLayout>
         </LinearLayout>
