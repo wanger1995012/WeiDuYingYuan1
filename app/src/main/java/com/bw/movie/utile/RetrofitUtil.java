@@ -36,9 +36,7 @@ public class RetrofitUtil {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request=chain.request();
-                Log.e("aaa", "request: "+request.toString() );
                 Response response=chain.proceed(request);
-                Log.e("aaa", "response: "+response.toString() );
                 return response;
             }
         });

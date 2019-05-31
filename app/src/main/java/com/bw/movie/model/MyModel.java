@@ -31,6 +31,7 @@ import com.bw.movie.bean.YyxqBean;
 import com.bw.movie.bean.ZhuceBean;
 import com.bw.movie.contract.ContractInterface;
 import com.bw.movie.utile.RetrofitUtil;
+import com.bw.movie.utile.T;
 import com.bw.movie.view.Api;
 import com.bw.movie.view.App;
 import com.google.gson.Gson;
@@ -39,8 +40,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import freemarker.ext.beans.BeanModel;
 import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -54,11 +58,11 @@ import rx.schedulers.Schedulers;
 public class MyModel {
     private static int USERID;
     private static String SESSIONID;
+    RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
     Api api = RetrofitUtil.getUtil().gets(Api.class);
 
     //登录
     public void Login(Map<String, String> map, final MyCallBreak callBreak) {
-        RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
         api.login("/movieApi/user/v1/login?", map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -109,7 +113,6 @@ public class MyModel {
 
     //注册
     public void Zhuce(Map<String, Object> map, final MyCallBreak callBreak) {
-        RetrofitUtil retrofitUtil = RetrofitUtil.getUtil();
         api.Zhuce("/movieApi/user/v1/registerUser", map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -799,13 +802,12 @@ public class MyModel {
 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResponseBody>() {
+                    .subscribe(new Action1<ResponseBody>() {
                     @Override
                     public void call(ResponseBody responseBody) {
                         try {
                             String json = responseBody.string();
                             Gson gson = new Gson();
-
                             MyFoodedBean beans = gson.fromJson(json, MyFoodedBean.class);
                             myCallBreak.sressco(beans);
                         } catch (IOException e) {
@@ -813,6 +815,7 @@ public class MyModel {
                         }
                     }
                 });
+
 
     }
 
@@ -839,7 +842,7 @@ public class MyModel {
     }
     //电影关注
     public void DYguanzhu (Map < String, Object > map,final MyCallBreak callBreak){
-        api.DYguanzhu("/movieApi/movie/v1/verify/followMovie", USERID+"", SESSIONID, map)
+        /*api.DYguanzhu("/movieApi/movie/v1/verify/followMovie", USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -854,11 +857,13 @@ public class MyModel {
                             e.printStackTrace();
                         }
                     }
-                });
+                });*/
+        String url="/movieApi/movie/v1/verify/followMovie";
+        MyApi(url,map,callBreak);
     }
     //电影取消关注
     public void DYqvxiaoguanzhu (Map < String, Object > map,final MyCallBreak callBreak){
-        api.DYqvxiaoguanzhu("/movieApi/movie/v1/verify/cancelFollowMovie", USERID+"", SESSIONID, map)
+       /* api.DYqvxiaoguanzhu("/movieApi/movie/v1/verify/cancelFollowMovie", USERID+"", SESSIONID, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<ResponseBody>() {
@@ -873,10 +878,52 @@ public class MyModel {
                             e.printStackTrace();
                         }
                     }
-                });
+                });*/
+        String url="/movieApi/movie/v1/verify/cancelFollowMovie";
+       MyApi(url,map,callBreak);
     }
     //设置接口
     public interface MyCallBreak {
         public void sressco(Object o);
     }
+    //设置公共的方法封装
+    private void MyApi(String url,Map<String,Object> map, final MyCallBreak callBreak){
+        api.Post(url, USERID+"", SESSIONID, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            JSONObject object = new JSONObject(json);
+                            String m = object.getString("message");
+                            callBreak.sressco(m);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+   /* //设置公共的方法封装
+    private void getMyApi(String url, Map<String,Object> map, final MyCallBreak callBreak, final Object a1){
+        api.Get(url, USERID+"", SESSIONID,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>() {
+                    @Override
+                    public void call(ResponseBody responseBody) {
+                        try {
+                            String json = responseBody.string();
+                            Gson gson = new Gson();
+                            Class<T> a= (Class<T>) a1;
+                            Object tuijianBean = gson.fromJson(json, a.getClass());
+                            callBreak.sressco(tuijianBean);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }*/
+
 }
