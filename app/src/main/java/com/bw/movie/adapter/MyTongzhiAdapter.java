@@ -58,7 +58,7 @@ public class MyTongzhiAdapter extends RecyclerView.Adapter<MyTongzhiAdapter.hode
         }
         //设置毫秒值
         date = list.get(i).getPushTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.CHINA);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd  HH:mm", Locale.CHINA);
         // time为转换格式后的字符串
         String time = dateFormat.format(new Date(date));
         hoder.tongzhi_pushTime.setText(time);
@@ -72,7 +72,8 @@ public class MyTongzhiAdapter extends RecyclerView.Adapter<MyTongzhiAdapter.hode
                     myCallXiaoxi.xiaoxiid(list,i);
                     //设置消息的未读事件
                     hoder.tongzhi_weidubtn.setText("设为已读");
-                    list.get(i).setStatus(1);if (list.get(i).getStatus() == 1) {
+                    list.get(i).setStatus(1);
+                    if (list.get(i).getStatus() == 1) {
                         hoder.tongzhi_xiaoxi.setVisibility(View.GONE);
                         a++;
                         mycall.Tongzhixiaox(a);

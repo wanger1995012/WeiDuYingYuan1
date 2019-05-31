@@ -1,5 +1,7 @@
 package com.bw.movie.view;
 
+import com.bw.movie.utile.T;
+
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -161,5 +163,11 @@ public interface Api {
     //电影取消关注
     @GET
     public Observable<ResponseBody> DYqvxiaoguanzhu(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId ,@QueryMap Map<String,Object> map);
+    //泛型
+    @GET
+    public Observable<ResponseBody> Get(@Url String url, @Header("userId") String userId, @Header("sessionId") String sessionId,@QueryMap Map<String,Object> map);
+    @GET
+    public Observable<ResponseBody> Post(@Url String url, @Header("userId") String userId, @Header("sessionId") String session, @QueryMap Map<String,Object> map);
+
 
 }
