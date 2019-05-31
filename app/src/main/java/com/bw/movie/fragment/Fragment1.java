@@ -162,6 +162,7 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
         setRc3();
         hotClick();
         TranSlate();//平移
+        //轮播的选中监听
         flow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
             @Override
             public void onItemSelected(int position) {
@@ -170,6 +171,8 @@ public class Fragment1 extends Fragment implements ContractInterface.ViewMovieLi
                 WindowManager wm = (WindowManager) getActivity().getSystemService(getContext().WINDOW_SERVICE);
                 wm.getDefaultDisplay().getSize(p);
                 int white = p.x;
+                //宽除以旋转木马的图片的bean的长度
+                //得到每一个所占的宽度
                 int i = white / bean2.size();
 
                 if(position == 0){

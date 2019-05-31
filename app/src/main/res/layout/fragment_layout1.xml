@@ -29,14 +29,14 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/moviebg" />
+
                 <recycler.coverflow.RecyclerCoverFlow
                     android:id="@+id/recycler_cover_flow"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_223"
-                    android:layout_marginTop="@dimen/dp_85"
+                    android:layout_width="335dp"
+                    android:layout_height="229dp"
                     android:layout_marginLeft="@dimen/dp_25"
-                    android:layout_marginRight="@dimen/dp_25">
-                </recycler.coverflow.RecyclerCoverFlow>
+                    android:layout_marginTop="@dimen/dp_85"
+                    android:layout_marginRight="@dimen/dp_25"></recycler.coverflow.RecyclerCoverFlow>
 
                 <ImageView
                     android:id="@+id/image_dingwei"
